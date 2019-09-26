@@ -39,25 +39,20 @@ public class MortgageCalculator {
 
 	public static void printCalculation(Scanner console) {
 		try {
-			System.out.print("Enter the Home Price: ");
+			System.out.println("Enter the Home Price: ");
 			int price = parseInt(console.next());
-			System.out.println();
 
-			System.out.print("Enter the Down Payment: ");
+			System.out.println("Enter the Down Payment: ");
 			int downPayment = parseInt(console.next());
-			System.out.println();
 
-			System.out.print("Enter the Annual Property Tax: ");
+			System.out.println("Enter the Annual Property Tax: ");
 			int propertyTax = parseInt(console.next());
-			System.out.println();
 
-			System.out.print("Enter the Annual Insurance Payment: ");
+			System.out.println("Enter the Annual Insurance Payment: ");
 			int homeInsurance = parseInt(console.next());
-			System.out.println();
 
-			System.out.print("Enter the Number of Years for the FRM: ");
+			System.out.println("Enter the Number of Years for the FRM: ");
 			int years = parseInt(console.next());
-			System.out.println();
 
 			System.out.printf("Your Monthly Payments are: $%.2f%n",
 					Math.floor(calculateFrm(price, downPayment, propertyTax, homeInsurance, years)));

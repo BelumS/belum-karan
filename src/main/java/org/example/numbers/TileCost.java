@@ -13,23 +13,22 @@ public class TileCost {
 
 	public static void calculate(Scanner console) {
 		try {
-			System.out.println("****Welcome to the Tile Cost Calculator!****");
 			System.out.print("Enter the price per tile $");
 			double cost = Double.parseDouble(console.next());
 
-			System.out.print("Enter the Labor Cost: $");
+			System.out.println("Enter the Labor Cost: $");
 			int labor = Integer.parseInt(console.next());
 
-			System.out.print("Enter the Other Material Cost: $");
+			System.out.println("Enter the Other Material Cost: $");
 			int otherMats = Integer.parseInt(console.next());
 
-			System.out.print("Enter the Removal Cost: $");
+			System.out.println("Enter the Removal Cost: $");
 			int removalOfOldSurface = Integer.parseInt(console.next());
 
-			System.out.print("Enter the Prep Cost: $");
+			System.out.println("Enter the Prep Cost: $");
 			int areaPrep = Integer.parseInt(console.next());
 
-			System.out.print("Enter the total Square Feet: ");
+			System.out.println("Enter the total Square Feet: ");
 			int sqFt = Integer.parseInt(console.next());
 
 			double total = (cost + removalOfOldSurface + areaPrep + labor + otherMats) * sqFt;

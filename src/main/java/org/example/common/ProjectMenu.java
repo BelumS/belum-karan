@@ -34,7 +34,7 @@ public class ProjectMenu {
 
         try (Scanner console = new Scanner(System.in)){
             menuOptions();
-            out.println("> ");
+            //out.print("> ");
             int choice = Integer.parseInt(console.next());
     
             switch (choice) {
@@ -123,7 +123,7 @@ public class ProjectMenu {
     private static void numberOptions(Scanner console) {
         try {
             numberMenu();
-            out.println("> ");
+            //out.println("> \r");
             int choice = Integer.parseInt(console.next());
             out.println();
 
