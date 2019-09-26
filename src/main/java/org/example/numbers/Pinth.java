@@ -23,7 +23,7 @@ public class Pinth {
 			else if (choice > 0 && choice <= LIMIT)
 				System.out.println(new BigDecimal(Math.PI).setScale(choice, RoundingMode.DOWN));
 			else {
-				System.out.println(NumberConstants.DECIMAL_OVERLOAD);
+				System.out.println(NumberConstants.DECIMAL_OVERFLOW);
 				System.exit(-1);
 			}
 		} catch (Exception e) {
