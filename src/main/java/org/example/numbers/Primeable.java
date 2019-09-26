@@ -2,13 +2,15 @@ package org.example.numbers;
 
 import java.util.stream.IntStream;
 
+import org.example.common.NumberConstants;
+
 public interface Primeable {
 	static boolean isPrime(int n) {
 		try {
 			if (n <= 0)
-				throw new ArithmeticException("Not a valid candidate for prime number(s).");
+				throw new ArithmeticException(NumberConstants.INVALID_PRIME);
 			if (n > Integer.MAX_VALUE)
-				throw new IllegalArgumentException("Error, that number is too large for computation!");
+				throw new IllegalArgumentException(NumberConstants.INTEGER_OVERFLOW);
 			if (n != 2 && n % 2 == 0)
 				return false;
 

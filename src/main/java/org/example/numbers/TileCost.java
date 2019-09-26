@@ -3,9 +3,10 @@ package org.example.numbers;
 import java.util.Scanner;
 
 /**
- * @author bsahn on 26-09-2019 Calculate the total cost of tile it would take to
- *         cover a floor plan of width and height, using a cost entered by the
- *         user.
+ * @author bsahn on 26-09-2019 
+ * Calculate the total cost of tile it would take to
+ * cover a floor plan of width and height, using a cost entered by the
+ * user.
  **/
 public class TileCost {
 	private TileCost(){}

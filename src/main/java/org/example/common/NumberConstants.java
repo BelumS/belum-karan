@@ -11,5 +11,10 @@ public final class NumberConstants {
     public static final String TITLE_NEXT_PRIME = "Next Prime";
     public static final String TITLE_TILE_COST = "Tile Cost";
     public static final String TITLE_MORTGAGE = "Mortgage";
+    
+
+    public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
+    public static final String INTEGER_OVERFLOW = "Error, that number is too large for computation!";
+    public static final String INVALID_PRIME = "Not a valid candidate for prime number(s).";
 
 }

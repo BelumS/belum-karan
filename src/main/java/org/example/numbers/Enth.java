@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Scanner;
 
+import org.example.common.NumberConstants;
+
 public class Enth {
 	private static final int LIMIT = 20;
 
@@ -21,7 +23,7 @@ public class Enth {
 			else if (choice > 0 && choice <= LIMIT)
 				System.out.println(new BigDecimal(Math.E).setScale(choice, RoundingMode.DOWN));
 			else {
-				System.out.println("Error: Decimal overload!");
+				System.out.println(NumberConstants.DECIMAL_OVERLOAD);
 				System.exit(-1);
 			}
 		} catch (Exception e) {
