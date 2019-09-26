@@ -12,8 +12,8 @@ public class Pinth {
 	private Pinth() {
 	}
 
-	public static void displayPi() {
-		try (Scanner console = new Scanner(System.in)) {
+	public static void displayPi(Scanner console) {
+		try {
 			System.out.print("Enter an integer between [0 and 20]: ");
 			int choice = console.nextInt();
 			System.out.println();

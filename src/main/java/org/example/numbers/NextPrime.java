@@ -6,8 +6,8 @@ public class NextPrime {
 	private NextPrime() {
 	}
 
-	public static void infinitePrimes() {
-		try (Scanner console = new Scanner(System.in)) {
+	public static void infinitePrimes(Scanner console) {
+		try {
 			System.out.print("Enter an integer to view its Primes: ");
 			int from = console.nextInt();
 			System.out.println();

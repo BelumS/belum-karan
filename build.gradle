@@ -27,4 +27,8 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'main.java.org.example.Application'
+mainClassName = 'org.example.Application'
+
+run {
+    standardInput = System.in
+}

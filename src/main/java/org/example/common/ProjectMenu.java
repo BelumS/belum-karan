@@ -1,5 +1,7 @@
 package org.example.common;
 
+import static java.lang.System.out;
+
 import java.util.Scanner;
 
 import org.example.numbers.Enth;
@@ -30,17 +32,14 @@ public class ProjectMenu {
     public static void menu() {
         System.out.println("\n*** Welcome to Belum's Karan Project Solutions! ***\n");
 
-        try (Scanner console = new Scanner(System.in)) {
-            System.out.println(menuOptions());
-            System.out.print("> ");
-            //int choice = Integer.parseInt(console.next());
-            int choice = 0;
-            System.out.println();
-            System.out.println();
-
+        try (Scanner console = new Scanner(System.in)){
+            menuOptions();
+            out.println("> ");
+            int choice = Integer.parseInt(console.next());
+    
             switch (choice) {
             case 0:
-                numberOptions();
+                numberOptions(console);
                 break;
             case 1:
                 textOptions();
@@ -79,7 +78,7 @@ public class ProjectMenu {
                 graphicOptions();
                 break;
             default:
-                System.out.println("Invalid Menu Option .. Exiting!");
+                out.println("Invalid Menu Option .. Exiting!");
                 System.exit(-1);
             }
         } catch (Exception e) {
@@ -87,27 +86,27 @@ public class ProjectMenu {
         }
     }
 
-    private static String menuOptions() {
+    private static void menuOptions() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("0.  ").append(NumberConstants.TITLE).append("\n")
-            .append("1.  ").append(TEXT).append("\n")
-            .append("2.  ").append(DATA_STRUCTURES).append("\n")
-            .append("3.  ").append(ALGORITHMS).append("\n")
-            .append("4.  ").append(CLASSES).append("\n")
-            .append("5.  ").append(FILES).append("\n")
-            .append("6.  ").append(THREADING).append("\n")
-            .append("7.  ").append(NETWORKING).append("\n")
-            .append("8.  ").append(DATABASES).append("\n")
-            .append("9.  ").append(WEB).append("\n")
+        builder.append("0. ").append(NumberConstants.TITLE).append("\n")
+            .append("1. ").append(TEXT).append("\n")
+            .append("2. ").append(DATA_STRUCTURES).append("\n")
+            .append("3. ").append(ALGORITHMS).append("\n")
+            .append("4. ").append(CLASSES).append("\n")
+            .append("5. ").append(FILES).append("\n")
+            .append("6. ").append(THREADING).append("\n")
+            .append("7. ").append(NETWORKING).append("\n")
+            .append("8. ").append(DATABASES).append("\n")
+            .append("9. ").append(WEB).append("\n")
             .append("10. ").append(SECURITY).append("\n")
             .append("11. ").append(GRAPHS).append("\n")
             .append("12. ").append(GRAPHICS_MULTIMEDIA);
 
-        return builder.toString();
+        System.out.println(builder.toString());
     }
 
-    private static String numberMenu() {
+    private static void numberMenu() {
         StringBuilder builder = new StringBuilder();
 
         builder.append("0. ").append(NumberConstants.TITLE_PI).append("\n")
@@ -116,43 +115,42 @@ public class ProjectMenu {
             .append("3. ").append(NumberConstants.TITLE_PRIME_FACTORS).append("\n")
             .append("4. ").append(NumberConstants.TITLE_NEXT_PRIME).append("\n")
             .append("5. ").append(NumberConstants.TITLE_TILE_COST).append("\n")
-            .append("6. ").append(NumberConstants.TITLE_MORTGAGE);
+            .append("6. ").append(NumberConstants.TITLE_MORTGAGE).append("\n");
 
-        return builder.toString();
+        System.out.println(builder.toString());
     }
 
-    private static void numberOptions() {
-        try (Scanner console = new Scanner(System.in)) {
-            System.out.println(numberMenu());
-            System.out.print("> ");
-            //int choice = Integer.parseInt(console.next());
-            int choice = 0;
-            System.out.println();
+    private static void numberOptions(Scanner console) {
+        try {
+            numberMenu();
+            out.println("> ");
+            int choice = Integer.parseInt(console.next());
+            out.println();
 
             switch (choice) {
             case 0:
-                Pinth.displayPi();
+                Pinth.displayPi(console);
                 break;
             case 1:
-                Enth.displayE();
+                Enth.displayE(console);
                 break;
             case 2:
-                Fibonacci.sequence();
+                Fibonacci.sequence(console);
                 break;
             case 3:
-                PrimeFactors.calculate();
+                PrimeFactors.calculate(console);
                 break;
             case 4:
-                NextPrime.infinitePrimes();
+                NextPrime.infinitePrimes(console);
                 break;
             case 5:
-                TileCost.calculate();
+                TileCost.calculate(console);
                 break;
             case 6:
-                MortgageCalculator.printCalculation();
+                MortgageCalculator.printCalculation(console);
                 break;
             default:
-                System.out.println("Invalid Menu Option .. Exiting!");
+                out.println("Invalid Menu Option .. Exiting!");
                 System.exit(-1);
             }
         } catch (Exception e) {

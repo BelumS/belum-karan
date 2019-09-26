@@ -7,8 +7,8 @@ public class Fibonacci {
 	private Fibonacci() {
 	}
 
-	public static void sequence() {
-		try (Scanner console = new Scanner(System.in)) {
+	public static void sequence(Scanner console) {
+		try {
 			System.out.print("Enter an integer to view it's Fibonacci Sequence: ");
 			long choice = Long.parseLong(console.next());
 			System.out.println();

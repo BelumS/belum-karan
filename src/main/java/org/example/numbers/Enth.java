@@ -12,8 +12,8 @@ public class Enth {
 	private Enth() {
 	}
 
-	public static void displayE() {
-		try (Scanner console = new Scanner(System.in)) {
+	public static void displayE(Scanner console) {
+		try {
 			System.out.print("Enter an integer between [0 and 20]: ");
 			int choice = console.nextInt();
 			System.out.println();

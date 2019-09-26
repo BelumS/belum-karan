@@ -37,8 +37,8 @@ public class MortgageCalculator {
 				/ (Math.pow(1 + interestResult, monthlyPayments) - 1));
 	}
 
-	public static void printCalculation() {
-		try (Scanner console = new Scanner(System.in)) {
+	public static void printCalculation(Scanner console) {
+		try {
 			System.out.print("Enter the Home Price: ");
 			int price = parseInt(console.next());
 			System.out.println();

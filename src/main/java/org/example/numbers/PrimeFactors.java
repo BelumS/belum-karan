@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class PrimeFactors {
 	private PrimeFactors(){}
 
-	public static void calculate() {
-		try(Scanner console = new Scanner(System.in)) {
+	public static void calculate(Scanner console) {
+		try {
 			System.out.print("Enter an integer to view it's Prime Factors: ");
 			int n = console.nextInt();
 			System.out.println();

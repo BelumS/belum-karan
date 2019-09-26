@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class TileCost {
 	private TileCost(){}
 
-	public static void calculate() {
-		try (Scanner console = new Scanner(System.in)) {
+	public static void calculate(Scanner console) {
+		try {
 			System.out.println("****Welcome to the Tile Cost Calculator!****");
 			System.out.print("Enter the price per tile $");
 			double cost = Double.parseDouble(console.next());
