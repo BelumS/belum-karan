@@ -4,6 +4,7 @@ import static java.lang.System.out;
 
 import java.util.Scanner;
 
+import org.example.numbers.ChangeReturn;
 import org.example.numbers.Enth;
 import org.example.numbers.Fibonacci;
 import org.example.numbers.MortgageCalculator;
@@ -115,7 +116,8 @@ public class ProjectMenu {
             .append("3. ").append(NumberConstants.TITLE_PRIME_FACTORS).append("\n")
             .append("4. ").append(NumberConstants.TITLE_NEXT_PRIME).append("\n")
             .append("5. ").append(NumberConstants.TITLE_TILE_COST).append("\n")
-            .append("6. ").append(NumberConstants.TITLE_MORTGAGE).append("\n");
+            .append("6. ").append(NumberConstants.TITLE_MORTGAGE).append("\n")
+            .append("7. ").append(NumberConstants.TITLE_CHANGE_RETURN).append("\n");
 
         System.out.println(builder.toString());
     }
@@ -148,6 +150,9 @@ public class ProjectMenu {
                 break;
             case 6:
                 MortgageCalculator.printCalculation(console);
+                break;
+            case 7:
+                ChangeReturn.print(console);
                 break;
             default:
                 out.println("Invalid Menu Option .. Exiting!");
