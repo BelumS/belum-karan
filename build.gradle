@@ -22,8 +22,8 @@ repositories {
 dependencies {
     //implementation 'com.google.guava:guava:27.0.1-jre'
     //implementation 'org.apache.commons:commons-lang3:3.9'
-
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
+    testImplementation 'org.mockito:mockito-core:3.3.0'
 }
 
 // Define the main class for the application
@@ -31,4 +31,12 @@ mainClassName = 'org.example.Application'
 
 run {
     standardInput = System.in
+}
+
+test {
+	useJUnitPlatform()
+
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
 }

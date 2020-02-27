@@ -14,7 +14,7 @@ import org.example.numbers.Pinth;
 import org.example.numbers.PrimeFactors;
 import org.example.numbers.TileCost;
 
-public class ProjectMenu {
+public final class ProjectMenu {
     private static final String TEXT = "Text";
     private static final String DATA_STRUCTURES = "Data Structures";
     private static final String ALGORITHMS = "Algorithms";
