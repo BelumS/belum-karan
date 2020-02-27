@@ -131,7 +131,7 @@ public final class ProjectMenu {
                 .append(NumberConstants.TITLE_TILE_COST).append("\n").append("7. ")
                 .append(NumberConstants.TITLE_MORTGAGE).append("\n").append("8. ")
                 .append(NumberConstants.TITLE_CHANGE_RETURN).append("\n").append("9. ")
-                .append(NumberConstants.TITLE_NUMBER_CONVERVER).append("\n").append(" \n\n0. ").append(REPEAT)
+                .append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n").append(" \n\n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
 
         System.out.println(builder.toString());

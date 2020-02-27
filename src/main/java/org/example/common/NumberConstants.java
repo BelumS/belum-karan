@@ -12,8 +12,7 @@ public final class NumberConstants {
     public static final String TITLE_TILE_COST = "Tile Cost";
     public static final String TITLE_MORTGAGE = "Mortgage";
     public static final String TITLE_CHANGE_RETURN = "Change Return";
-    public static final String TITLE_NUMBER_CONVERVER = "Number Converter";
-    
+    public static final String TITLE_NUMBER_CONVERTER = "Number Converter";
 
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
     public static final String INTEGER_OVERFLOW = "Error, that number is too large for computation!";
