@@ -1,5 +1,6 @@
 package org.example.common;
 
+import static java.lang.System.*;
 import static java.lang.System.out;
 
 import java.util.Scanner;
@@ -15,6 +16,7 @@ import org.example.numbers.PrimeFactors;
 import org.example.numbers.TileCost;
 
 public final class ProjectMenu {
+    private static final String TITLE = "\n*** Welcome to Belum's Karan Project Solutions! ***\n";
     private static final String TEXT = "Text";
     private static final String DATA_STRUCTURES = "Data Structures";
     private static final String ALGORITHMS = "Algorithms";
@@ -35,7 +37,7 @@ public final class ProjectMenu {
     }
 
     public static void menu() {
-        try (Scanner console = new Scanner(System.in)) {
+        try (Scanner console = new Scanner(in)) {
             menuOptions();
             // out.print("> ");
             // int choice = Integer.parseInt(console.next());
@@ -98,50 +100,60 @@ public final class ProjectMenu {
     }
 
     private static void menuOptions() {
-        StringBuilder builder = new StringBuilder("\n*** Welcome to Belum's Karan Project Solutions! ***\n");
+        StringBuilder builder = new StringBuilder(TITLE);
 
-        builder.append("1. ").append(NumberConstants.TITLE).append("\n").append("2. ").append(TEXT).append("\n")
-                .append("3. ").append(DATA_STRUCTURES).append("\n").append("4. ").append(ALGORITHMS).append("\n")
-                .append("5. ").append(CLASSES).append("\n").append("6. ").append(FILES).append("\n").append("7. ")
-                .append(THREADING).append("\n").append("8. ").append(NETWORKING).append("\n").append("9. ")
-                .append(DATABASES).append("\n").append("10. ").append(WEB).append("\n").append("11. ").append(SECURITY)
-                .append("\n").append("12. ").append(GRAPHS).append("\n").append("13. ").append(GRAPHICS_MULTIMEDIA)
-                .append(" \n\n0. ").append(REPEAT).append("\n-1. \n\n").append(QUIT_MSG);
+         builder.append("1. ").append(NumberConstants.TITLE).append("\n")
+                .append("2. ").append(TEXT).append("\n")
+                .append("3. ").append(DATA_STRUCTURES).append("\n")
+                .append("4. ").append(ALGORITHMS).append("\n")
+                .append("5. ").append(CLASSES).append("\n")
+                .append("6. ").append(FILES).append("\n")
+                .append("7. ").append(THREADING).append("\n")
+                .append("8. ").append(NETWORKING).append("\n")
+                .append("9. ").append(DATABASES).append("\n")
+                .append("10. ").append(WEB).append("\n")
+                .append("11. ").append(SECURITY).append("\n")
+                .append("12. ").append(GRAPHS).append("\n")
+                .append("13. ").append(GRAPHICS_MULTIMEDIA)
+                .append(" \n\n0. ").append(REPEAT)
+                .append("\n-1. ").append(QUIT_MSG).append("\n");
 
-        System.out.println(builder.toString());
+        out.println(builder.toString());
     }
 
     private static void exitApp() {
         out.println("... Exiting ...");
-        System.exit(0);
+        exit(0);
     }
 
     private static void exitOnError() {
         out.println("Invalid Menu Option .. Exiting!");
-        System.exit(QUIT);
+        exit(QUIT);
     }
 
     private static void numberMenu() {
         StringBuilder builder = new StringBuilder(" - Number Projects - ");
 
-        builder.append("\n1. ").append(NumberConstants.TITLE_PI).append("\n").append("2. ")
-                .append(NumberConstants.TITLE_E).append("\n").append("3. ").append(NumberConstants.TITLE_FIBONACCI)
-                .append("\n").append("4. ").append(NumberConstants.TITLE_PRIME_FACTORS).append("\n").append("5. ")
-                .append(NumberConstants.TITLE_NEXT_PRIME).append("\n").append("6. ")
-                .append(NumberConstants.TITLE_TILE_COST).append("\n").append("7. ")
-                .append(NumberConstants.TITLE_MORTGAGE).append("\n").append("8. ")
-                .append(NumberConstants.TITLE_CHANGE_RETURN).append("\n").append("9. ")
-                .append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n").append(" \n\n0. ").append(REPEAT)
+         builder.append("\n1. ").append(NumberConstants.TITLE_PI).append("\n")
+                .append("2. ").append(NumberConstants.TITLE_E).append("\n")
+                .append("3. ").append(NumberConstants.TITLE_FIBONACCI).append("\n")
+                .append("4. ").append(NumberConstants.TITLE_PRIME_FACTORS).append("\n")
+                .append("5. ").append(NumberConstants.TITLE_NEXT_PRIME).append("\n")
+                .append("6. ").append(NumberConstants.TITLE_TILE_COST).append("\n")
+                .append("7. ").append(NumberConstants.TITLE_MORTGAGE).append("\n")
+                .append("8. ").append(NumberConstants.TITLE_CHANGE_RETURN).append("\n")
+                .append("9. ").append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n")
+                .append(" \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
 
-        System.out.println(builder.toString());
+        out.println(builder.toString());
     }
 
     private static void numberOptions(Scanner console) {
         try {
             numberMenu();
             // out.println("> \r");
-            int choice = 9;// Integer.parseInt(console.next());
+            int choice = 1;// Integer.parseInt(console.next());
             out.println();
 
             while (choice != QUIT) {
