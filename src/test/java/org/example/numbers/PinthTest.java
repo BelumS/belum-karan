@@ -6,10 +6,12 @@ import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PinthTest {
     private Scanner console;
@@ -41,5 +43,17 @@ class PinthTest {
         BigDecimal result = Pinth.displayPi(console);
         assertEquals(BigDecimal.ZERO, result);
         console.close();
+    }
+
+    @Test
+    void testInputMismatchException() {
+        console = new Scanner(new ByteArrayInputStream("a".getBytes()));
+        assertThrows(InputMismatchException.class, () -> Pinth.displayPi(console));
+    }
+
+    @Test
+    void testNullPointerException() {
+        console = new Scanner(new ByteArrayInputStream("a".getBytes()));
+        assertThrows(NullPointerException.class, () -> Pinth.displayPi(null));
     }
 }

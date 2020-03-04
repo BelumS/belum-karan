@@ -39,11 +39,11 @@ public final class ProjectMenu {
     public static void menu() {
         try (Scanner console = new Scanner(in)) {
             menuOptions();
-            // out.print("> ");
-            // int choice = Integer.parseInt(console.next());
-            int choice = 1;
+            //out.print("> ");
+            int choice = Integer.parseInt(console.next());
+            //int choice = 1;
 
-            while (choice != QUIT) {
+            while (choice > QUIT && choice < Integer.MAX_VALUE) {
                 switch (choice) {
                 case QUIT:
                     exitApp();
@@ -152,8 +152,8 @@ public final class ProjectMenu {
     private static void numberOptions(Scanner console) {
         try {
             numberMenu();
-            // out.println("> \r");
-            int choice = 1;// Integer.parseInt(console.next());
+            out.print("> ");
+            int choice = Integer.parseInt(console.next());
             out.println();
 
             while (choice != QUIT) {
