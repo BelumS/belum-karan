@@ -1,6 +1,5 @@
 package org.example.numbers;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -12,11 +11,11 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PinthTest {
+class PinthTest {
     private Scanner console;
 
     @Test
-    public void testLowerEdgeCase() {
+    void testLowerEdgeCase() {
         console = new Scanner(new ByteArrayInputStream("-1".getBytes()));
         BigDecimal result = Pinth.displayPi(console);
         assertEquals(BigDecimal.ZERO, result);
@@ -24,7 +23,7 @@ public class PinthTest {
     }
 
     @Test
-    public void testAllBasesCases() {
+    void testAllBasesCases() {
         Map<Integer, String> map = new HashMap<>();
         for (int i = 0; i < 21; ++i) {
             map.put(i, Integer.toString(i));
@@ -37,11 +36,10 @@ public class PinthTest {
     }
 
     @Test
-    public void testHigherEdgeCase() {
+    void testHigherEdgeCase() {
         console = new Scanner(new ByteArrayInputStream("21".getBytes()));
         BigDecimal result = Pinth.displayPi(console);
-        System.out.println(result);
-        assertEquals(BigDecimal.TEN, result);
+        assertEquals(BigDecimal.ZERO, result);
         console.close();
     }
 }

@@ -32,7 +32,7 @@ public final class Pinth {
 			else {
 				out.println(choice + " does not fit the criteria.");
 				result = BigDecimal.ZERO;
-				exit(-1);
+				//exit(-1);
 			}
 		} catch (NumberFormatException | ArithmeticException e) {
 			out.println("Unable to process the number: " + e.getMessage());
