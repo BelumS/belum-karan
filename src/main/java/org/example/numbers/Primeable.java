@@ -23,8 +23,8 @@ public interface Primeable {
 	}
 
 	static void checkPrime(int n) {
-		IntStream.rangeClosed(1, n).filter(i -> i % 2 == 1).forEach(i -> System.out
-				.println(new StringBuilder().append(i).append(" is prime?: ").append(isPrime(i)).toString()));
+		IntStream.rangeClosed(1, n).filter(i -> i % 2 == 1).forEach(i ->
+				System.out.println(new StringBuilder().append(i).append(" is prime?: ").append(isPrime(i)).toString()));
 	}
 
 	static int[] extractPrimeFactors(int n) {
