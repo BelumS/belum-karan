@@ -39,11 +39,11 @@ public final class ProjectMenu {
     public static void menu() {
         try (Scanner console = new Scanner(in)) {
             menuOptions();
-            //out.print("> ");
-            int choice = Integer.parseInt(console.next());
-            //int choice = 1;
+            out.print("> ");
+            //int choice = Integer.parseInt(console.next());
+            int choice = 1;
 
-            while (choice > QUIT && choice < Integer.MAX_VALUE) {
+            while (choice > QUIT) {
                 switch (choice) {
                 case QUIT:
                     exitApp();
@@ -156,7 +156,7 @@ public final class ProjectMenu {
             int choice = Integer.parseInt(console.next());
             out.println();
 
-            while (choice != QUIT) {
+            while (choice > QUIT) {
                 switch (choice) {
                 case QUIT:
                     exitApp();
@@ -196,7 +196,7 @@ public final class ProjectMenu {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            NumberConstants.printError(e, e.getMessage());
         }
     }
 

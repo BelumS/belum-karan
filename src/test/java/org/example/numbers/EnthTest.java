@@ -13,13 +13,13 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class PinthTest {
+public class EnthTest {
     private Scanner console;
 
     @Test
     void testLowerEdgeCase() {
         console = new Scanner(new ByteArrayInputStream("-1".getBytes()));
-        BigDecimal result = Pinth.displayPi(console);
+        BigDecimal result = Enth.displayE(console);
         assertEquals(BigDecimal.ZERO, result);
         console.close();
     }
@@ -31,8 +31,8 @@ class PinthTest {
             map.put(i, Integer.toString(i));
 
             console = new Scanner(new ByteArrayInputStream(map.get(i).getBytes()));
-            BigDecimal result = Pinth.displayPi(console);
-            assertEquals(BigDecimal.valueOf(Math.PI).setScale(i, RoundingMode.DOWN), result);
+            BigDecimal result = Enth.displayE(console);
+            assertEquals(BigDecimal.valueOf(Math.E).setScale(i, RoundingMode.DOWN), result);
         }
         console.close();
     }
@@ -40,7 +40,7 @@ class PinthTest {
     @Test
     void testHigherEdgeCase() {
         console = new Scanner(new ByteArrayInputStream("21".getBytes()));
-        BigDecimal result = Pinth.displayPi(console);
+        BigDecimal result = Enth.displayE(console);
         assertEquals(BigDecimal.ZERO, result);
         console.close();
     }
@@ -48,11 +48,11 @@ class PinthTest {
     @Test
     void testInputMismatchException() {
         console = new Scanner(new ByteArrayInputStream("a".getBytes()));
-        assertThrows(InputMismatchException.class, () -> Pinth.displayPi(console));
+        assertThrows(InputMismatchException.class, () -> Enth.displayE(console));
     }
 
     @Test
     void testNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Pinth.displayPi(null));
+        assertThrows(NullPointerException.class, () -> Enth.displayE(null));
     }
 }

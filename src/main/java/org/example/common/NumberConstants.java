@@ -1,5 +1,7 @@
 package org.example.common;
 
+import java.util.Objects;
+
 public final class NumberConstants {
     private NumberConstants(){}
 
@@ -17,4 +19,14 @@ public final class NumberConstants {
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
     public static final String INTEGER_OVERFLOW = "Error, that number is too large for computation!";
     public static final String INVALID_PRIME = "Not a valid candidate for prime number(s).";
+
+    public static final int DECIMAL_LIMIT = 20;
+
+    public static void printError(Exception e, String message) {
+        System.err.println(Objects.requireNonNull(message));
+        if(e != null) {
+            e.printStackTrace();
+        }
+        System.exit(-1);
+    }
 }
