@@ -1,7 +1,12 @@
 package org.example.numbers;
 
+import org.example.common.NumberConstants;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.stream.LongStream;
+
+import static java.lang.System.*;
 
 public class Fibonacci {
 	private Fibonacci() {
@@ -9,14 +14,17 @@ public class Fibonacci {
 
 	public static void sequence(Scanner console) {
 		try {
-			System.out.print("Enter an integer to view it's Fibonacci Sequence: ");
+			out.print("Enter an integer to view it's Fibonacci Sequence: ");
 			long choice = Long.parseLong(console.next());
-			System.out.println();
+			out.println();
 
-			LongStream.rangeClosed(0, choice).forEach(i -> System.out
-					.println(new StringBuilder("f(").append(i).append(") = ").append(fibonacci(i)).toString()));
+			LongStream.rangeClosed(0, choice).forEach(i ->
+					out.println(new StringBuilder("f(").append(i).append(") = ").append(fibonacci(i)).toString()));
+		} catch (InputMismatchException | NumberFormatException e) {
+			err.println(NumberConstants.INVALID_INPUT);
+			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("Failed to generate Fibonacci Sequence: " + e.getMessage());
+			out.println("Failed to generate Fibonacci Sequence: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

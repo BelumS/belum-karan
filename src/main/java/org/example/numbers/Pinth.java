@@ -7,6 +7,7 @@ import java.math.RoundingMode;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static java.lang.System.err;
 import static java.lang.System.out;
 import static org.example.common.NumberConstants.printError;
 
@@ -27,12 +28,14 @@ public final class Pinth {
                 result = BigDecimal.valueOf(Math.PI).setScale(choice, RoundingMode.DOWN);
                 out.println(result);
             } else {
-                printError(null, "Error! \"" + choice + "\" does not fit the criteria.");
+                throw new IllegalArgumentException("Error! \"" + choice + "\" does not fit the criteria.");
             }
-        } catch (InputMismatchException e) {
-            printError(e, "Unable to process the number: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            err.println("Unable to process the number: " + e.getMessage());
+            throw e;
         } catch (Exception e) {
-            printError(e, "Failed to Display PI: " + e.getMessage());
+            err.println("Failed to Display PI: " + e.getMessage());
+            throw e;
         }
         return result;
     }

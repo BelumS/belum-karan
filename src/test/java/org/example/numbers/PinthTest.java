@@ -11,14 +11,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 import static org.example.commons.TestConstants.testScanner;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PinthTest {
     @Test
     void testLowerEdgeCase() {
-        BigDecimal result = Pinth.displayPi(testScanner("-1"));
-        assertEquals(BigDecimal.ZERO, result);
+        assertThrows(IllegalArgumentException.class, () -> Pinth.displayPi(testScanner("-1")));
     }
 
     @Test
@@ -33,13 +31,12 @@ class PinthTest {
 
     @Test
     void testHigherEdgeCase() {
-        BigDecimal result = Pinth.displayPi(testScanner("21"));
-        assertEquals(BigDecimal.ZERO, result);
+        assertThrows(IllegalArgumentException.class, () -> Pinth.displayPi(testScanner("21")));
     }
 
     @Test
     void testInputMismatchException() {
-        assertThrows(InputMismatchException.class, () -> Pinth.displayPi(testScanner("a")));
+        assertThrows(NumberFormatException.class, () -> Pinth.displayPi(testScanner("a")));
     }
 
     @Test

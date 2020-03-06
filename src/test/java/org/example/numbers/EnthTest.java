@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class EnthTest {
     @Test
     void testLowerEdgeCase() {
-        BigDecimal result = Enth.displayE(testScanner("-1"));
-        assertEquals(BigDecimal.ZERO, result);
+        assertThrows(IllegalArgumentException.class, () -> Enth.displayE(testScanner("-1")));
+
     }
 
     @Test
@@ -24,15 +24,13 @@ public class EnthTest {
         Map<Integer, String> map = new HashMap<>();
         for (int i = 0; i < 21; ++i) {
             map.put(i, Integer.toString(i));
-            BigDecimal result = Enth.displayE(testScanner(map.get(i)));
-            assertEquals(BigDecimal.valueOf(Math.E).setScale(i, RoundingMode.DOWN), result);
+            assertEquals(BigDecimal.valueOf(Math.E).setScale(i, RoundingMode.DOWN), Enth.displayE(testScanner(map.get(i))));
         }
     }
 
     @Test
     void testHigherEdgeCase() {
-        BigDecimal result = Enth.displayE(testScanner("21"));
-        assertEquals(BigDecimal.ZERO, result);
+        assertThrows(IllegalArgumentException.class, () -> Enth.displayE(testScanner("21")));
     }
 
     @Test

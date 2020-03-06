@@ -4,6 +4,8 @@ import org.example.common.NumberConstants;
 
 import java.util.Scanner;
 
+import static java.lang.System.err;
+
 /**
  * @author bsahn on 26-09-2019
  * Calculate the total cost of tile it would take to
@@ -44,22 +46,23 @@ public class TileCost {
             System.out.printf("The total cost of installation for %dsqft of tile is $%.2f.%n", squareFeet, total);
             return total;
         } catch (NumberFormatException | ArithmeticException e) {
-            NumberConstants.printError(e, "Invalid entry for the calculation.");
+            err.println("Invalid entry for the calculation.");
+            throw e;
         } catch (Exception e) {
-            NumberConstants.printError(e, "An error occurred when calculating the tile cost.");
+            err.println("An error occurred when calculating the tile cost.");
+           throw e;
         }
-        return -1;
     }
 
     private static int validateEntry(int val) {
         if (val < 0)
-            throw new ArithmeticException(NumberConstants.NEGATIVE_NUMBER);
+            throw new IllegalArgumentException(NumberConstants.NEGATIVE_NUMBER);
         return val;
     }
 
     private static double validateEntry(double val) {
         if (val < 0.0)
-            throw new ArithmeticException(NumberConstants.NEGATIVE_NUMBER);
+            throw new IllegalArgumentException(NumberConstants.NEGATIVE_NUMBER);
         return val;
     }
 }

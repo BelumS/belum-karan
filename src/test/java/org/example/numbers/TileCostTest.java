@@ -37,6 +37,22 @@ public class TileCostTest {
     }
 
     @Test
+    void testNegativeSquareFeet_throwsIllegalArgumentException() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> TileCost.calculate(testScanner("-1")));
+    }
+
+    @Test
+    void testNegativeCostPerTile_throwsIllegalArgumentException() {
+        int squareFeet = 1000;
+        double costPerTile = -4.30;
+
+        String input = squareFeet + System.lineSeparator()
+                + costPerTile + System.lineSeparator();
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> TileCost.calculate(testScanner(input)));
+    }
+
+    @Test
     void tileCost_throwsNullPointerException() {
         Assertions.assertThrows(NullPointerException.class, () -> TileCost.calculate(null));
     }
