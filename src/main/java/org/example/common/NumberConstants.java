@@ -18,6 +18,7 @@ public final class NumberConstants {
 
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
     public static final String INTEGER_OVERFLOW = "Error, that number is too large for computation!";
+    public static final String NEGATIVE_NUMBER = "Error, cannot compute a negative number!";
     public static final String INVALID_PRIME = "Not a valid candidate for prime number(s).";
 
     public static final int DECIMAL_LIMIT = 20;

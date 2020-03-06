@@ -1,41 +1,64 @@
 package org.example.numbers;
 
+import org.example.common.NumberConstants;
+
 import java.util.Scanner;
 
 /**
- * @author bsahn on 26-09-2019 
+ * @author bsahn on 26-09-2019
  * Calculate the total cost of tile it would take to
  * cover a floor plan of width and height, using a cost entered by the
  * user.
  **/
 public class TileCost {
-	private TileCost(){}
+    private TileCost() {
+    }
 
-	public static void calculate(Scanner console) {
-		try {
-			System.out.print("Enter the price per tile $");
-			double cost = Double.parseDouble(console.next());
+    public static void calculate(Scanner console) {
+        try {
+            System.out.println();
+            System.out.print("Enter the total Square Feet: ");
+            int sqFt = validateEntry(Integer.parseInt(console.next()));
+            System.out.println();
 
-			System.out.println("Enter the Labor Cost: $");
-			int labor = Integer.parseInt(console.next());
+            System.out.print("Enter the price per tile: $");
+            double costPerTile = validateEntry(Double.parseDouble(console.next()));
+            System.out.println();
 
-			System.out.println("Enter the Other Material Cost: $");
-			int otherMats = Integer.parseInt(console.next());
+            System.out.print("Enter the Labor Cost: $");
+            int labor = validateEntry(Integer.parseInt(console.next()));
+            System.out.println();
 
-			System.out.println("Enter the Removal Cost: $");
-			int removalOfOldSurface = Integer.parseInt(console.next());
+            System.out.print("Enter the Other Material Cost: $");
+            int otherMats = validateEntry(Integer.parseInt(console.next()));
+            System.out.println();
 
-			System.out.println("Enter the Prep Cost: $");
-			int areaPrep = Integer.parseInt(console.next());
+            System.out.print("Enter the Removal Cost: $");
+            int removalOfOldSurface = validateEntry(Integer.parseInt(console.next()));
+            System.out.println();
 
-			System.out.println("Enter the total Square Feet: ");
-			int sqFt = Integer.parseInt(console.next());
+            System.out.print("Enter the Prep Cost: $");
+            int areaPrep = validateEntry(Integer.parseInt(console.next()));
+            System.out.println();
 
-			double total = (cost + removalOfOldSurface + areaPrep + labor + otherMats) * sqFt;
+            final double total = (costPerTile * sqFt) + removalOfOldSurface + areaPrep + labor + otherMats;
+            System.out.printf("The total cost of installation for %dsqft of tile is $%.2f.%n", sqFt, total);
+        } catch (NumberFormatException | ArithmeticException e) {
+            NumberConstants.printError(e, "Invalid entry for the calculation.");
+        } catch (final Exception e) {
+            NumberConstants.printError(e, "An error occurred when calculating the tile cost.");
+        }
+    }
 
-			System.out.printf("The total cost of installation for %dsqft of tile is $%.2f.%n", sqFt, total);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    private static int validateEntry(int val) {
+        if (val < 0)
+            throw new ArithmeticException(NumberConstants.NEGATIVE_NUMBER);
+        return val;
+    }
+
+    private static double validateEntry(double val) {
+        if (val < 0.0)
+            throw new ArithmeticException(NumberConstants.NEGATIVE_NUMBER);
+        return val;
+    }
 }
