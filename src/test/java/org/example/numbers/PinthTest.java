@@ -10,18 +10,15 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
+import static org.example.commons.TestConstants.testScanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PinthTest {
-    private Scanner console;
-
     @Test
     void testLowerEdgeCase() {
-        console = new Scanner(new ByteArrayInputStream("-1".getBytes()));
-        BigDecimal result = Pinth.displayPi(console);
+        BigDecimal result = Pinth.displayPi(testScanner("-1"));
         assertEquals(BigDecimal.ZERO, result);
-        console.close();
     }
 
     @Test
@@ -29,26 +26,20 @@ class PinthTest {
         Map<Integer, String> map = new HashMap<>();
         for (int i = 0; i < 21; ++i) {
             map.put(i, Integer.toString(i));
-
-            console = new Scanner(new ByteArrayInputStream(map.get(i).getBytes()));
-            BigDecimal result = Pinth.displayPi(console);
+            BigDecimal result = Pinth.displayPi(testScanner(map.get(i)));
             assertEquals(BigDecimal.valueOf(Math.PI).setScale(i, RoundingMode.DOWN), result);
         }
-        console.close();
     }
 
     @Test
     void testHigherEdgeCase() {
-        console = new Scanner(new ByteArrayInputStream("21".getBytes()));
-        BigDecimal result = Pinth.displayPi(console);
+        BigDecimal result = Pinth.displayPi(testScanner("21"));
         assertEquals(BigDecimal.ZERO, result);
-        console.close();
     }
 
     @Test
     void testInputMismatchException() {
-        console = new Scanner(new ByteArrayInputStream("a".getBytes()));
-        assertThrows(InputMismatchException.class, () -> Pinth.displayPi(console));
+        assertThrows(InputMismatchException.class, () -> Pinth.displayPi(testScanner("a")));
     }
 
     @Test

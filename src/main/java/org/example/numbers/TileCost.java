@@ -11,14 +11,13 @@ import java.util.Scanner;
  * user.
  **/
 public class TileCost {
-    private TileCost() {
-    }
+    private TileCost() {}
 
-    public static void calculate(Scanner console) {
+    public static double calculate(Scanner console) {
         try {
             System.out.println();
             System.out.print("Enter the total Square Feet: ");
-            int sqFt = validateEntry(Integer.parseInt(console.next()));
+            int squareFeet = validateEntry(Integer.parseInt(console.next()));
             System.out.println();
 
             System.out.print("Enter the price per tile: $");
@@ -26,11 +25,11 @@ public class TileCost {
             System.out.println();
 
             System.out.print("Enter the Labor Cost: $");
-            int labor = validateEntry(Integer.parseInt(console.next()));
+            int laborCost = validateEntry(Integer.parseInt(console.next()));
             System.out.println();
 
             System.out.print("Enter the Other Material Cost: $");
-            int otherMats = validateEntry(Integer.parseInt(console.next()));
+            int otherMaterials = validateEntry(Integer.parseInt(console.next()));
             System.out.println();
 
             System.out.print("Enter the Removal Cost: $");
@@ -38,16 +37,18 @@ public class TileCost {
             System.out.println();
 
             System.out.print("Enter the Prep Cost: $");
-            int areaPrep = validateEntry(Integer.parseInt(console.next()));
+            int preparationCost = validateEntry(Integer.parseInt(console.next()));
             System.out.println();
 
-            final double total = (costPerTile * sqFt) + removalOfOldSurface + areaPrep + labor + otherMats;
-            System.out.printf("The total cost of installation for %dsqft of tile is $%.2f.%n", sqFt, total);
+            final double total = (costPerTile * squareFeet) + removalOfOldSurface + preparationCost + laborCost + otherMaterials;
+            System.out.printf("The total cost of installation for %dsqft of tile is $%.2f.%n", squareFeet, total);
+            return total;
         } catch (NumberFormatException | ArithmeticException e) {
             NumberConstants.printError(e, "Invalid entry for the calculation.");
-        } catch (final Exception e) {
+        } catch (Exception e) {
             NumberConstants.printError(e, "An error occurred when calculating the tile cost.");
         }
+        return -1;
     }
 
     private static int validateEntry(int val) {
