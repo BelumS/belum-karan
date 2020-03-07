@@ -22,10 +22,10 @@ public class Fibonacci {
 					out.println(new StringBuilder("f(").append(i).append(") = ").append(fibonacci(i)).toString()));
 		} catch (InputMismatchException | NumberFormatException e) {
 			err.println(NumberConstants.INVALID_INPUT);
-			e.printStackTrace();
+			throw e;
 		} catch (Exception e) {
-			out.println("Failed to generate Fibonacci Sequence: " + e.getMessage());
-			e.printStackTrace();
+			err.println("Failed to generate Fibonacci Sequence: " + e.getMessage());
+			throw e;
 		}
 	}
 

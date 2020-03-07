@@ -1,6 +1,11 @@
 package org.example.numbers;
 
+import org.example.common.NumberConstants;
+
 import java.util.Scanner;
+
+import static java.lang.System.*;
+import static java.lang.System.err;
 
 /**
  **Change Return Program** - The user enters a cost and then the amount of money given. 
@@ -12,13 +17,20 @@ public final class ChangeReturn {
 
     public static void print(Scanner console) {
         try {
-            System.out.print("Enter how much money you have, in USD: ");
+            out.print("Enter how much money you have, in USD: ");
             double cash = Double.parseDouble(console.next());
-            System.out.println();
+            out.println();
+
+            if(cash < 0.0)
+                throw new IllegalArgumentException(NumberConstants.NEGATIVE_NUMBER);
 
             calculate(cash);
+        } catch (IllegalArgumentException e) {
+          err.println(NumberConstants.INVALID_INPUT);
+          throw e;
         } catch(Exception e) {
-            e.printStackTrace();
+            err.println("An error occurred while processing the change!");
+            throw e;
         }
     }
 
@@ -28,7 +40,7 @@ public final class ChangeReturn {
         int dimes = (int) pennies / 10;
         double nickels = (int) pennies / 5;
         
-        System.out.printf("Total: $%.2f = [Quarters: %d, Dimes: %d, Nickels: %.0f, Pennies: %.0f]%n", money, quarters, dimes, nickels, pennies);
+        out.printf("Total: $%.2f = [Quarters: %d, Dimes: %d, Nickels: %.0f, Pennies: %.0f]%n", money, quarters, dimes, nickels, pennies);
     }
 
 }

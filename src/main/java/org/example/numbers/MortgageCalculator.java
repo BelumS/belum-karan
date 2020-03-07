@@ -1,7 +1,10 @@
 package org.example.numbers;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
+import static java.lang.System.*;
+import static java.lang.System.err;
 
 /**
  * Mortgage Calculator - Calculate the monthly payments of a fixed term mortgage
@@ -39,25 +42,29 @@ public class MortgageCalculator {
 
 	public static void printCalculation(Scanner console) {
 		try {
-			System.out.println("Enter the Home Price: ");
+			out.println("Enter the Home Price: ");
 			int price = parseInt(console.next());
 
-			System.out.println("Enter the Down Payment: ");
+			out.println("Enter the Down Payment: ");
 			int downPayment = parseInt(console.next());
 
-			System.out.println("Enter the Annual Property Tax: ");
+			out.println("Enter the Annual Property Tax: ");
 			int propertyTax = parseInt(console.next());
 
-			System.out.println("Enter the Annual Insurance Payment: ");
+			out.println("Enter the Annual Insurance Payment: ");
 			int homeInsurance = parseInt(console.next());
 
-			System.out.println("Enter the Number of Years for the FRM: ");
+			out.println("Enter the Number of Years for the FRM: ");
 			int years = parseInt(console.next());
 
-			System.out.printf("Your Monthly Payments are: $%.2f%n",
+			out.printf("Your Monthly Payments are: $%.2f%n",
 					Math.floor(calculateFrm(price, downPayment, propertyTax, homeInsurance, years)));
+		} catch (IllegalArgumentException | InputMismatchException e) {
+			err.println("Unable to complete the calculation due to an invalid input!");
+			throw e;
 		} catch (Exception e) {
-			e.printStackTrace();
+			err.println("An error occurred while performing the calculation.");
+			throw e;
 		}
 	}
 }

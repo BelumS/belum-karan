@@ -1,10 +1,9 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static java.lang.System.err;
 import static java.lang.System.out;
 
 /**
@@ -33,17 +32,26 @@ public class NumberBaseConverter {
                 throw new IllegalArgumentException("\"" + choice + "\" is not a valid choice!");
             }
         } catch (IllegalArgumentException | InputMismatchException e) {
-            NumberConstants.printError(e, e.getMessage());
+            throw e;
         } catch (Exception e) {
-            NumberConstants.printError(e, "Conversion failed!");
+            err.println("An error occurred during the number conversion!");
+            throw e;
         }
     }
 
     private static String print(String choice, int val) {
         if (choice.equalsIgnoreCase("binary")) {
-            return Integer.toString(Integer.parseInt(Integer.toString(val), 2));
+            return convertDecimalToBinary(val);
         } else if (choice.equalsIgnoreCase("decimal"))
-            return Integer.toBinaryString(val);
+            return convertBinaryToDecimal(val);
         return "Invalid Option!";
+    }
+
+    public static String convertBinaryToDecimal(int val) {
+        return Integer.toBinaryString(val);
+    }
+
+    public static String convertDecimalToBinary(int val) {
+        return Integer.toString(Integer.parseInt(Integer.toString(val), 2));
     }
 }

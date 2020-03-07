@@ -2,16 +2,14 @@ package org.example.numbers;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
-import java.util.Scanner;
 
 import static org.example.commons.TestConstants.testScanner;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PinthTest {
     @Test
