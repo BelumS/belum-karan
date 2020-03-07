@@ -27,7 +27,13 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.6.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.6.0")
+}
 
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }
 
 // Define the main class for the application

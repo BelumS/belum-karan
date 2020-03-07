@@ -3,6 +3,8 @@ package org.example.numbers;
 import org.example.common.NumberConstants;
 
 import java.util.InputMismatchException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.LongStream;
 
@@ -12,19 +14,23 @@ public class Fibonacci {
 	private Fibonacci() {
 	}
 
-	public static void sequence(Scanner console) {
+	public static Map<String, Long> sequence(Scanner console) {
 		try {
 			out.print("Enter an integer to view it's Fibonacci Sequence: ");
-			long choice = Long.parseLong(console.next());
+			long choice = validateInput(Long.parseLong(console.next()));
 			out.println();
+			Map<String, Long> sequence = new LinkedHashMap<>();
 
-			LongStream.rangeClosed(0, choice).forEach(i ->
-					out.println(new StringBuilder("f(").append(i).append(") = ").append(fibonacci(i)).toString()));
+			for(long i = 0; i < choice; i++) {
+				sequence.put("f("+i+")", fibonacci(i));
+			}
+			out.println(sequence);
+			return sequence;
 		} catch (InputMismatchException | NumberFormatException e) {
 			err.println(NumberConstants.INVALID_INPUT);
 			throw e;
 		} catch (Exception e) {
-			err.println("Failed to generate Fibonacci Sequence: " + e.getMessage());
+			err.println("An error occurred while generating the sequence: " + e.getMessage());
 			throw e;
 		}
 	}
@@ -33,5 +39,11 @@ public class Fibonacci {
 		if (n < 2L)
 			return n;
 		return fibonacci(n - 1L) + fibonacci(n - 2L);
+	}
+
+	private static long validateInput(long val) {
+		if(val < 0 || val >= Long.MAX_VALUE)
+			throw new IllegalArgumentException(val + " is not a valid input!");
+		return val;
 	}
 }
