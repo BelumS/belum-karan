@@ -2,12 +2,14 @@ package org.example.numbers;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static org.example.common.NumberConstants.validateEntry;
 import static java.lang.Integer.parseInt;
 import static java.lang.System.*;
 import static java.lang.System.err;
 
 /**
- * Mortgage Calculator - Calculate the monthly payments of a fixed term mortgage
+ * Calculate the monthly payments of a fixed term mortgage
  * over given Nth terms at a given interest rate. Also figure out how long it
  * will take the user to pay back the loan. For added complexity, add an option
  * for users to select the compounding interval (Monthly, Weekly, Daily,
@@ -43,24 +45,24 @@ public class MortgageCalculator {
 	public static void printCalculation(Scanner console) {
 		try {
 			out.println("Enter the Home Price: ");
-			int price = parseInt(console.next());
+			int price = validateEntry(parseInt(console.next()));
 
 			out.println("Enter the Down Payment: ");
-			int downPayment = parseInt(console.next());
+			int downPayment = validateEntry(parseInt(console.next()));
 
 			out.println("Enter the Annual Property Tax: ");
-			int propertyTax = parseInt(console.next());
+			int propertyTax = validateEntry(parseInt(console.next()));
 
 			out.println("Enter the Annual Insurance Payment: ");
-			int homeInsurance = parseInt(console.next());
+			int homeInsurance = validateEntry(parseInt(console.next()));
 
 			out.println("Enter the Number of Years for the FRM: ");
-			int years = parseInt(console.next());
+			int years = validateEntry(parseInt(console.next()));
 
 			out.printf("Your Monthly Payments are: $%.2f%n",
 					Math.floor(calculateFrm(price, downPayment, propertyTax, homeInsurance, years)));
 		} catch (IllegalArgumentException | InputMismatchException e) {
-			err.println("Unable to complete the calculation due to an invalid input!");
+			err.println("Unable to complete the calculation due to: " + e.getMessage());
 			throw e;
 		} catch (Exception e) {
 			err.println("An error occurred while performing the calculation.");

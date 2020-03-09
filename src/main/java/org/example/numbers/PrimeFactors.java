@@ -14,9 +14,8 @@ public class PrimeFactors {
 	public static void calculate(Scanner console) {
 		try {
 			out.print("Enter an integer to view it's Prime Factors: ");
-			int n = Integer.parseInt(console.next());
+			int n = NumberConstants.validateEntry(Integer.parseInt(console.next()));
 			out.println();
-
 			out.println("The Prime Factors of (" + n + ") are: " + Arrays.toString(Primeable.extractPrimeFactors(n)));
 		} catch (NumberFormatException e) {
 			err.println(NumberConstants.INVALID_INPUT);

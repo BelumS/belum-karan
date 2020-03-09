@@ -19,7 +19,7 @@ public final class Pinth {
         BigDecimal result = BigDecimal.ZERO;
         try {
             out.print("Enter an integer between [0 and 20]: ");
-            int choice = Integer.parseInt(console.next());
+            int choice = NumberConstants.validateEntry(Integer.parseInt(console.next()));
 
             if (choice == 0) {
                 result = BigDecimal.valueOf(3);
@@ -30,7 +30,7 @@ public final class Pinth {
             } else {
                 throw new IllegalArgumentException("Error! \"" + choice + "\" does not fit the criteria.");
             }
-        } catch (IllegalArgumentException e) {
+        } catch (InputMismatchException | IllegalArgumentException e) {
             err.println("Unable to process the number: " + e.getMessage());
             throw e;
         } catch (Exception e) {

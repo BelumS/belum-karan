@@ -2,14 +2,15 @@ package org.example.numbers;
 
 import org.example.common.NumberConstants;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static java.lang.System.*;
 import static java.lang.System.err;
 
 /**
- **Change Return Program** - The user enters a cost and then the amount of money given. 
- * The program will figure out the change and the number of 
+ * The user enters a cost and then the amount of money given. 
+ * The program will figure out the change, and the number of 
  *  quarters, dimes, nickels, pennies needed for the change.
  */
 public final class ChangeReturn {
@@ -18,15 +19,11 @@ public final class ChangeReturn {
     public static void print(Scanner console) {
         try {
             out.print("Enter how much money you have, in USD: ");
-            double cash = Double.parseDouble(console.next());
+            double cash = NumberConstants.validateEntry(Double.parseDouble(console.next()));        
             out.println();
-
-            if(cash < 0.0)
-                throw new IllegalArgumentException(NumberConstants.NEGATIVE_NUMBER);
-
             calculate(cash);
-        } catch (IllegalArgumentException e) {
-          err.println(NumberConstants.INVALID_INPUT);
+        } catch (IllegalArgumentException | InputMismatchException e) {
+          err.println("Unable to process the change return due to: " + e.getMessage());
           throw e;
         } catch(Exception e) {
             err.println("An error occurred while processing the change!");
@@ -34,7 +31,9 @@ public final class ChangeReturn {
         }
     }
 
-    private static void calculate(double money) {
+    private static void calculate(double money) {\
+        assert money >= 0.0;
+        assert money < Double.MAX_VALUE;
         double pennies = money * 100;
         int quarters =  (int) pennies / 25;
         int dimes = (int) pennies / 10;

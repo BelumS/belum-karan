@@ -11,14 +11,13 @@ import static java.lang.System.err;
 import static java.lang.System.out;
 
 public class Enth {
-    private Enth() {
-    }
+    private Enth() {}
 
     public static BigDecimal displayE(Scanner console) {
-        BigDecimal result = BigDecimal.ZERO;
+        BigDecimal result = BigDecimal.valueOf(-1L);
         try {
             out.print("Enter an integer between [0 and 20]: ");
-            int choice = console.nextInt();
+            int choice = NumberConstants.validateEntry(console.nextInt());
             out.println();
 
             if (choice == 0) {
@@ -27,9 +26,8 @@ public class Enth {
             } else if (choice > 0 && choice <= NumberConstants.DECIMAL_LIMIT) {
                 result = BigDecimal.valueOf(Math.E).setScale(choice, RoundingMode.DOWN);
                 out.println(result);
-            } else {
-                throw new IllegalArgumentException(choice + " is not a valid number.");
-            }
+            } else
+                throw new IllegalArgumentException("Error! \"" + choice + "\" does not fit the criteria.");
         } catch (IllegalArgumentException | InputMismatchException e) {
             err.println("Failed to process e: " + e.getMessage());
             throw e;

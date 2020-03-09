@@ -1,6 +1,6 @@
 package org.example.common;
 
-import static java.lang.System.*;
+import static java.lang.System.err;
 import static java.lang.System.out;
 
 import java.util.Scanner;
@@ -15,6 +15,8 @@ import org.example.numbers.Pinth;
 import org.example.numbers.PrimeFactors;
 import org.example.numbers.TileCost;
 
+/** Generates a text-based UI that displays the karan projects, 
+ * and allows for user input. */
 public final class ProjectMenu {
     private static final String TITLE = "\n*** Welcome to Belum's Karan Project Solutions! ***\n";
     private static final String TEXT = "Text";
@@ -36,6 +38,7 @@ public final class ProjectMenu {
     private ProjectMenu() {
     }
 
+    /** Displays the text-based UI for the application, and allows for user input. */
     public static void menu() {
         try (Scanner console = new Scanner(in)) {
             menuOptions();
@@ -149,6 +152,9 @@ public final class ProjectMenu {
         out.println(builder.toString());
     }
 
+    //TODO: Refactor this logic so that an invalid entry asks the 
+    //User to input the data, at least 3 times before exiting the app.
+    //The triple retry will mimic the concept of REST call retries.
     private static void numberOptions(Scanner console) {
         try {
             numberMenu();

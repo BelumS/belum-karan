@@ -13,8 +13,8 @@ public class PowersOfTwo {
 		int limit = 0;
 		try {
 			Map<String, Long> twosTable = new LinkedHashMap<>();
-			out.print("Enter an exponent and view its place in the Two's Table: ");
-			limit = Integer.parseInt(console.next());
+			out.print("Enter an exponent to view its place in the Two's Table: ");
+			limit = NumberConstants.validateEntry(Integer.parseInt(console.next()));
 			out.println();
 
 			for (int i = 0; i <= limit; i++) {

@@ -1,21 +1,28 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
-
 import java.util.Scanner;
 
 import static java.lang.System.err;
+import static org.example.common.NumberConstants.validateEntry;
 
 /**
- * @author bsahn on 26-09-2019
  * Calculate the total cost of tile it would take to
- * cover a floor plan of width and height, using a cost entered by the
- * user.
+ * cover a floor plan of width and height, using a 
+ * cost entered by the user.
+ * @author bsahn on 26-09-2019
  **/
 public class TileCost {
     private TileCost() {}
 
-    public static double calculate(Scanner console) {
+    /**
+     * Reads the user input, and then calculates the total cost of tile installation.
+     * @param console - A standard input <code>Scanner</code>, shared amongst the algorithms that require
+     *  user input.
+     * @return <code>double</code> value that represents the total tile cost.
+     * @throws IllegalArgumentException If the user input is a negative number, or higher than the max allowed value.
+     * @throws NumberFormatException If the user input is a letter, or special character instead of a number.
+     */
+    public static double calculate(Scanner console) throws Exception {
         try {
             System.out.println();
             System.out.print("Enter the total Square Feet: ");
@@ -45,24 +52,12 @@ public class TileCost {
             final double total = (costPerTile * squareFeet) + removalOfOldSurface + preparationCost + laborCost + otherMaterials;
             System.out.printf("The total cost of installation for %dsqft of tile is $%.2f.%n", squareFeet, total);
             return total;
-        } catch (NumberFormatException | ArithmeticException e) {
+        } catch (NumberFormatException e) {
             err.println("Invalid entry for the calculation.");
             throw e;
         } catch (Exception e) {
             err.println("An error occurred when calculating the tile cost.");
            throw e;
         }
-    }
-
-    private static int validateEntry(int val) {
-        if (val < 0)
-            throw new IllegalArgumentException(NumberConstants.NEGATIVE_NUMBER);
-        return val;
-    }
-
-    private static double validateEntry(double val) {
-        if (val < 0.0)
-            throw new IllegalArgumentException(NumberConstants.NEGATIVE_NUMBER);
-        return val;
     }
 }
