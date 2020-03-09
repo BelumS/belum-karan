@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import static java.lang.System.*;
 import static java.lang.System.err;
+import static org.example.numbers.ChangeReturn.USACurrency.*;
 
 /**
  * The user enters a cost and then the amount of money given. 
@@ -14,14 +15,39 @@ import static java.lang.System.err;
  *  quarters, dimes, nickels, pennies needed for the change.
  */
 public final class ChangeReturn {
+    /** Represents the currency values of the United States Dollar (USD) */
+    enum USACurrency {
+        FIFTY_DOLLARS(50.00),
+        TWENTY_DOLLARS(20.00),
+        TEN_DOLLARS(10.00),
+        FIVE_DOLLARS(5.00),
+        DOLLAR(1.00),
+        QUARTER(0.25),
+        DIME(0.10),
+        NICKEL(0.05),
+        PENNY(0.01);
+
+        private double value;
+
+        USACurrency(double value) {
+            this.value = value;
+        }
+
+        public double value() { return value; }
+    }
+
     private ChangeReturn(){}
 
     public static void print(Scanner console) {
         try {
-            out.print("Enter how much money you have, in USD: ");
-            double cash = NumberConstants.validateEntry(Double.parseDouble(console.next()));        
+            out.println("Enter the item cost: ");
+            double costOfItem = NumberConstants.validateEntry(Double.parseDouble(console.next()));
+
+            out.print("Enter your payment amount: ");
+            double payment = NumberConstants.validateEntry(Double.parseDouble(console.next()));
             out.println();
-            calculate(cash);
+
+            calculate(costOfItem - payment);
         } catch (IllegalArgumentException | InputMismatchException e) {
           err.println("Unable to process the change return due to: " + e.getMessage());
           throw e;
@@ -31,15 +57,64 @@ public final class ChangeReturn {
         }
     }
 
-    private static void calculate(double money) {\
-        assert money >= 0.0;
-        assert money < Double.MAX_VALUE;
-        double pennies = money * 100;
-        int quarters =  (int) pennies / 25;
-        int dimes = (int) pennies / 10;
-        double nickels = (int) pennies / 5;
+    private static void calculate(double money) {
+        int quarters = processChangeInCoins(money, QUARTER);
+        int dimes = processChangeInCoins(money, DIME);
+        int nickels = processChangeInCoins(money, NICKEL);
+        int pennies = processChangeInCoins(money, PENNY);
         
-        out.printf("Total: $%.2f = [Quarters: %d, Dimes: %d, Nickels: %.0f, Pennies: %.0f]%n", money, quarters, dimes, nickels, pennies);
+        out.printf("Total in USD: $%.2f = [Quarters: %d, Dimes: %d, Nickels: %d, Pennies: %d]%n", money, quarters, dimes, nickels, pennies);
     }
 
+    private static int processChangeInDollars(double change, USACurrency dollarDenomination) {
+        if(dollarDenomination == FIFTY_DOLLARS) {
+            change -= (int) change;
+            change /= FIFTY_DOLLARS.value();
+        } else if (dollarDenomination == TWENTY_DOLLARS) {
+            change -= (int) change;
+            change %= FIFTY_DOLLARS.value();
+            change /= TWENTY_DOLLARS.value();
+        } else if(dollarDenomination == TEN_DOLLARS) {
+            change -= (int) change;
+            change %= FIFTY_DOLLARS.value();
+            change %= TWENTY_DOLLARS.value();
+            change /= TEN_DOLLARS.value();
+        } else if(dollarDenomination == FIVE_DOLLARS) {
+            change -= (int) change;
+            change %= FIFTY_DOLLARS.value();
+            change %= TWENTY_DOLLARS.value();
+            change %= TEN_DOLLARS.value();
+            change /= FIVE_DOLLARS.value();
+        } else if(dollarDenomination == DOLLAR) {
+            change -= (int) change;
+            change %= FIFTY_DOLLARS.value();
+            change %= TWENTY_DOLLARS.value();
+            change %= TEN_DOLLARS.value();
+            change /= DOLLAR.value();
+        }
+        return (int) change;
+    }
+
+    private static int processChangeInCoins(double change, USACurrency coinType) {
+        if(coinType == QUARTER) {
+            change -= (int) change;
+            change /= QUARTER.value();
+        } else if (coinType == DIME) {
+            change -= (int) change;
+            change %= QUARTER.value();
+            change /= DIME.value();
+        } else if(coinType == NICKEL) {
+            change -= (int) change;
+            change %= QUARTER.value();
+            change %= DIME.value();
+            change /= NICKEL.value();
+        } else if(coinType == PENNY) {
+            change -= (int) change;
+            change %= QUARTER.value();
+            change %= DIME.value();
+            change %= NICKEL.value();
+            change /= PENNY.value();
+        }
+        return (int) change;
+    }
 }

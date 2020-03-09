@@ -7,11 +7,12 @@ import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 import static org.example.commons.TestConstants.testScanner;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TileCostTest {
 
     @Test
-    void verifyTileCost() {
+    void verifyTileCost() throws Exception {
         int squareFeet = 1000;
         double costPerTile = 4.30;
         int otherMaterials = 120;
@@ -28,17 +29,17 @@ public class TileCostTest {
 
         double expected = (costPerTile * squareFeet) + removalOfOldSurface + preparationCost + laborCost + otherMaterials;
         double actual = TileCost.calculate(testScanner(input));
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     void tileCost_throwsNumberFormatException() {
-        Assertions.assertThrows(NumberFormatException.class, () -> TileCost.calculate(testScanner("a")));
+        assertThrows(NumberFormatException.class, () -> TileCost.calculate(testScanner("a")));
     }
 
     @Test
     void testNegativeSquareFeet_throwsIllegalArgumentException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> TileCost.calculate(testScanner("-1")));
+        assertThrows(IllegalArgumentException.class, () -> TileCost.calculate(testScanner("-1")));
     }
 
     @Test
@@ -49,11 +50,11 @@ public class TileCostTest {
         String input = squareFeet + System.lineSeparator()
                 + costPerTile + System.lineSeparator();
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> TileCost.calculate(testScanner(input)));
+        assertThrows(IllegalArgumentException.class, () -> TileCost.calculate(testScanner(input)));
     }
 
     @Test
     void tileCost_throwsNullPointerException() {
-        Assertions.assertThrows(NullPointerException.class, () -> TileCost.calculate(null));
+        assertThrows(NullPointerException.class, () -> TileCost.calculate(null));
     }
 }
