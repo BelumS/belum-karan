@@ -1,5 +1,7 @@
 package org.example.numbers;
 
+import org.example.common.NumberConstants;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

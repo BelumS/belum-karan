@@ -40,7 +40,7 @@ public final class ProjectMenu {
 
     /** Displays the text-based UI for the application, and allows for user input. */
     public static void menu() {
-        try (Scanner console = new Scanner(in)) {
+        try (Scanner console = new Scanner(System.in)) {
             menuOptions();
             out.print("> ");
             //int choice = Integer.parseInt(console.next());
@@ -126,12 +126,12 @@ public final class ProjectMenu {
 
     private static void exitApp() {
         out.println("... Exiting ...");
-        exit(0);
+        System.exit(0);
     }
 
     private static void exitOnError() {
         out.println("Invalid Menu Option .. Exiting!");
-        exit(QUIT);
+        System.exit(QUIT);
     }
 
     private static void numberMenu() {
