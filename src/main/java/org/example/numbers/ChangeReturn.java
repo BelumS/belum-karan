@@ -17,6 +17,8 @@ import static org.example.numbers.ChangeReturn.USADollars.HUNDRED_DOLLARS;
  * The user enters a cost and then the amount of money given.
  * The program will figure out the change, and the number of
  * quarters, dimes, nickels, pennies needed for the change.
+ *
+ * @author bsahn 03/10/2020
  */
 public final class ChangeReturn {
     /**
@@ -30,16 +32,19 @@ public final class ChangeReturn {
 
         private int value;
 
-        USACoins(int value) {
-            this.value = value;
-        }
+        USACoins(int value) { this.value = value; }
 
-        public int value() {
-            return this.value;
+        public int value() { return this.value; }
+
+        @Override
+        public String toString() {
+            return super.name() + "(s)";
         }
     }
 
-    /** Represents the values of the United States Dollar (USD) */
+    /**
+     * Represents the values of the United States Dollar (USD)
+     * */
     enum USADollars {
         HUNDRED_DOLLARS(100),
         FIFTY_DOLLARS(50),
@@ -57,9 +62,9 @@ public final class ChangeReturn {
     private ChangeReturn() {
     }
 
-    public static void print(Scanner console) {
+    public static Map<String, Integer> print(Scanner console) {
         try {
-            out.println("Enter the item cost: ");
+            out.print("Enter the item cost: ");
             double costOfItem = NumberConstants.validateEntry(Double.parseDouble(console.next()));
             out.println();
 
@@ -69,12 +74,12 @@ public final class ChangeReturn {
 
             if (payment < costOfItem)
                 throw new ArithmeticException("You don't have enough money to purchase this item!");
-            calculate((Math.abs(costOfItem - payment)));
+            return calculate((Math.abs(costOfItem - payment)));
         } catch (IllegalArgumentException | InputMismatchException e) {
             err.println("Unable to process the change return due to: " + e.getMessage());
             throw e;
         } catch (Exception e) {
-            err.println("An error occurred while processing the change!");
+            err.println("An error occurred while processing the change! - \"" + e.getMessage() + "\"");
             throw e;
         }
     }
@@ -82,32 +87,28 @@ public final class ChangeReturn {
     private static Map<String, Integer> calculate(double money) {
         final int dollars = (int) money;
         int hundreds = dollars / HUNDRED_DOLLARS.value();
-        int fifties = (dollars % HUNDRED_DOLLARS.value()) / FIFTY_DOLLARS.value();
-        int twenties = (dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value()) / TWENTY_DOLLARS.value();
-        int tens = (dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value() % TWENTY_DOLLARS.value()) / TEN_DOLLARS.value();
-        int fives = (dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value() % TWENTY_DOLLARS.value() % TEN_DOLLARS.value()) / FIVE_DOLLARS.value();
-        int ones = (dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value() % TWENTY_DOLLARS.value() % TEN_DOLLARS.value() % FIVE_DOLLARS.value()) / DOLLAR.value();
+        int fifties = dollars % HUNDRED_DOLLARS.value() / FIFTY_DOLLARS.value();
+        int twenties = dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value() / TWENTY_DOLLARS.value();
+        int tens = dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value() % TWENTY_DOLLARS.value() / TEN_DOLLARS.value();
+        int fives = dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value() % TWENTY_DOLLARS.value() % TEN_DOLLARS.value() / FIVE_DOLLARS.value();
+        int ones = dollars % HUNDRED_DOLLARS.value() % FIFTY_DOLLARS.value() % TWENTY_DOLLARS.value() % TEN_DOLLARS.value() % FIVE_DOLLARS.value() / DOLLAR.value();
 
         final int cents = (int) Math.round((money * 100) - (dollars * 100));
         int quarters = cents / QUARTER.value();
-        int dimes = (cents % QUARTER.value()) / DIME.value();
-        int nickels = ((cents % QUARTER.value()) % DIME.value()) / NICKEL.value();
+        int dimes = cents % QUARTER.value() / DIME.value();
+        int nickels = cents % QUARTER.value() % DIME.value() / NICKEL.value();
         int pennies = cents % QUARTER.value() % DIME.value() % NICKEL.value();
 
-        Map<String, Integer> changeReturn = Stream.of(
-                new AbstractMap.SimpleEntry<>(HUNDRED_DOLLARS.name(), 0),
-                new AbstractMap.SimpleEntry<>(FIFTY_DOLLARS.name(), 0),
-                new AbstractMap.SimpleEntry<>(TWENTY_DOLLARS.name(), 0),
-                new AbstractMap.SimpleEntry<>(TEN_DOLLARS.name(), 0),
-                new AbstractMap.SimpleEntry<>(FIVE_DOLLARS.name(), 0),
-                new AbstractMap.SimpleEntry<>(DOLLAR.name(), 0)
-        ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        List<Integer> values = Arrays.asList(hundreds, fifties, twenties, tens, fives, ones, quarters, dimes, nickels, pennies);
+        List<String> keys = new ArrayList<>();
+        EnumSet.allOf(USADollars.class).forEach(dollar -> keys.add(dollar.name()));
+        EnumSet.allOf(USACoins.class).forEach(coin -> keys.add(coin.toString()));
 
-        out.println(changeReturn);
-
-        out.printf("Change returned: $%.2f = [Hundreds: %d, Fifties: %d, Twenties: %d, Tens: %d, Fives: %d, Ones: %d,"
-                 + " Quarters: %d, Dimes: %d, Nickels: %d, Pennies: %d]%n",
-                money, hundreds, fifties, twenties, tens, fives, ones, quarters, dimes, nickels, pennies);
-        return changeReturn;
+        Map<String, Integer> change = new LinkedHashMap<>();
+        for(int i = 0; i < keys.size(); i++) {
+           change.put(keys.get(i), values.get(i));
+        }
+        out.printf("Change returned: $%.2f = %s.%n", money, change);
+        return change;
     }
 }

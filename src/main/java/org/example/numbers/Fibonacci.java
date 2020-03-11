@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.stream.LongStream;
 
 import static java.lang.System.*;
+import static org.example.common.NumberConstants.validateInput;
 
 public class Fibonacci {
 	private Fibonacci() {
@@ -39,11 +40,5 @@ public class Fibonacci {
 		if (n < 2L)
 			return n;
 		return fibonacci(n - 1L) + fibonacci(n - 2L);
-	}
-
-	private static long validateInput(long val) {
-		if(val < 0 || val >= Long.MAX_VALUE)
-			throw new IllegalArgumentException(val + " is not a valid input!");
-		return val;
 	}
 }

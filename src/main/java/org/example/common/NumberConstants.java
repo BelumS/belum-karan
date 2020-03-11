@@ -24,6 +24,7 @@ public final class NumberConstants {
     public static final String NEGATIVE_NUMBER = "Error, cannot compute a negative number!";
     public static final String INVALID_PRIME = "Not a valid candidate for prime number(s).";
     public static final String INVALID_INPUT = "Error: the input data cannot be computed!";
+    private static final String INVALID_INPUT_EXCEPTION = " is not a valid input for computation!";
 
     public static final int DECIMAL_LIMIT = 20;
 
@@ -33,7 +34,7 @@ public final class NumberConstants {
      * @param message - The detailed message explaining why the error occurred.
      */
     public static void printError(Exception e, String message) {
-        System.err.println(Objects.requireNonNull(message));
+        System.err.println(message);
         if(e != null) {
             e.printStackTrace();
         }
@@ -42,13 +43,19 @@ public final class NumberConstants {
 
     public static int validateEntry(int val) {
         if(val < 0 || val >= Integer.MAX_VALUE)
-            throw new IllegalArgumentException("\"" + val + " is not a valid input for computation!");
+            throw new IllegalArgumentException("\"" + val + INVALID_INPUT_EXCEPTION);
+        return val;
+    }
+
+    public static long validateInput(long val) {
+        if(val < 0L || val >= Long.MAX_VALUE)
+            throw new IllegalArgumentException(val + INVALID_INPUT_EXCEPTION);
         return val;
     }
 
     public static double validateEntry(double val) {
-        if(val < 0 || val >= Double.MAX_VALUE)
-            throw new IllegalArgumentException("\"" + val + " is not a valid input for computation!");
+        if(val < 0.0 || val >= Double.MAX_VALUE)
+            throw new IllegalArgumentException("\"" + val + INVALID_INPUT_EXCEPTION);
         return val;
     }
 }
