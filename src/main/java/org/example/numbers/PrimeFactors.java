@@ -11,12 +11,15 @@ import static java.lang.System.out;
 public class PrimeFactors {
 	private PrimeFactors(){}
 
-	public static void calculate(Scanner console) {
+	public static int[] calculate(Scanner console) {
 		try {
 			out.print("Enter an integer to view it's Prime Factors: ");
 			int n = NumberConstants.validateEntry(Integer.parseInt(console.next()));
 			out.println();
-			out.println("The Prime Factors of (" + n + ") are: " + Arrays.toString(Primeable.extractPrimeFactors(n)));
+
+			int[] result = Primeable.extractPrimeFactors(n);
+			out.println("The Prime Factors of (" + n + ") are: " + Arrays.toString(result));
+			return result;
 		} catch (NumberFormatException e) {
 			err.println(NumberConstants.INVALID_INPUT);
 			throw e;

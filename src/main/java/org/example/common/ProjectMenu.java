@@ -38,13 +38,16 @@ public final class ProjectMenu {
     private ProjectMenu() {
     }
 
-    /** Displays the text-based UI for the application, and allows for user input. */
+    /**
+     * Displays the text-based UI for the application, and allows for user input.
+     * */
     public static void menu() {
         try (Scanner console = new Scanner(System.in)) {
             menuOptions();
             out.print("> ");
             //int choice = Integer.parseInt(console.next());
             int choice = 1;
+            out.println();
 
             while (choice > QUIT) {
                 switch (choice) {
@@ -146,9 +149,8 @@ public final class ProjectMenu {
                 .append("7. ").append(NumberConstants.TITLE_MORTGAGE).append("\n")
                 .append("8. ").append(NumberConstants.TITLE_CHANGE_RETURN).append("\n")
                 .append("9. ").append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n")
-                .append(" \n0. ").append(REPEAT)
+                .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
-
         out.println(builder.toString());
     }
 

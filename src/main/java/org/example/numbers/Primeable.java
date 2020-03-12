@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 public interface Primeable {
 
-	static boolean isPrime(int n) throws IllegalArgumentException {
+	static boolean isPrime(int n) {
 			if (n != 2 && n % 2 == 0)
 				return false;
 

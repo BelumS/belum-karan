@@ -9,8 +9,6 @@ import static java.lang.System.err;
 import static java.lang.System.out;
 
 /**
- * Binary to Decimal Converter
- * <p>
  * Converts a decimal number (base 10) to binary number (base 2),
  * or a vice-versa.
  */
@@ -18,7 +16,7 @@ public class NumberBaseConverter {
     private NumberBaseConverter() {
     }
 
-    public static void print(Scanner console) {
+    public static String print(Scanner console) {
         try {
             out.print("Are you converting from Binary or Decimal?: ");
             String choice = console.next();
@@ -27,9 +25,10 @@ public class NumberBaseConverter {
             if (choice.equalsIgnoreCase("binary") || choice.equalsIgnoreCase("decimal")) {
                 out.printf("Enter a '%s' number: %n", choice);
                 int number = NumberConstants.validateEntry(Integer.parseInt(console.next()));
-                out.println();
 
-                out.println("\nValue: " + numberConversion(choice, number));
+                String answer = numberConversion(choice, number);
+                out.println("\nValue: " + answer);
+                return answer;
             } else {
                 throw new IllegalArgumentException("\"" + choice + "\" is not a valid choice!");
             }
@@ -45,9 +44,8 @@ public class NumberBaseConverter {
     private static String numberConversion(String choice, int val) {
         if (choice.equalsIgnoreCase("binary")) {
             return convertDecimalToBinary(val);
-        } else if (choice.equalsIgnoreCase("decimal"))
-            return convertBinaryToDecimal(val);
-        return "Invalid Option!";
+        }
+        return convertBinaryToDecimal(val);
     }
 
     private static String convertBinaryToDecimal(int val) {

@@ -18,13 +18,14 @@ public class NextPrime {
             out.println();
 
             out.printf("Find All Primes Up to %d, press Q to Quit.%n", from);
-            out.print("> ");
+            out.print("> \r");
             String choice = console.next();
             out.println();
 
-            for (int i = 1; i < from; i += 2) {
+            for (int i = 1; i <= from; i += 2) {
                 if (Primeable.isPrime(i)) {
                     Primeable.checkPrime(i);
+
                     out.print("Quit [q]? > ");
                     choice = console.next();
                 } else {
@@ -32,7 +33,7 @@ public class NextPrime {
                 }
 
                 if (choice.equalsIgnoreCase("Q") || choice.equalsIgnoreCase("Quit")) {
-					System.exit(0);
+					System.exit(1);
 				}
             }
         } catch (NumberFormatException e) {

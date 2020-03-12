@@ -21,11 +21,9 @@ public class MortgageCalculator {
 
 	private static double calculateFrm(int homePrice, int downPayment, int propertyTax, int homeInsurance,
 			int numOfTerms) {
-		// P = L * [c * (1 + c)^ n] / [(1 + c)^ n - 1];
 		int principal = (homePrice - downPayment) + propertyTax + homeInsurance;
 		int monthlyPayments = numOfTerms * 12;
-		// double propertyTax = 0.0064; //Maricopa County
-		double interestRate = 0.0; // Based on Surprise, AZ
+		double interestRate;
 
 		if (numOfTerms >= 30) {
 			interestRate = 0.0529;
@@ -42,7 +40,7 @@ public class MortgageCalculator {
 				/ (Math.pow(1 + interestResult, monthlyPayments) - 1));
 	}
 
-	public static void printCalculation(Scanner console) {
+	public static double printCalculation(Scanner console) {
 		try {
 			out.println("Enter the Home Price: ");
 			int price = validateEntry(parseInt(console.next()));
@@ -59,8 +57,9 @@ public class MortgageCalculator {
 			out.println("Enter the Number of Years for the FRM: ");
 			int years = validateEntry(parseInt(console.next()));
 
-			out.printf("Your Monthly Payments are: $%.2f%n",
-					Math.floor(calculateFrm(price, downPayment, propertyTax, homeInsurance, years)));
+			double total = Math.floor(calculateFrm(price, downPayment, propertyTax, homeInsurance, years));
+			out.printf("Your Monthly Payments are: $%.2f%n", total);
+			return total;
 		} catch (IllegalArgumentException | InputMismatchException e) {
 			err.println("Unable to complete the calculation due to: " + e.getMessage());
 			throw e;
