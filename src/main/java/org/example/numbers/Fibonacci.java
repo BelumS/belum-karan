@@ -15,6 +15,13 @@ public class Fibonacci {
 	private Fibonacci() {
 	}
 
+	/**
+	 * Displays the fibonacci sequence.
+	 * @param console the keyboard input shared from the Numbers menu.
+	 * @return the map of the fibonacci sequence
+	 * @throws IllegalArgumentException if an invalid number is used
+	 * @throws InputMismatchException If an invalid input is used
+	 */
 	public static Map<String, Long> sequence(Scanner console) {
 		try {
 			out.print("Enter an integer to view it's Fibonacci Sequence: ");

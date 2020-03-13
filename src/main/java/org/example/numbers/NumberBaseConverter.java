@@ -16,7 +16,14 @@ public class NumberBaseConverter {
     private NumberBaseConverter() {
     }
 
-    public static String print(Scanner console) {
+    /**
+     * Displays the converted number.
+     * @param console the keyboard input shared from the Numbers menu.
+     * @return the String representing the converted number.
+     * @throws IllegalArgumentException if an invalid number is used
+     * @throws InputMismatchException If an invalid input is used
+     */
+    public static String print(Scanner console) throws IllegalArgumentException, InputMismatchException {
         try {
             out.print("Are you converting from Binary or Decimal?: ");
             String choice = console.next();
@@ -29,9 +36,8 @@ public class NumberBaseConverter {
                 String answer = numberConversion(choice, number);
                 out.println("\nValue: " + answer);
                 return answer;
-            } else {
+            } else
                 throw new IllegalArgumentException("\"" + choice + "\" is not a valid choice!");
-            }
         } catch (IllegalArgumentException | InputMismatchException e) {
             err.println("Unable to complete the conversion due to: " + e.getMessage());
             throw e;

@@ -6,9 +6,18 @@ import java.util.*;
 
 import static java.lang.System.*;
 
+/**
+ * Generates a table of 2 exponents.
+ */
 public class PowersOfTwo {
 	private PowersOfTwo(){}
 
+	/**
+	 * Generates the powers of 2 table.
+	 * @param console the keyboard input shared from the Numbers menu.
+	 * @return a map holding two's table
+	 * @throws NumberFormatException If an invalid input is used
+	 */
 	public static Map<String, Long> simpleCalculatePowers(Scanner console) {
 		int limit = 0;
 		try {
@@ -22,7 +31,7 @@ public class PowersOfTwo {
 			}
 			out.println(twosTable);
 			return twosTable;
-		} catch (NumberFormatException | InputMismatchException e) {
+		} catch (NumberFormatException e) {
 			err.println(NumberConstants.INVALID_INPUT);
 			throw e;
 		} catch (Exception e) {

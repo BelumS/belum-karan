@@ -40,6 +40,13 @@ public class MortgageCalculator {
 				/ (Math.pow(1 + interestResult, monthlyPayments) - 1));
 	}
 
+	/**
+	 * Displays the mortgage calculation.
+	 * @param console the keyboard input shared from the Numbers menu.
+	 * @return the fixed rate mortgage calculation
+	 * @throws IllegalArgumentException if an invalid number is used
+	 * @throws InputMismatchException If an invalid input is used
+	 */
 	public static double printCalculation(Scanner console) {
 		try {
 			out.println("Enter the Home Price: ");

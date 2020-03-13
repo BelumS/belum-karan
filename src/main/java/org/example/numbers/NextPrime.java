@@ -2,15 +2,24 @@ package org.example.numbers;
 
 import org.example.common.NumberConstants;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static java.lang.System.err;
 import static java.lang.System.out;
 
+/**
+ * Determines the next prime number in a sequence.
+ */
 public class NextPrime {
     private NextPrime() {
     }
 
+    /**
+     * Displays the a sequence of prime numbers.
+     * @param console the keyboard input shared from the Numbers menu.
+     * @throws NumberFormatException If an invalid input is used
+     */
     public static void infinitePrimes(Scanner console) {
         try {
             out.print("Enter an integer to view its Primes: ");
@@ -18,7 +27,7 @@ public class NextPrime {
             out.println();
 
             out.printf("Find All Primes Up to %d, press Q to Quit.%n", from);
-            out.print("> \r");
+            out.print("> ");
             String choice = console.next();
             out.println();
 

@@ -16,13 +16,13 @@ public class TileCost {
 
     /**
      * Reads the user input, and then calculates the total cost of tile installation.
-     * @param console - A standard input <code>Scanner</code>, shared amongst the algorithms that require
+     * @param console A standard input <code>Scanner</code>, shared amongst the algorithms that require
      *  user input.
      * @return <code>double</code> value that represents the total tile cost.
      * @throws IllegalArgumentException If the user input is a negative number, or higher than the max allowed value.
      * @throws NumberFormatException If the user input is a letter, or special character instead of a number.
      */
-    public static double calculate(Scanner console) throws Exception {
+    public static double calculate(Scanner console) throws IllegalArgumentException, NumberFormatException {
         try {
             System.out.println();
             System.out.print("Enter the total Square Feet: ");

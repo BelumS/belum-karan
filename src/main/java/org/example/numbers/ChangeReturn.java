@@ -62,7 +62,15 @@ public final class ChangeReturn {
     private ChangeReturn() {
     }
 
-    public static Map<String, Integer> print(Scanner console) {
+    /**
+     * Displays the change returned.
+     * @param console the keyboard input shared from the Numbers menu.
+     * @return a map that stores the change return keys and values.
+     * @throws IllegalArgumentException if an invalid number is used
+     * @throws InputMismatchException If an invalid input is used
+     * @throws ArithmeticException if the payment amount is less than the cost
+     */
+    public static Map<String, Integer> print(Scanner console) throws IllegalArgumentException, InputMismatchException, ArithmeticException {
         try {
             out.print("Enter the item cost: ");
             double costOfItem = NumberConstants.validateEntry(Double.parseDouble(console.next()));

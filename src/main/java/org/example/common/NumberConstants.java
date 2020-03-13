@@ -1,7 +1,5 @@
 package org.example.common;
 
-import java.util.Objects;
-
 /**
  * Represents the shared members (variables and methods) of the numeric algorithms.
  */
@@ -41,19 +39,37 @@ public final class NumberConstants {
         System.exit(-1);
     }
 
-    public static int validateEntry(int val) {
+    /**
+     * Determines if an integer is valid.
+     * @param val the number whose validity will be determined
+     * @return a valid integer.
+     * @throws IllegalArgumentException if the integer is negative, or an overflow value.
+     */
+    public static int validateEntry(int val) throws IllegalArgumentException {
         if(val < 0 || val >= Integer.MAX_VALUE)
             throw new IllegalArgumentException("\"" + val + INVALID_INPUT_EXCEPTION);
         return val;
     }
 
-    public static long validateInput(long val) {
+    /**
+     * Determines if a long is valid.
+     * @param val the number whose validity will be determined
+     * @return a valid long.
+     * @throws IllegalArgumentException if the long is negative, or an overflow value.
+     */
+    public static long validateInput(long val) throws IllegalArgumentException {
         if(val < 0L || val >= Long.MAX_VALUE)
             throw new IllegalArgumentException(val + INVALID_INPUT_EXCEPTION);
         return val;
     }
 
-    public static double validateEntry(double val) {
+    /**
+     * Determines if a double is valid.
+     * @param val the number whose validity will be determined
+     * @return a valid double.
+     * @throws IllegalArgumentException if the double is negative, or an overflow value.
+     */
+    public static double validateEntry(double val) throws IllegalArgumentException {
         if(val < 0.0 || val >= Double.MAX_VALUE)
             throw new IllegalArgumentException("\"" + val + INVALID_INPUT_EXCEPTION);
         return val;

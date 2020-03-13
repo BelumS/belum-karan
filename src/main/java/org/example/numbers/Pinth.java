@@ -15,6 +15,13 @@ public final class Pinth {
     private Pinth() {
     }
 
+    /**
+     * Displays the number PI(3.14).
+     * @param console the keyboard input shared from the Numbers menu.
+     * @return the number PI
+     * @throws IllegalArgumentException if an invalid number is used
+     * @throws InputMismatchException If an invalid input is used
+     */
     public static BigDecimal displayPi(Scanner console) {
         BigDecimal result = BigDecimal.ZERO;
         try {

@@ -13,6 +13,13 @@ import static java.lang.System.out;
 public class Enth {
     private Enth() {}
 
+    /**
+     * Displays the number e(2.71).
+     * @param console the keyboard input shared from the Numbers menu.
+     * @return the number e
+     * @throws IllegalArgumentException if an invalid number is used
+     * @throws InputMismatchException If an invalid input is used
+     */
     public static BigDecimal displayE(Scanner console) {
         BigDecimal result = BigDecimal.valueOf(-1L);
         try {
