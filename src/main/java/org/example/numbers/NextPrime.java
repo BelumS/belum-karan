@@ -2,7 +2,8 @@ package org.example.numbers;
 
 import org.example.common.NumberConstants;
 
-import java.util.InputMismatchException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.err;
@@ -17,10 +18,11 @@ public class NextPrime {
 
     /**
      * Displays the a sequence of prime numbers.
+     *
      * @param console the keyboard input shared from the Numbers menu.
      * @throws NumberFormatException If an invalid input is used
      */
-    public static void infinitePrimes(Scanner console) {
+    public static List<Integer> infinitePrimes(Scanner console) {
         try {
             out.print("Enter an integer to view its Primes: ");
             int from = NumberConstants.validateEntry(Integer.parseInt(console.next()));
@@ -31,20 +33,23 @@ public class NextPrime {
             String choice = console.next();
             out.println();
 
+            List<Integer> list = new ArrayList<>();
             for (int i = 1; i <= from; i += 2) {
                 if (Primeable.isPrime(i)) {
                     Primeable.checkPrime(i);
-
+                    list.add(i);
                     out.print("Quit [q]? > ");
                     choice = console.next();
+                    out.println();
                 } else {
                     continue;
                 }
 
                 if (choice.equalsIgnoreCase("Q") || choice.equalsIgnoreCase("Quit")) {
-					System.exit(1);
-				}
+                    return list;
+                }
             }
+            return new ArrayList<>();
         } catch (NumberFormatException e) {
             err.println(NumberConstants.INVALID_INPUT);
             throw e;

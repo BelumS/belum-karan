@@ -12,8 +12,7 @@ import static java.lang.System.err;
  * Calculate the monthly payments of a fixed term mortgage
  * over given Nth terms at a given interest rate. Also figure out how long it
  * will take the user to pay back the loan. For added complexity, add an option
- * for users to select the compounding interval (Monthly, Weekly, Daily,
- * Continually).
+ * for users to select the compounding interval (Monthly, Weekly, Daily, Continually).
  */
 public class MortgageCalculator {
 	private MortgageCalculator() {
@@ -66,6 +65,13 @@ public class MortgageCalculator {
 
 			double total = Math.floor(calculateFrm(price, downPayment, propertyTax, homeInsurance, years));
 			out.printf("Your Monthly Payments are: $%.2f%n", total);
+
+			//How long will it take to complete the payments?
+			//int numPayments = (price - downPayment) / (int) total;
+			//out.println("It'll take " + numPayments + " years to pay off the mortgage.");
+
+			//Add compounding interest intervals
+
 			return total;
 		} catch (IllegalArgumentException | InputMismatchException e) {
 			err.println("Unable to complete the calculation due to: " + e.getMessage());
@@ -75,4 +81,19 @@ public class MortgageCalculator {
 			throw e;
 		}
 	}
+
+	enum CompoundInterest {
+		DAILY(0.0), WEEKLY(0.0), MONTHLY(0.0), CONTINUALLY(0.0);
+
+		private double interestRate;
+
+		CompoundInterest(double interestRate) {
+			this.interestRate = interestRate;
+		}
+
+		public double getInterestRate() {
+			return interestRate;
+		}
+	}
+
 }
