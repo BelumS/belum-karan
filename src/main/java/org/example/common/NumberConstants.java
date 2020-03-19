@@ -1,11 +1,15 @@
 package org.example.common;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Represents the shared members (variables and methods) of the numeric algorithms.
  */
 public final class NumberConstants {
     private NumberConstants(){}
 
+    //Menu Titles
     public static final String TITLE = "Numbers";
     public static final String TITLE_PI = "PI to the Nth";
     public static final String TITLE_E = "E to the Nth";
@@ -17,6 +21,7 @@ public final class NumberConstants {
     public static final String TITLE_CHANGE_RETURN = "Change Return";
     public static final String TITLE_NUMBER_CONVERTER = "Number Converter";
 
+    //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
     public static final String INTEGER_OVERFLOW = "Error, that number is too large for computation!";
     public static final String NEGATIVE_NUMBER = "Error, cannot compute a negative number!";
@@ -24,7 +29,16 @@ public final class NumberConstants {
     public static final String INVALID_INPUT = "Error: the input data cannot be computed!";
     private static final String INVALID_INPUT_EXCEPTION = " is not a valid input for computation!";
 
-    public static final int DECIMAL_LIMIT = 20;
+    public static final int DECIMAL_PLACE_LIMIT = 20;
+
+    /**
+     * Provides a precisely rounded currency value.
+     * @param val the floating point number to be rounded.
+     * @return a value rounded to 2 decimal places.
+     */
+    public static double roundedCurrencyValue(double val) {
+        return BigDecimal.valueOf(val).setScale(2, RoundingMode.DOWN).doubleValue();
+    }
 
     /**
      * Displays an error message to the console, and then ends the program in error.

@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import static java.lang.System.err;
 import static java.lang.System.out;
-import static org.example.common.NumberConstants.printError;
 
 public final class Pinth {
     private Pinth() {
@@ -31,7 +30,7 @@ public final class Pinth {
             if (choice == 0) {
                 result = BigDecimal.valueOf(3);
                 out.println(result);
-            } else if (choice > 0 && choice <= NumberConstants.DECIMAL_LIMIT) {
+            } else if (choice > 0 && choice <= NumberConstants.DECIMAL_PLACE_LIMIT) {
                 result = BigDecimal.valueOf(Math.PI).setScale(choice, RoundingMode.DOWN);
                 out.println(result);
             } else {

@@ -30,7 +30,7 @@ public class Enth {
             if (choice == 0) {
                 result = BigDecimal.valueOf(2);
                 out.println(result);
-            } else if (choice > 0 && choice <= NumberConstants.DECIMAL_LIMIT) {
+            } else if (choice > 0 && choice <= NumberConstants.DECIMAL_PLACE_LIMIT) {
                 result = BigDecimal.valueOf(Math.E).setScale(choice, RoundingMode.DOWN);
                 out.println(result);
             } else
