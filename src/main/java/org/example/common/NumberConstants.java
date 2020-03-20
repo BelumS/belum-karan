@@ -20,6 +20,7 @@ public final class NumberConstants {
     public static final String TITLE_MORTGAGE = "Mortgage";
     public static final String TITLE_CHANGE_RETURN = "Change Return";
     public static final String TITLE_NUMBER_CONVERTER = "Number Converter";
+    public static final String TITLE_CALCULATOR = "Calculator";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";

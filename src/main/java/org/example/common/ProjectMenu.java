@@ -4,15 +4,7 @@ import static java.lang.System.out;
 
 import java.util.Scanner;
 
-import org.example.numbers.ChangeReturn;
-import org.example.numbers.Enth;
-import org.example.numbers.Fibonacci;
-import org.example.numbers.MortgageCalculator;
-import org.example.numbers.NextPrime;
-import org.example.numbers.NumberBaseConverter;
-import org.example.numbers.Pinth;
-import org.example.numbers.PrimeFactors;
-import org.example.numbers.TileCost;
+import org.example.numbers.*;
 
 /**
  * Generates a text-based UI that displays the karan projects,
@@ -150,6 +142,7 @@ public final class ProjectMenu {
                 .append("7. ").append(NumberConstants.TITLE_MORTGAGE).append("\n")
                 .append("8. ").append(NumberConstants.TITLE_CHANGE_RETURN).append("\n")
                 .append("9. ").append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n")
+                .append("10. ").append(NumberConstants.TITLE_CALCULATOR).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -161,8 +154,9 @@ public final class ProjectMenu {
     private static void numberOptions(Scanner console) {
         try {
             numberMenu();
-            out.print("> ");
-            int choice = Integer.parseInt(console.next());
+            //out.print("> ");
+            //int choice = Integer.parseInt(console.next());
+            int choice = 10;
             out.println();
 
             while (choice > QUIT) {
@@ -199,6 +193,9 @@ public final class ProjectMenu {
                     break;
                 case 9:
                     NumberBaseConverter.print(console);
+                    break;
+                case 10:
+                    Calculator.print(console);
                     break;
                 default:
                     exitOnError();
