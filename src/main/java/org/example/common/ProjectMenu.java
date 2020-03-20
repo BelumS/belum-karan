@@ -42,7 +42,7 @@ public final class ProjectMenu {
             int choice = 1;
             out.println();
 
-            while (choice > QUIT) {
+            while (console.hasNextInt()) {
                 switch (choice) {
                 case QUIT:
                     exitApp();
@@ -94,7 +94,7 @@ public final class ProjectMenu {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            NumberConstants.printError(e, e.getMessage());
         }
     }
 
@@ -158,7 +158,7 @@ public final class ProjectMenu {
             int choice = Integer.parseInt(console.next());
             out.println();
 
-            while (choice > QUIT) {
+            while (console.hasNextInt()) {
                 switch (choice) {
                 case QUIT:
                     exitApp();

@@ -33,6 +33,15 @@ public final class NumberConstants {
     public static final int DECIMAL_PLACE_LIMIT = 20;
 
     /**
+     * Provides a precisely rounded mathematical value.
+     * @param val the floating point number to be rounded.
+     * @return a value rounded to 2 decimal places.
+     */
+    public static double roundedValues(double val) {
+        return BigDecimal.valueOf(val).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /**
      * Provides a precisely rounded currency value.
      * @param val the floating point number to be rounded.
      * @return a value rounded to 2 decimal places.
