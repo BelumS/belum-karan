@@ -19,11 +19,7 @@ public final class Calculator {
 
     public static double print(Scanner console) {
         try {
-            final String regex = "^[\\d]+(\\s)?[+\\-*/^%](\\s)?[\\d]+$";
-            //console.useDelimiter(regex);
-
             out.print("Enter the one line calculation: ");
-            //String[] inputs = console.nextLine().split(regex);
             String[] inputs = console.nextLine().split(" ");
             out.println();
 
@@ -72,7 +68,6 @@ public final class Calculator {
             default:
                 throw new IllegalArgumentException(NumberConstants.INVALID_INPUT);
         }
-
         out.printf("%.2f %s %.2f = %.2f%n", x, op, y, result);
         return result;
     }

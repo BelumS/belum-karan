@@ -154,9 +154,8 @@ public final class ProjectMenu {
     private static void numberOptions(Scanner console) {
         try {
             numberMenu();
-            //out.print("> ");
-            //int choice = Integer.parseInt(console.next());
-            int choice = 10;
+            out.print("> ");
+            int choice = Integer.parseInt(console.next());
             out.println();
 
             while (choice > QUIT) {
