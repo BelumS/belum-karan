@@ -42,7 +42,7 @@ public final class ProjectMenu {
             int choice = 1;
             out.println();
 
-            while (console.hasNextInt()) {
+            while (choice > QUIT) {
                 switch (choice) {
                 case QUIT:
                     exitApp();
@@ -155,10 +155,12 @@ public final class ProjectMenu {
         try {
             numberMenu();
             out.print("> ");
-            int choice = Integer.parseInt(console.next());
+            //int choice = Integer.parseInt(console.next());
+            int choice = 10; //Integer.parseInt(console.next());
             out.println();
 
-            while (console.hasNextInt()) {
+            //TODO: Fix the delayed scanner input
+            while (choice > QUIT) {
                 switch (choice) {
                 case QUIT:
                     exitApp();

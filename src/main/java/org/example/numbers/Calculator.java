@@ -2,16 +2,13 @@ package org.example.numbers;
 
 import org.example.common.NumberConstants;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 import static java.lang.System.err;
 import static java.lang.System.out;
-import static org.example.common.NumberConstants.INVALID_INPUT;
-import static org.example.common.NumberConstants.roundedValues;
+import static org.example.common.NumberConstants.*;
 
 public final class Calculator {
     private Calculator() {
@@ -19,21 +16,32 @@ public final class Calculator {
 
     public static double print(Scanner console) {
         try {
-            out.println("Choose [N]ormal or [S]cientific Mode.");
-            String mode = console.next();
+            out.print("Choose [N]ormal, [S]cientific, or [I]nverse Mode: ");
+            String mode = console.nextLine();
             out.println();
 
             switch (mode.toLowerCase()) {
                 case "n":
-                    out.print("Enter the calculation: ");
+                    out.print("Enter the calculation [+|-|*|/|^|%], [R]eturn, or [Q]uit: ");
                     String[] normal = console.nextLine().split(" ");
                     out.println();
                     return testNormal(normal[1], Double.parseDouble(normal[0]), Double.parseDouble(normal[2]));
                 case "s":
-                    out.print("Enter the scientific calculation: ");
+                    out.print("Enter the scientific calculation [!|sqrt|PI|e|sin|cos|tan|log|ln], [R]eturn, or [Q]uit: ");
                     String[] science = console.nextLine().split(" ");
                     out.println();
                     return testScientific(science[0], Double.parseDouble(science[1]));
+                case "i":
+                    out.print("Enter the inverse calculation [i'(sqrt|sin|cos|tan|log|ln)'], [R]eturn, or [Q]uit: ");
+                    String[] inverse = console.nextLine().split(" ");
+                    out.println();
+                    return testInverse(inverse[0], Double.parseDouble(inverse[1]));
+                case "r":
+                    print(console);
+                    return 0;
+                case "q":
+                    System.exit(0);
+                    return 0;
                 default:
                     throw new AssertionError(INVALID_INPUT);
             }
@@ -85,9 +93,9 @@ public final class Calculator {
         return result;
     }
 
-    //TODO: Add more operations, and store a history of the calculations
     private static double testScientific(String operation, double val) {
         Map<String, Double> memory = new LinkedHashMap<>();
+        boolean symbolAfter = false;
         UnaryOperation op;
         double result;
 
@@ -97,13 +105,91 @@ public final class Calculator {
                 result = ScientificOperation.SQRT.apply(val);
                 break;
             case "e":
+                symbolAfter = true;
                 op = ScientificOperation.E;
                 result = ScientificOperation.E.apply(val);
+                break;
+            case "pi":
+                symbolAfter = true;
+                op = ScientificOperation.PI;
+                result = ScientificOperation.PI.apply(val);
+                break;
+            case "!":
+                symbolAfter = true;
+                op = ScientificOperation.FACTORIAL;
+                result = ScientificOperation.FACTORIAL.apply(val);
+                break;
+            case "sin":
+                op = ScientificOperation.SIN;
+                result = ScientificOperation.SIN.apply(val);
+                break;
+            case "cos":
+                op = ScientificOperation.COS;
+                result = ScientificOperation.COS.apply(val);
+                break;
+            case "tan":
+                op = ScientificOperation.TAN;
+                result = ScientificOperation.TAN.apply(val);
+                break;
+            case "log":
+                op = ScientificOperation.LOG;
+                result = ScientificOperation.LOG.apply(val);
+                break;
+            case "ln":
+                op = ScientificOperation.NAT_LOG;
+                result = ScientificOperation.NAT_LOG.apply(val);
                 break;
             default:
                 throw new AssertionError(NumberConstants.INVALID_INPUT);
         }
-        memory.put(String.format("%s(%.2f) = %.2f%n", op, val, result), result);
+        if (symbolAfter)
+            memory.put(String.format("(%.2f)%s = %.2f%n", val, op, result), result);
+        else
+            memory.put(String.format("%s(%.2f) = %.2f%n", op, val, result), result);
+        memory.forEach(out::printf);
+        return result;
+    }
+
+    private static double testInverse(String operation, double val) {
+        Map<String, Double> memory = new LinkedHashMap<>();
+        boolean symbolAfter = false;
+        UnaryOperation op;
+        double result;
+
+        switch (operation.toLowerCase()) {
+            case "isqrt":
+                symbolAfter = true;
+                op = InverseOperation.INV_SQRT;
+                result = InverseOperation.INV_SQRT.apply(val);
+                break;
+            case "isin":
+                op = InverseOperation.INV_SIN;
+                result = InverseOperation.INV_SIN.apply(val);
+                break;
+            case "icos":
+                op = InverseOperation.INV_COS;
+                result = InverseOperation.INV_COS.apply(val);
+                break;
+            case "itan":
+                op = InverseOperation.INV_TAN;
+                result = InverseOperation.INV_TAN.apply(val);
+                break;
+            case "ilog":
+                op = InverseOperation.INV_LOG;
+                result = InverseOperation.INV_LOG.apply(val);
+                break;
+            case "iln":
+                op = InverseOperation.INV_NAT_LOG;
+                result = InverseOperation.INV_NAT_LOG.apply(val);
+                break;
+            default:
+                throw new AssertionError(NumberConstants.INVALID_INPUT);
+        }
+        if (symbolAfter)
+            memory.put(String.format("(%.2f)%s = %.2f%n", val, op, result), result);
+        else
+            memory.put(String.format("%s(%.2f) = %.2f%n", op, val, result), result);
+
         memory.forEach(out::printf);
         return result;
     }
@@ -182,26 +268,46 @@ public final class Calculator {
         }
     }
 
-    //TODO: Add sqrt and PI symbols from a word processor
     private enum ScientificOperation implements UnaryOperation {
-       SQRT("sqrt"){ @Override public double apply(double val) { return Math.sqrt(val); }},
-
-        //TODO: Implement Factorial using recursion
-       FACTORIAL("!"){ @Override public double apply(double val) { return 0; }},
+       SQRT("√"){ @Override public double apply(double val) { return Math.sqrt(val); }},
+       FACTORIAL("!"){
+           @Override
+           public double apply(double val) {
+            if(val > 20) throw new ArithmeticException(INTEGER_OVERFLOW);
+            return roundedValues((val < 1) ? 1 :val * apply(val - 1));
+        }
+       },
        E("e"){ @Override public double apply(double val) { return roundedValues(Math.E * val); }},
-       PI("PI"){ @Override public double apply(double val) { return roundedValues(Math.PI * val); }},
+       PI("π"){ @Override public double apply(double val) { return roundedValues(Math.PI * val); }},
        SIN("sin"){@Override public double apply(double val) { return Math.sin(val); }},
        COS("cos"){ @Override public double apply(double val) { return Math.cos(val); }},
        TAN("tan"){ @Override public double apply(double val) { return Math.tan(val); }},
        LOG("log"){ @Override public double apply(double val) { return Math.log10(val); }},
-       NAT_LOG("ln"){ @Override public double apply(double val) { return Math.log(val); }},
-
-        //TODO: Implement inversion
-       INVERSE("inv"){ @Override public double apply(double val) { return 0; }};
+       NAT_LOG("ln"){ @Override public double apply(double val) { return Math.log(val); }};
 
        private String symbol;
 
        ScientificOperation(String symbol) {
+            this.symbol = symbol;
+        }
+
+        @Override
+        public String toString() {
+            return this.symbol;
+        }
+    }
+
+    private enum InverseOperation implements UnaryOperation {
+        INV_SQRT("^2"){ @Override public double apply(double val) { return Math.pow(val, 2); }},
+        INV_SIN("sin^-1"){@Override public double apply(double val) { return Math.pow(Math.sin(val), -1); }},
+        INV_COS("cos^-1"){ @Override public double apply(double val) { return Math.pow(Math.cos(val), -1); }},
+        INV_TAN("tan^-1"){ @Override public double apply(double val) { return Math.pow(Math.tan(val), -1); }},
+        INV_LOG("10^"){ @Override public double apply(double val) { return Math.pow(10, val); }},
+        INV_NAT_LOG("e^"){ @Override public double apply(double val) { return Math.pow(Math.E, val); }};
+
+        private String symbol;
+
+        InverseOperation(String symbol) {
             this.symbol = symbol;
         }
 
