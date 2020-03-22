@@ -51,7 +51,7 @@ public final class NumberConstants {
     }
 
     /**
-     * Displays an error message to the console, and then ends the program in error.
+     * Displays an error message to the console.
      * @param e - The Exception whose stack trace will displayed on the console.
      * @param message - The detailed message explaining why the error occurred.
      */
@@ -60,7 +60,7 @@ public final class NumberConstants {
         if(e != null) {
             e.printStackTrace();
         }
-        System.exit(-1);
+        System.out.println("Try again!");
     }
 
     /**

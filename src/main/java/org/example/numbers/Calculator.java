@@ -2,6 +2,7 @@ package org.example.numbers;
 
 import org.example.common.NumberConstants;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,42 +17,38 @@ public final class Calculator {
 
     public static double print(Scanner console) {
         try {
-            out.print("Choose [N]ormal, [S]cientific, or [I]nverse Mode: ");
-            String mode = console.nextLine();
             out.println();
+            out.println("Choose [N]ormal, [S]cientific, [I]nverse Mode, [R]eturn, or [Q]uit: ");
+            String mode = console.nextLine();
 
             switch (mode.toLowerCase()) {
                 case "n":
-                    out.print("Enter the calculation [+|-|*|/|^|%], [R]eturn, or [Q]uit: ");
+                    out.println("Enter the calculation [+|-|*|/|^|%]");
                     String[] normal = console.nextLine().split(" ");
-                    out.println();
                     return testNormal(normal[1], Double.parseDouble(normal[0]), Double.parseDouble(normal[2]));
                 case "s":
-                    out.print("Enter the scientific calculation [!|sqrt|PI|e|sin|cos|tan|log|ln], [R]eturn, or [Q]uit: ");
+                    out.println("Enter the scientific calculation [!|sqrt|PI|e|sin|cos|tan|log|ln]");
                     String[] science = console.nextLine().split(" ");
-                    out.println();
                     return testScientific(science[0], Double.parseDouble(science[1]));
                 case "i":
-                    out.print("Enter the inverse calculation [i'(sqrt|sin|cos|tan|log|ln)'], [R]eturn, or [Q]uit: ");
+                    out.println("Enter the inverse calculation [i'(sqrt|sin|cos|tan|log|ln)']");
                     String[] inverse = console.nextLine().split(" ");
-                    out.println();
                     return testInverse(inverse[0], Double.parseDouble(inverse[1]));
                 case "r":
                     print(console);
                     return 0;
                 case "q":
+                    out.println("Powering down...");
                     System.exit(0);
                     return 0;
                 default:
                     throw new AssertionError(INVALID_INPUT);
             }
         } catch (ArithmeticException | NumberFormatException e) {
-            err.println(e.getMessage());
-            e.printStackTrace();
+            NumberConstants.printError(e, e.getMessage());
             throw e;
         } catch (Exception e) {
-            err.println(e.getMessage());
-            e.printStackTrace();
+            NumberConstants.printError(e, e.getMessage());
             throw e;
         }
     }

@@ -26,7 +26,9 @@ public final class ProjectMenu {
     private static final String GRAPHICS_MULTIMEDIA = "Graphics and Multimedia";
     private static final String REPEAT = "View the Menu Again";
     private static final String QUIT_MSG = "Quit";
-    private static final int QUIT = -1;
+    private static final int EXIT = -1;
+    private static boolean quit = false;
+    private static int menuCounter = 0;
 
     private ProjectMenu() {
     }
@@ -42,9 +44,10 @@ public final class ProjectMenu {
             int choice = 1;
             out.println();
 
-            while (choice > QUIT) {
+            do {
                 switch (choice) {
-                case QUIT:
+                case EXIT:
+                    quit = true;
                     exitApp();
                     break;
                 case 0:
@@ -92,9 +95,11 @@ public final class ProjectMenu {
                 default:
                     exitOnError();
                 }
-            }
+            } while (!quit);
         } catch (Exception e) {
-            NumberConstants.printError(e, e.getMessage());
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            exitOnError();
         }
     }
 
@@ -116,7 +121,6 @@ public final class ProjectMenu {
                 .append("13. ").append(GRAPHICS_MULTIMEDIA)
                 .append(" \n\n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG).append("\n");
-
         out.println(builder.toString());
     }
 
@@ -127,7 +131,7 @@ public final class ProjectMenu {
 
     private static void exitOnError() {
         out.println("Invalid Menu Option .. Exiting!");
-        System.exit(QUIT);
+        System.exit(EXIT);
     }
 
     private static void numberMenu() {
@@ -150,19 +154,18 @@ public final class ProjectMenu {
 
     //TODO: Refactor this logic so that an invalid entry asks the 
     //User to input the data, at least 3 times before exiting the app.
-    //The triple retry will mimic the concept of REST call retries.
     private static void numberOptions(Scanner console) {
         try {
             numberMenu();
             out.print("> ");
-            //int choice = Integer.parseInt(console.next());
-            int choice = 10; //Integer.parseInt(console.next());
+            int choice = Integer.parseInt(console.next());
             out.println();
 
             //TODO: Fix the delayed scanner input
-            while (choice > QUIT) {
+            do {
                 switch (choice) {
-                case QUIT:
+                case EXIT:
+                    quit = true;
                     exitApp();
                     break;
                 case 0:
@@ -201,10 +204,15 @@ public final class ProjectMenu {
                 default:
                     exitOnError();
                 }
-            }
+            } while(!quit || menuCounter < 4);
         } catch (Exception e) {
+            ++menuCounter;
             NumberConstants.printError(e, e.getMessage());
+            numberOptions(console);
         }
+
+        if(menuCounter == 3)
+            exitApp();
     }
 
     private static void textOptions() {
