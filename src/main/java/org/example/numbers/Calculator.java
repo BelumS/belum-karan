@@ -2,19 +2,30 @@ package org.example.numbers;
 
 import org.example.common.NumberConstants;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import static java.lang.System.err;
 import static java.lang.System.out;
 import static org.example.common.NumberConstants.*;
 
+/**
+ * A simple calculator to do basic operators.
+ * Make it a scientific calculator for added complexity.
+ */
 public final class Calculator {
     private Calculator() {
     }
 
+    /**
+     * Displays the calculated value
+     *
+     * @param console the keyboard input shared from the Numbers menu.
+     * @return the calculated value
+     * @throws IllegalArgumentException if an invalid number is used
+     * @throws NumberFormatException    If an invalid input is used
+     * @throws ArithmeticException      If a 0 division occurs
+     */
     public static double print(Scanner console) {
         try {
             out.println();
@@ -266,25 +277,65 @@ public final class Calculator {
     }
 
     private enum ScientificOperation implements UnaryOperation {
-       SQRT("√"){ @Override public double apply(double val) { return Math.sqrt(val); }},
-       FACTORIAL("!"){
-           @Override
-           public double apply(double val) {
-            if(val > 20) throw new ArithmeticException(INTEGER_OVERFLOW);
-            return roundedValues((val < 1) ? 1 :val * apply(val - 1));
-        }
-       },
-       E("e"){ @Override public double apply(double val) { return roundedValues(Math.E * val); }},
-       PI("π"){ @Override public double apply(double val) { return roundedValues(Math.PI * val); }},
-       SIN("sin"){@Override public double apply(double val) { return Math.sin(val); }},
-       COS("cos"){ @Override public double apply(double val) { return Math.cos(val); }},
-       TAN("tan"){ @Override public double apply(double val) { return Math.tan(val); }},
-       LOG("log"){ @Override public double apply(double val) { return Math.log10(val); }},
-       NAT_LOG("ln"){ @Override public double apply(double val) { return Math.log(val); }};
+        SQRT("√") {
+            @Override
+            public double apply(double val) {
+                return Math.sqrt(val);
+            }
+        },
+        FACTORIAL("!") {
+            @Override
+            public double apply(double val) {
+                if (val > 20) throw new ArithmeticException(INTEGER_OVERFLOW);
+                return roundedValues((val < 1) ? 1 : val * apply(val - 1));
+            }
+        },
+        E("e") {
+            @Override
+            public double apply(double val) {
+                return roundedValues(Math.E * val);
+            }
+        },
+        PI("π") {
+            @Override
+            public double apply(double val) {
+                return roundedValues(Math.PI * val);
+            }
+        },
+        SIN("sin") {
+            @Override
+            public double apply(double val) {
+                return Math.sin(val);
+            }
+        },
+        COS("cos") {
+            @Override
+            public double apply(double val) {
+                return Math.cos(val);
+            }
+        },
+        TAN("tan") {
+            @Override
+            public double apply(double val) {
+                return Math.tan(val);
+            }
+        },
+        LOG("log") {
+            @Override
+            public double apply(double val) {
+                return Math.log10(val);
+            }
+        },
+        NAT_LOG("ln") {
+            @Override
+            public double apply(double val) {
+                return Math.log(val);
+            }
+        };
 
-       private String symbol;
+        private String symbol;
 
-       ScientificOperation(String symbol) {
+        ScientificOperation(String symbol) {
             this.symbol = symbol;
         }
 
@@ -295,12 +346,42 @@ public final class Calculator {
     }
 
     private enum InverseOperation implements UnaryOperation {
-        INV_SQRT("^2"){ @Override public double apply(double val) { return Math.pow(val, 2); }},
-        INV_SIN("sin^-1"){@Override public double apply(double val) { return Math.pow(Math.sin(val), -1); }},
-        INV_COS("cos^-1"){ @Override public double apply(double val) { return Math.pow(Math.cos(val), -1); }},
-        INV_TAN("tan^-1"){ @Override public double apply(double val) { return Math.pow(Math.tan(val), -1); }},
-        INV_LOG("10^"){ @Override public double apply(double val) { return Math.pow(10, val); }},
-        INV_NAT_LOG("e^"){ @Override public double apply(double val) { return Math.pow(Math.E, val); }};
+        INV_SQRT("^2") {
+            @Override
+            public double apply(double val) {
+                return Math.pow(val, 2);
+            }
+        },
+        INV_SIN("sin^-1") {
+            @Override
+            public double apply(double val) {
+                return Math.pow(Math.sin(val), -1);
+            }
+        },
+        INV_COS("cos^-1") {
+            @Override
+            public double apply(double val) {
+                return Math.pow(Math.cos(val), -1);
+            }
+        },
+        INV_TAN("tan^-1") {
+            @Override
+            public double apply(double val) {
+                return Math.pow(Math.tan(val), -1);
+            }
+        },
+        INV_LOG("10^") {
+            @Override
+            public double apply(double val) {
+                return Math.pow(10, val);
+            }
+        },
+        INV_NAT_LOG("e^") {
+            @Override
+            public double apply(double val) {
+                return Math.pow(Math.E, val);
+            }
+        };
 
         private String symbol;
 

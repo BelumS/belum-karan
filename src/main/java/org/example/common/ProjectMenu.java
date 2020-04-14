@@ -1,10 +1,10 @@
 package org.example.common;
 
-import static java.lang.System.out;
+import org.example.numbers.*;
 
 import java.util.Scanner;
 
-import org.example.numbers.*;
+import static java.lang.System.out;
 
 /**
  * Generates a text-based UI that displays the karan projects,
@@ -147,6 +147,7 @@ public final class ProjectMenu {
                 .append("8. ").append(NumberConstants.TITLE_CHANGE_RETURN).append("\n")
                 .append("9. ").append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n")
                 .append("10. ").append(NumberConstants.TITLE_CALCULATOR).append("\n")
+                .append("11. ").append(NumberConstants.UNIT_CONVERTER).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -158,7 +159,7 @@ public final class ProjectMenu {
         try {
             numberMenu();
             out.print("> ");
-            int choice = Integer.parseInt(console.next());
+            int choice = 11;//Integer.parseInt(console.next());
             out.println();
 
             //TODO: Fix the delayed scanner input
@@ -200,6 +201,9 @@ public final class ProjectMenu {
                     break;
                 case 10:
                     Calculator.print(console);
+                    break;
+                case 11:
+                    UnitConverter.display(console);
                     break;
                 default:
                     exitOnError();
