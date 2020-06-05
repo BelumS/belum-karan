@@ -782,5 +782,604 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
 
+        @Test
+        void testCmToCm() {
+            String input = "L" + System.lineSeparator()
+                    + "cm" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cm" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testCmToIn() {
+            String input = "L" + System.lineSeparator()
+                    + "cm" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "in" + System.lineSeparator();
+            double expected = 0.39;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testCmToFt() {
+            String input = "L" + System.lineSeparator()
+                    + "cm" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ft" + System.lineSeparator();
+            double expected = 0.03;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testCmToYd() {
+            String input = "L" + System.lineSeparator()
+                    + "cm" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "yd" + System.lineSeparator();
+            double expected = 0.01;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testCmToM() {
+            String input = "L" + System.lineSeparator()
+                    + "cm" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 0.01;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testCmToKm() {
+            String input = "L" + System.lineSeparator()
+                    + "cm" + System.lineSeparator()
+                    + "10000" + System.lineSeparator()
+                    + "km" + System.lineSeparator();
+            double expected = 0.1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testCmToMi() {
+            String input = "L" + System.lineSeparator()
+                    + "cm" + System.lineSeparator()
+                    + "10000" + System.lineSeparator()
+                    + "mi" + System.lineSeparator();
+            double expected = 0.06;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //IN
+        @Test
+        void testInToMm() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mm" + System.lineSeparator();
+            double expected = 25.4;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testInToCm() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cm" + System.lineSeparator();
+            double expected = 2.54;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testInToIn() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "in" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testInToFt() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "12" + System.lineSeparator()
+                    + "ft" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testInToYd() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "36" + System.lineSeparator()
+                    + "yd" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testInToM() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 0.03;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testInToKm() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "10000" + System.lineSeparator()
+                    + "km" + System.lineSeparator();
+            double expected = 0.25;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testInToMi() {
+            String input = "L" + System.lineSeparator()
+                    + "in" + System.lineSeparator()
+                    + "10000" + System.lineSeparator()
+                    + "mi" + System.lineSeparator();
+            double expected = 0.16;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //FT
+        @Test
+        void testFtToMm() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mm" + System.lineSeparator();
+            double expected = 304.8;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testFtToCm() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cm" + System.lineSeparator();
+            double expected = 30.48;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testFtToIn() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "12" + System.lineSeparator()
+                    + "in" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testFtToFt() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ft" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testFtToYd() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "3" + System.lineSeparator()
+                    + "yd" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testFtToM() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 0.3;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testFtToKm() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "100" + System.lineSeparator()
+                    + "km" + System.lineSeparator();
+            double expected = 0.03;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testFtToMi() {
+            String input = "L" + System.lineSeparator()
+                    + "ft" + System.lineSeparator()
+                    + "10000" + System.lineSeparator()
+                    + "mi" + System.lineSeparator();
+            double expected = 1.89;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //YD
+        @Test
+        void testYdToMm() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mm" + System.lineSeparator();
+            double expected = 914.4;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testYdToCm() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cm" + System.lineSeparator();
+            double expected = 91.44;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testYdToIn() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "in" + System.lineSeparator();
+            double expected = 36;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testYdToFt() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ft" + System.lineSeparator();
+            double expected = 3;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testYdToM() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 0.91;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testYdToKm() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "km" + System.lineSeparator();
+            double expected = 0.91;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testYdToMi() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "10000" + System.lineSeparator()
+                    + "mi" + System.lineSeparator();
+            double expected = 5.68;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //M
+        @Test
+        void testMToMm() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mm" + System.lineSeparator();
+            double expected = 1000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMToCm() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cm" + System.lineSeparator();
+            double expected = 100;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMToIn() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "in" + System.lineSeparator();
+            double expected = 39.37;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMToFt() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ft" + System.lineSeparator();
+            double expected = 3.28;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMToYd() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "yd" + System.lineSeparator();
+            double expected = 1.09;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMToM() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMToKm() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "km" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMToMi() {
+            String input = "L" + System.lineSeparator()
+                    + "m" + System.lineSeparator()
+                    + "10000" + System.lineSeparator()
+                    + "mi" + System.lineSeparator();
+            double expected = 6.21;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //KM
+        @Test
+        void testKmToMm() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mm" + System.lineSeparator();
+            double expected = 1000000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKmToCm() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cm" + System.lineSeparator();
+            double expected = 100000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKmToIn() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "in" + System.lineSeparator();
+            double expected = 39370.08;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKmToFt() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ft" + System.lineSeparator();
+            double expected = 3280.84;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKmToYd() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "yd" + System.lineSeparator();
+            double expected = 1093.61;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKmToM() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 1000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKmToKm() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "km" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKmToMi() {
+            String input = "L" + System.lineSeparator()
+                    + "km" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mi" + System.lineSeparator();
+            double expected = 0.62;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //MI
+        @Test
+        void testMiToMm() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mm" + System.lineSeparator();
+            double expected = 1609343.95;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMiToCm() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cm" + System.lineSeparator();
+            double expected = 160934.4;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMiToIn() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "in" + System.lineSeparator();
+            double expected = 63359.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMiToFt() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ft" + System.lineSeparator();
+            double expected = 5280;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMiToYd() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "yd" + System.lineSeparator();
+            double expected = 1760;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMiToM() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 1609.34;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMiToKm() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "km" + System.lineSeparator();
+            double expected = 1.61;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testMiToMi() {
+            String input = "L" + System.lineSeparator()
+                    + "mi" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mi" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
     }
 }
