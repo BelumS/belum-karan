@@ -10,8 +10,8 @@ import static java.lang.System.err;
 import static java.lang.System.out;
 import static org.example.numbers.UnitConverter.DurationUnits.*;
 import static org.example.numbers.UnitConverter.LengthUnits.*;
-import static org.example.numbers.UnitConverter.MassUnits.*;
-import static org.example.numbers.UnitConverter.VolumeUnits.*;
+import static org.example.numbers.UnitConverter.MassUnits.Mass;
+import static org.example.numbers.UnitConverter.VolumeUnits.Volume;
 
 /**
  * Converts various units between one another
@@ -83,6 +83,7 @@ public final class UnitConverter {
                 return this.abbreviation;
             }
         }
+
         private DurationUnits() {
         }
 
@@ -595,7 +596,7 @@ public final class UnitConverter {
                 return this.abbreviation;
             }
         }
-        //Grams, Ounces, Pounds, Kilograms, Tons
+
         private MassUnits() {
         }
     }
@@ -687,7 +688,6 @@ public final class UnitConverter {
             }
         }
 
-        //Teaspoons, Tablespoons, Cups, Fluid Ounces, Pints, Quarts, Milliliters, Liters, Gallons
         private VolumeUnits() {
         }
     }
@@ -695,6 +695,51 @@ public final class UnitConverter {
     private static String getVolumeFrom(String from) {
         return EnumSet.allOf(Volume.class).stream()
                 .filter(d -> from.equalsIgnoreCase(d.getAbbreviation()))
+                .findFirst()
+                .map(d -> d.name().toLowerCase()).orElse(from);
+    }
+
+
+    static class CurrencyUnits {
+        enum Currency {
+            DOLLAR("usd", "United States of America"),
+            POUND("gbp", "England"),
+            LEONES("sll", "Sierra Leone"),
+            NAIRA("ngn", "Nigeria"),
+            CEDI("ghs", "Ghana"),
+            SCHILLING("tzs", "Tanzania/Kenya"),
+            RAND("zar", "Azania"),
+            BIRR("etb", "Ethiopia"),
+            DIRHAM("aed", "United Arab Emirates"),
+            YEN("jpy", "Japan"),
+            SGD_DOLLAR("sgd", "Singapore"),
+            RENMINBI("cny", "China"),
+            RUPEE("inr", "India");
+
+            private final String code;
+            private final String country;
+
+            Currency(String code, String country) {
+                this.code = code;
+                this.country = country;
+            }
+
+            public String getCode() {
+                return this.code;
+            }
+
+            public String getCountry() {
+                return this.country;
+            }
+        }
+
+        private CurrencyUnits() {
+        }
+    }
+
+    private static String getCurrencyFrom(String from) {
+        return EnumSet.allOf(CurrencyUnits.Currency.class).stream()
+                .filter(d -> from.equalsIgnoreCase(d.getCode()))
                 .findFirst()
                 .map(d -> d.name().toLowerCase()).orElse(from);
     }
