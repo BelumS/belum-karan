@@ -1382,4 +1382,287 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
     }
+
+    static class MassTests {
+        //G
+        @Test
+        void testGToG() {
+            String input = "M" + System.lineSeparator()
+                    + "g" + System.lineSeparator()
+                    + "15" + System.lineSeparator()
+                    + "g" + System.lineSeparator();
+            double expected = 15;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testGToOz() {
+            String input = "M" + System.lineSeparator()
+                    + "g" + System.lineSeparator()
+                    + "28" + System.lineSeparator()
+                    + "oz" + System.lineSeparator();
+            double expected = 0.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testGToLb() {
+            String input = "M" + System.lineSeparator()
+                    + "g" + System.lineSeparator()
+                    + "454" + System.lineSeparator()
+                    + "lb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testGToKg() {
+            String input = "M" + System.lineSeparator()
+                    + "g" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "kg" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testGToT() {
+            String input = "M" + System.lineSeparator()
+                    + "g" + System.lineSeparator()
+                    + "1000000" + System.lineSeparator()
+                    + "t" + System.lineSeparator();
+            double expected = 1.1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //OZ
+        @Test
+        void testOzToG() {
+            String input = "M" + System.lineSeparator()
+                    + "oz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "g" + System.lineSeparator();
+            double expected = 28.35;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testOzToOz() {
+            String input = "M" + System.lineSeparator()
+                    + "oz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "oz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testOzToLb() {
+            String input = "M" + System.lineSeparator()
+                    + "oz" + System.lineSeparator()
+                    + "16" + System.lineSeparator()
+                    + "lb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testOzToKg() {
+            String input = "M" + System.lineSeparator()
+                    + "oz" + System.lineSeparator()
+                    + "35.3" + System.lineSeparator()
+                    + "kg" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testOzToT() {
+            String input = "M" + System.lineSeparator()
+                    + "oz" + System.lineSeparator()
+                    + "32000" + System.lineSeparator()
+                    + "t" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //LB
+        @Test
+        void testLbToG() {
+            String input = "M" + System.lineSeparator()
+                    + "lb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "g" + System.lineSeparator();
+            double expected = 453.59;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testLbToOz() {
+            String input = "M" + System.lineSeparator()
+                    + "lb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "oz" + System.lineSeparator();
+            double expected = 16;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testLbToLb() {
+            String input = "M" + System.lineSeparator()
+                    + "lb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "lb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testLbToKg() {
+            String input = "M" + System.lineSeparator()
+                    + "lb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kg" + System.lineSeparator();
+            double expected = 0.45;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testLbToT() {
+            String input = "M" + System.lineSeparator()
+                    + "lb" + System.lineSeparator()
+                    + "2000" + System.lineSeparator()
+                    + "t" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //KG
+        @Test
+        void testKgToG() {
+            String input = "M" + System.lineSeparator()
+                    + "kg" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "g" + System.lineSeparator();
+            double expected = 1000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKgToOz() {
+            String input = "M" + System.lineSeparator()
+                    + "kg" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "oz" + System.lineSeparator();
+            double expected = 35.27;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKgToLb() {
+            String input = "M" + System.lineSeparator()
+                    + "kg" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "lb" + System.lineSeparator();
+            double expected = 2.2;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKgToKg() {
+            String input = "M" + System.lineSeparator()
+                    + "kg" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kg" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testKgToT() {
+            String input = "M" + System.lineSeparator()
+                    + "kg" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "t" + System.lineSeparator();
+            double expected = 1.1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //T
+        @Test
+        void testTToG() {
+            String input = "M" + System.lineSeparator()
+                    + "t" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "g" + System.lineSeparator();
+            double expected = 907185;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testTToOz() {
+            String input = "M" + System.lineSeparator()
+                    + "t" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "oz" + System.lineSeparator();
+            double expected = 32000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testTToLb() {
+            String input = "M" + System.lineSeparator()
+                    + "t" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "lb" + System.lineSeparator();
+            double expected = 2000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testTToKg() {
+            String input = "M" + System.lineSeparator()
+                    + "t" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kg" + System.lineSeparator();
+            double expected = 907.18;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testTToT() {
+            String input = "M" + System.lineSeparator()
+                    + "t" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "t" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+    }
 }

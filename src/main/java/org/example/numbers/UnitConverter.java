@@ -1,6 +1,7 @@
 package org.example.numbers;
 
 import org.example.common.NumberConstants;
+import org.example.numbers.UnitConverter.TemperatureUnits.Temperature;
 
 import java.util.EnumSet;
 import java.util.InputMismatchException;
@@ -10,7 +11,7 @@ import static java.lang.System.err;
 import static java.lang.System.out;
 import static org.example.numbers.UnitConverter.DurationUnits.*;
 import static org.example.numbers.UnitConverter.LengthUnits.*;
-import static org.example.numbers.UnitConverter.MassUnits.Mass;
+import static org.example.numbers.UnitConverter.MassUnits.*;
 import static org.example.numbers.UnitConverter.VolumeUnits.Volume;
 
 /**
@@ -42,6 +43,7 @@ public final class UnitConverter {
                     result = convertLength(console);
                     break;
                 case "M":
+                    result = convertMass(console);
                     break;
                 case "TEMP":
                     break;
@@ -61,6 +63,7 @@ public final class UnitConverter {
             throw e;
         }
     }
+
 
     static class DurationUnits {
         enum Durations {
@@ -584,7 +587,7 @@ public final class UnitConverter {
             OUNCE("oz"),
             POUND("lb"),
             KILOGRAM("kg"),
-            TON("ton");
+            TON("t");
 
             private final String abbreviation;
 
@@ -599,12 +602,87 @@ public final class UnitConverter {
 
         private MassUnits() {
         }
+
+        static double gram(String from, double units){
+            if (from.equalsIgnoreCase("g")) {
+                return units;
+            } else if (from.equalsIgnoreCase("oz")) {
+                return units / 0.03527396;
+            } else if (from.equalsIgnoreCase("lb")) {
+                return units / 0.002204623;
+            } else if (from.equalsIgnoreCase("kg")) {
+                return units / 0.001;
+            } else if (from.equalsIgnoreCase("t")) {
+                return units / 0.000001102311;
+            }
+            return -1;
+        }
+
+        static double ounce(String from, double units){
+            if (from.equalsIgnoreCase("g")) {
+                return units / 28.34952;
+            } else if (from.equalsIgnoreCase("oz")) {
+                return units;
+            } else if (from.equalsIgnoreCase("lb")) {
+                return units / 0.0625;
+            } else if (from.equalsIgnoreCase("kg")) {
+                return units / 0.02834952;
+            } else if (from.equalsIgnoreCase("t")) {
+                return units / 0.00003125;
+            }
+            return -1;
+        }
+
+        static double pound(String from, double units) {
+            if (from.equalsIgnoreCase("g")) {
+                return units / 453.5924;
+            } else if (from.equalsIgnoreCase("oz")) {
+                return units / 16;
+            } else if (from.equalsIgnoreCase("lb")) {
+                return units;
+            } else if (from.equalsIgnoreCase("kg")) {
+                return units / 0.4535924;
+            } else if (from.equalsIgnoreCase("t")) {
+                return units / 0.0005;
+            }
+            return -1;
+        }
+
+        static double kilogram(String from, double units) {
+            if (from.equalsIgnoreCase("g")) {
+                return units / 1000;
+            } else if (from.equalsIgnoreCase("oz")) {
+                return units / 35.27396;
+            } else if (from.equalsIgnoreCase("lb")) {
+                return units / 2.20462249;
+            } else if (from.equalsIgnoreCase("kg")) {
+                return units;
+            } else if (from.equalsIgnoreCase("t")) {
+                return units / 0.001102311;
+            }
+            return -1;
+        }
+
+        static double ton(String from, double units) {
+            if (from.equalsIgnoreCase("g")) {
+                return units / 907184.7;
+            } else if (from.equalsIgnoreCase("oz")) {
+                return units / 32000;
+            } else if (from.equalsIgnoreCase("lb")) {
+                return units / 2000;
+            } else if (from.equalsIgnoreCase("kg")) {
+                return units / 907.1847;
+            } else if (from.equalsIgnoreCase("t")) {
+                return units;
+            }
+            return -1;
+        }
     }
 
     private static double convertMass(Scanner console) {
         double result = 0;
 
-        out.println("Choose a Length: [M]illi[m]eters, [C]enti[m]eters, [In]ches, [F]ee[t], [M]eters, [Y]ar[d]s, [K]ilo[m]eters, [Mi]les");
+        out.println("Choose a Mass: [G]ram, [O]unce([z]), Pound([lb]), [K]ilo[g]ram, [T]on");
         String from = console.next();
         out.println();
 
@@ -612,48 +690,36 @@ public final class UnitConverter {
         double units = Double.parseDouble(console.next());
         out.println();
 
-        out.println("Choose a Converting Length: [M]illi[m]eters, [C]enti[m]eters, [In]ches, [F]ee[t], [M]eters, [Y]ar[d]s, [K]ilo[m]eters, [Mi]les");
+        out.println("Choose a converting Mass: [G]ram, [O]unce([z]), Pound([lb]), [K]ilo[g]ram, [T]on");
         String to = console.next();
         out.println();
 
         switch (to.toLowerCase()) {
-            case "mm":
-                to = Lengths.MILLIMETER.name().toLowerCase();
-                result = millimeters(from, units);
+            case "g":
+                to = Mass.GRAM.name().toLowerCase();
+                result = gram(from, units);
                 break;
-            case "cm":
-                to = Lengths.CENTIMETER.name().toLowerCase();
-                result = centimeters(from, units);
+            case "oz":
+                to = Mass.OUNCE.name().toLowerCase();
+                result = ounce(from, units);
                 break;
-            case "in":
-                to = Lengths.INCH.name().toLowerCase();
-                result = inches(from, units);
+            case "lb":
+                to = Mass.POUND.name().toLowerCase();
+                result = pound(from, units);
                 break;
-            case "ft":
-                to = Lengths.FEET.name().toLowerCase();
-                result = feet(from, units);
+            case "kg":
+                to = Mass.KILOGRAM.name().toLowerCase();
+                result = kilogram(from, units);
                 break;
-            case "yd":
-                to = Lengths.YARD.name().toLowerCase();
-                result = yards(from, units);
-                break;
-            case "m":
-                to = Lengths.METER.name().toLowerCase();
-                result = meters(from, units);
-                break;
-            case "km":
-                to = Lengths.KILOMETER.name().toLowerCase();
-                result = kilometers(from, units);
-                break;
-            case "mi":
-                to = Lengths.MILE.name().toLowerCase();
-                result = miles(from, units);
+            case "t":
+                to = Mass.TON.name().toLowerCase();
+                result = ton(from, units);
                 break;
             default:
                 throw new IllegalArgumentException(from + " is not a valid input!");
         }
         double roundedResult = NumberConstants.roundedValues(result);
-        out.printf("%.2f %s(s) = %.2f %s(s).%n", units, getLengthFrom(from), roundedResult, to);
+        out.printf("%.2f %s(s) = %.2f %s(s).%n", units, getMassFrom(from), roundedResult, to);
         return roundedResult;
     }
 
@@ -662,6 +728,71 @@ public final class UnitConverter {
                 .filter(d -> from.equalsIgnoreCase(d.getAbbreviation()))
                 .findFirst()
                 .map(d -> d.name().toLowerCase()).orElse(from);
+    }
+
+
+    static class TemperatureUnits {
+        enum Temperature {
+            FAHRENHEIT("F"),
+            CELSIUS("C"),
+            KELVIN("K");
+
+            private final String abbreviation;
+
+            Temperature(String abbreviation) {
+                this.abbreviation = abbreviation;
+            }
+
+            public String getAbbreviation() {
+                return this.abbreviation;
+            }
+        }
+
+        private TemperatureUnits() {
+        }
+    }
+
+    private static double convertTemperature(Scanner console) {
+        double result = 0;
+
+        out.println("Choose a Temp: [C]elsius, [F]ahrenheit, or [K]elvin");
+        String from = console.next();
+        out.println();
+
+        out.println("How many units?: ");
+        double units = Double.parseDouble(console.next());
+        out.println();
+
+        out.println("Choose a converting Temp: [C]elsius, [F]ahrenheit, or [K]elvin");
+        String to = console.next();
+        out.println();
+
+        switch (to.toLowerCase()) {
+            case "c":
+                to = "°" + Temperature.CELSIUS.name().toLowerCase();
+                result = gram(from, units);
+                break;
+            case "f":
+                to = "°" + Temperature.FAHRENHEIT.name().toLowerCase();
+                result = ounce(from, units);
+                break;
+            case "k":
+                to = "°" + Temperature.KELVIN.name().toLowerCase();
+                result = pound(from, units);
+                break;
+            default:
+                throw new IllegalArgumentException(from + " is not a valid input!");
+        }
+        double roundedResult = NumberConstants.roundedValues(result);
+        out.printf("%.2f %s(s) = %.2f %s(s).%n", units, getTemperatureFrom(from), roundedResult, to);
+        return roundedResult;
+    }
+
+    private static String getTemperatureFrom(String from) {
+        return EnumSet.allOf(Temperature.class).stream()
+                .filter(d -> from.equalsIgnoreCase(d.getAbbreviation()))
+                .findFirst()
+                .map(d -> "°" + d.name().toLowerCase()).orElse("°" + from);
     }
 
 
