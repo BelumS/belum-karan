@@ -884,6 +884,29 @@ public final class UnitConverter {
             public String getAbbreviation() {
                 return this.abbreviation;
             }
+
+            static double teaspoon(String from, double units){
+                if (from.equalsIgnoreCase("tspn")) {
+                    return units;
+                } else if (from.equalsIgnoreCase("ml")) {
+                    return units * 0.2;
+                }  else if (from.equalsIgnoreCase("tbsn")) {
+                    return units * 3;
+                } else if (from.equalsIgnoreCase("fl oz")) {
+                    return units * 6;
+                }  else if (from.equalsIgnoreCase("cup")) {
+                    return units * 48.69221;
+                } else if (from.equalsIgnoreCase("pt")) {
+                    return units * 96;
+                } else if (from.equalsIgnoreCase("qt")) {
+                    return units * 192;
+                } else if (from.equalsIgnoreCase("l")) {
+                    return units * 202.88;
+                } else if (from.equalsIgnoreCase("gal")) {
+                    return units * 768;
+                }
+                return -1;
+            }
         }
 
         private VolumeUnits() {
