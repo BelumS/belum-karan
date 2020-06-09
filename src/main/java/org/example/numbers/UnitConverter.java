@@ -1,7 +1,7 @@
 package org.example.numbers;
 
 import org.example.common.NumberConstants;
-import org.example.numbers.UnitConverter.TemperatureUnits.Temperature;
+import org.example.numbers.UnitConverter.TemperatureUnits.*;
 
 import java.util.EnumSet;
 import java.util.InputMismatchException;
@@ -62,7 +62,7 @@ public final class UnitConverter {
             err.println("Unable to process the unit: " + e.getMessage());
             throw e;
         } catch (Exception e) {
-            err.printf("An %s occurred while completing the action: %s", e.getClass().getSimpleName(), e.getMessage());
+            err.printf("%nAn Exception (%s) occurred while completing the action: %s%n", e.getClass().getSimpleName(), e.getMessage());
             throw e;
         }
     }
@@ -94,9 +94,7 @@ public final class UnitConverter {
         }
 
         static double milliSeconds(String from, double units) {
-            if (from.equalsIgnoreCase("ms")) {
-                return units;
-            } else if (from.equalsIgnoreCase("sec")) {
+            if (from.equalsIgnoreCase("sec")) {
                 return units * 1000.0;
             } else if (from.equalsIgnoreCase("min")) {
                 return units * 1000.0 * 60;
@@ -111,14 +109,12 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("yr")) {
                 return units * 31557600000.0;
             }
-            return -1;
+            return units;
         }
 
         static double seconds(String from, double units) {
             if (from.equalsIgnoreCase("ms")) {
                 return units / 1000.0;
-            } else if (from.equalsIgnoreCase("sec")) {
-                return units;
             } else if (from.equalsIgnoreCase("min")) {
                 return units * 60.0;
             } else if (from.equalsIgnoreCase("hr")) {
@@ -132,7 +128,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("yr")) {
                 return units * 31557600.0;
             }
-            return -1;
+            return units;
         }
 
         static double minutes(String from, double units) {
@@ -140,8 +136,6 @@ public final class UnitConverter {
                 return units / 60000.0;
             } else if (from.equalsIgnoreCase("sec")) {
                 return units / 60.0;
-            } else if (from.equalsIgnoreCase("min")) {
-                return units;
             } else if (from.equalsIgnoreCase("hr")) {
                 return units * 60.0;
             } else if (from.equalsIgnoreCase("d")) {
@@ -153,7 +147,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("yr")) {
                 return units * 525960.0;
             }
-            return -1;
+            return units;
         }
 
         static double hours(String from, double units) {
@@ -163,8 +157,6 @@ public final class UnitConverter {
                 return units / 3600.0;
             } else if (from.equalsIgnoreCase("min")) {
                 return units / 60.0;
-            } else if (from.equalsIgnoreCase("hr")) {
-                return units;
             } else if (from.equalsIgnoreCase("d")) {
                 return units * 24.0;
             } else if (from.equalsIgnoreCase("w")) {
@@ -174,7 +166,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("yr")) {
                 return units * 8766.0;
             }
-            return -1;
+            return units;
         }
 
         static double days(String from, double units) {
@@ -186,8 +178,6 @@ public final class UnitConverter {
                 return units / 1440;
             } else if (from.equalsIgnoreCase("hr")) {
                 return units / 24;
-            } else if (from.equalsIgnoreCase("d")) {
-                return units;
             } else if (from.equalsIgnoreCase("w")) {
                 return units * 7;
             } else if (from.equalsIgnoreCase("m")) {
@@ -195,7 +185,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("yr")) {
                 return units * 365;
             }
-            return -1;
+            return units;
         }
 
         static double weeks(String from, double units) {
@@ -209,14 +199,12 @@ public final class UnitConverter {
                 return units / 168;
             } else if (from.equalsIgnoreCase("d")) {
                 return units / 7;
-            } else if (from.equalsIgnoreCase("w")) {
-                return units;
             } else if (from.equalsIgnoreCase("m")) {
                 return units * 4;
             } else if (from.equalsIgnoreCase("yr")) {
                 return units * 52;
             }
-            return -1;
+            return units;
         }
 
         static double months(String from, double units) {
@@ -232,12 +220,10 @@ public final class UnitConverter {
                 return units / 30;
             } else if (from.equalsIgnoreCase("w")) {
                 return units / 4;
-            } else if (from.equalsIgnoreCase("m")) {
-                return units;
             } else if (from.equalsIgnoreCase("yr")) {
                 return units * 12;
             }
-            return -1;
+            return units;
         }
 
         static double years(String from, double units) {
@@ -255,10 +241,8 @@ public final class UnitConverter {
                 return units / 52;
             } else if (from.equalsIgnoreCase("m")) {
                 return units / 12;
-            } else if (from.equalsIgnoreCase("yr")) {
-                return units;
             }
-            return -1;
+            return units;
         }
     }
 
@@ -352,9 +336,7 @@ public final class UnitConverter {
         }
 
         static double millimeters(String from, double units) {
-            if (from.equalsIgnoreCase("mm")) {
-                return units;
-            } else if (from.equalsIgnoreCase("cm")) {
+            if (from.equalsIgnoreCase("cm")) {
                 return units * 10.0;
             } else if (from.equalsIgnoreCase("m")) {
                 return units * 1000.0;
@@ -369,14 +351,12 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("mi")) {
                 return units / 0.0000006213712121022726;
             }
-            return -1;
+            return units;
         }
 
         static double centimeters(String from, double units) {
             if (from.equalsIgnoreCase("mm")) {
                 return units / 10;
-            } else if (from.equalsIgnoreCase("cm")) {
-                return units;
             } else if (from.equalsIgnoreCase("m")) {
                 return units * 100.0;
             } else if (from.equalsIgnoreCase("km")) {
@@ -390,7 +370,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("mi")) {
                 return units / 0.000006213712;
             }
-            return -1;
+            return units;
         }
 
         static double inches(String from, double units) {
@@ -402,8 +382,6 @@ public final class UnitConverter {
                 return units / 0.0254;
             } else if (from.equalsIgnoreCase("km")) {
                 return units / 0.0000254;
-            } else if (from.equalsIgnoreCase("in")) {
-                return units;
             } else if (from.equalsIgnoreCase("ft")) {
                 return units * 0.08333333;
             } else if (from.equalsIgnoreCase("yd")) {
@@ -411,7 +389,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("mi")) {
                 return units / 0.00001578283;
             }
-            return -1;
+            return units;
         }
 
         static double feet(String from, double units) {
@@ -425,14 +403,12 @@ public final class UnitConverter {
                 return units / 0.0003048;
             } else if (from.equalsIgnoreCase("in")) {
                 return units / 12;
-            } else if (from.equalsIgnoreCase("ft")) {
-                return units;
             } else if (from.equalsIgnoreCase("yd")) {
                 return units / 0.3333333;
             } else if (from.equalsIgnoreCase("mi")) {
                 return units / 0.0001893939;
             }
-            return -1;
+            return units;
         }
 
         static double yards(String from, double units) {
@@ -448,12 +424,10 @@ public final class UnitConverter {
                 return units / 36;
             } else if (from.equalsIgnoreCase("ft")) {
                 return units / 3;
-            } else if (from.equalsIgnoreCase("yd")) {
-                return units;
             } else if (from.equalsIgnoreCase("mi")) {
                 return units / 0.0005681818;
             }
-            return -1;
+            return units;
         }
 
         static double meters(String from, double units) {
@@ -461,8 +435,6 @@ public final class UnitConverter {
                 return units / 1000;
             } else if (from.equalsIgnoreCase("cm")) {
                 return units / 100;
-            } else if (from.equalsIgnoreCase("m")) {
-                return units;
             } else if (from.equalsIgnoreCase("km")) {
                 return units / 0.001;
             } else if (from.equalsIgnoreCase("in")) {
@@ -474,7 +446,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("mi")) {
                 return units / 0.0006213712;
             }
-            return -1;
+            return units;
         }
 
         static double kilometers(String from, double units) {
@@ -484,8 +456,6 @@ public final class UnitConverter {
                 return units / 100000;
             } else if (from.equalsIgnoreCase("m")) {
                 return units / 1000;
-            } else if (from.equalsIgnoreCase("km")) {
-                return units;
             } else if (from.equalsIgnoreCase("in")) {
                 return units / 39370.08;
             } else if (from.equalsIgnoreCase("ft")) {
@@ -495,7 +465,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("mi")) {
                 return units / 0.6213712;
             }
-            return -1;
+            return units;
         }
 
         static double miles(String from, double units) {
@@ -513,10 +483,8 @@ public final class UnitConverter {
                 return units / 5280;
             } else if (from.equalsIgnoreCase("yd")) {
                 return units / 1760;
-            } else if (from.equalsIgnoreCase("mi")) {
-                return units;
             }
-            return -1;
+            return units;
         }
     }
 
@@ -607,10 +575,8 @@ public final class UnitConverter {
         private MassUnits() {
         }
 
-        static double milligram(String from, double units){
-            if (from.equalsIgnoreCase("mg")) {
-                return units;
-            } else if (from.equalsIgnoreCase("g")) {
+        static double milligram(String from, double units) {
+            if (from.equalsIgnoreCase("g")) {
                 return units * 1000;
             } else if (from.equalsIgnoreCase("oz")) {
                 return units * 28349.52;
@@ -621,14 +587,12 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("t")) {
                 return units * 907184700;
             }
-            return -1;
+            return units;
         }
 
-        static double gram(String from, double units){
+        static double gram(String from, double units) {
             if (from.equalsIgnoreCase("mg")) {
                 return units / 1000;
-            } else if (from.equalsIgnoreCase("g")) {
-                return units;
             } else if (from.equalsIgnoreCase("oz")) {
                 return units / 0.03527396;
             } else if (from.equalsIgnoreCase("lb")) {
@@ -638,16 +602,14 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("t")) {
                 return units / 0.000001102311;
             }
-            return -1;
+            return units;
         }
 
-        static double ounce(String from, double units){
-            if(from.equalsIgnoreCase("mg")) {
+        static double ounce(String from, double units) {
+            if (from.equalsIgnoreCase("mg")) {
                 return units / 28349.52;
             } else if (from.equalsIgnoreCase("g")) {
                 return units / 28.34952;
-            } else if (from.equalsIgnoreCase("oz")) {
-                return units;
             } else if (from.equalsIgnoreCase("lb")) {
                 return units / 0.0625;
             } else if (from.equalsIgnoreCase("kg")) {
@@ -655,7 +617,7 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("t")) {
                 return units / 0.00003125;
             }
-            return -1;
+            return units;
         }
 
         static double pound(String from, double units) {
@@ -665,14 +627,12 @@ public final class UnitConverter {
                 return units / 453.5924;
             } else if (from.equalsIgnoreCase("oz")) {
                 return units / 16;
-            } else if (from.equalsIgnoreCase("lb")) {
-                return units;
             } else if (from.equalsIgnoreCase("kg")) {
                 return units / 0.4535924;
             } else if (from.equalsIgnoreCase("t")) {
                 return units / 0.0005;
             }
-            return -1;
+            return units;
         }
 
         static double kilogram(String from, double units) {
@@ -684,12 +644,10 @@ public final class UnitConverter {
                 return units / 35.27396;
             } else if (from.equalsIgnoreCase("lb")) {
                 return units / 2.20462249;
-            } else if (from.equalsIgnoreCase("kg")) {
-                return units;
             } else if (from.equalsIgnoreCase("t")) {
                 return units / 0.001102311;
             }
-            return -1;
+            return units;
         }
 
         static double ton(String from, double units) {
@@ -703,10 +661,8 @@ public final class UnitConverter {
                 return units / 2000;
             } else if (from.equalsIgnoreCase("kg")) {
                 return units / 907.1847;
-            } else if (from.equalsIgnoreCase("t")) {
-                return units;
             }
-            return -1;
+            return units;
         }
     }
 
@@ -787,21 +743,21 @@ public final class UnitConverter {
         }
 
         static double celsius(String from, double units) {
-            if (from.equalsIgnoreCase("c")) {
-                return units;
-            } else if (from.equalsIgnoreCase("f")) {
-                return (units - 32) * (5.0/9.0);
+            if (from.equalsIgnoreCase("f")) {
+                return (units - 32) * (5.0 / 9.0);
+            } else if (from.equalsIgnoreCase("k")) {
+                return units - 273.15;
             }
-            return units - 273.15;
+            return units;
         }
 
         static double fahrenheit(String from, double units) {
             if (from.equalsIgnoreCase("c")) {
                 return (units * 1.8) + 32;
-            } else if (from.equalsIgnoreCase("f")) {
-                return units;
+            } else if (from.equalsIgnoreCase("k")) {
+                return (units * (9.0 / 5.0)) - 459.67;
             }
-            return (units * (9.0/5.0)) - 459.67;
+            return units;
         }
 
         static double kelvin(String from, double units) {
@@ -884,16 +840,14 @@ public final class UnitConverter {
         private VolumeUnits() {
         }
 
-        static double milliliter(String from, double units){
-            if (from.equalsIgnoreCase("ml")) {
-                return units;
-            } else if (from.equalsIgnoreCase("tsp")) {
+        static double milliliter(String from, double units) {
+            if (from.equalsIgnoreCase("tsp")) {
                 return units * 4.92892;
             } else if (from.equalsIgnoreCase("tbsp")) {
                 return units * 14.7868;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 29.57344;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 240;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 473.1765;
@@ -904,19 +858,17 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 3785.4;
             }
-            return -1;
+            return units;
         }
 
-        static double teaspoon(String from, double units){
+        static double teaspoon(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.2028842;
-            } else if (from.equalsIgnoreCase("tsp")) {
-                return units;
             } else if (from.equalsIgnoreCase("tbsp")) {
                 return units * 3.000008;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 5.999983;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 48.69221;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 96;
@@ -927,19 +879,17 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 767.9979;
             }
-            return -1;
+            return units;
         }
 
-        static double tablespoon(String from, double units){
+        static double tablespoon(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.06762788;
             } else if (from.equalsIgnoreCase("tsp")) {
                 return units * 0.3333324;
-            } else if (from.equalsIgnoreCase("tbsp")) {
-                return units;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 1.999989;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 16.23069;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 31.99993;
@@ -950,19 +900,17 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 255.9986;
             }
-            return -1;
+            return units;
         }
 
-        static double fluidOunce(String from, double units){
+        static double fluidOunce(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.03381412154;
             } else if (from.equalsIgnoreCase("tsp")) {
                 return units * 0.1666671;
             } else if (from.equalsIgnoreCase("tbsp")) {
                 return units * 0.5000027;
-            } else if (from.equalsIgnoreCase("fl.oz")) {
-                return units;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 8.115391;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 16.005;
@@ -973,10 +921,10 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 128;
             }
-            return -1;
+            return units;
         }
 
-        static double cup(String from, double units){
+        static double cup(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.00416666708;
             } else if (from.equalsIgnoreCase("tsp")) {
@@ -985,8 +933,6 @@ public final class UnitConverter {
                 return units * 0.0616116727786857;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 0.123222668473971;
-            }  else if (from.equalsIgnoreCase("cup")) {
-                return units;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 1.971569;
             } else if (from.equalsIgnoreCase("qt")) {
@@ -996,10 +942,10 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 15.772501564668286;
             }
-            return -1;
+            return units;
         }
 
-        static double pint(String from, double units){
+        static double pint(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.002113376;
             } else if (from.equalsIgnoreCase("tsp")) {
@@ -1008,10 +954,8 @@ public final class UnitConverter {
                 return units * 0.03125007;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 0.06249980125;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 0.5072103;
-            } else if (from.equalsIgnoreCase("pt")) {
-                return units;
             } else if (from.equalsIgnoreCase("qt")) {
                 return units * 2;
             } else if (from.equalsIgnoreCase("l")) {
@@ -1019,10 +963,10 @@ public final class UnitConverter {
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 7.999975;
             }
-            return -1;
+            return units;
         }
 
-        static double quart(String from, double units){
+        static double quart(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.00105668839745824;
             } else if (from.equalsIgnoreCase("tsp")) {
@@ -1031,21 +975,19 @@ public final class UnitConverter {
                 return units * 0.01562504;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 0.0312499;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 0.2536052;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 0.5;
-            } else if (from.equalsIgnoreCase("qt")) {
-                return units;
             } else if (from.equalsIgnoreCase("l")) {
                 return units * 1.056688;
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 3.999987;
             }
-            return -1;
+            return units;
         }
 
-        static double liter(String from, double units){
+        static double liter(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.001;
             } else if (from.equalsIgnoreCase("tsp")) {
@@ -1054,21 +996,19 @@ public final class UnitConverter {
                 return units * 0.0147868;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 0.02957344;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 0.2400000204;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 0.47317654022;
             } else if (from.equalsIgnoreCase("qt")) {
                 return units * 0.94635308044;
-            } else if (from.equalsIgnoreCase("l")) {
-                return units;
             } else if (from.equalsIgnoreCase("gal")) {
                 return units * 3.7854003218;
             }
-            return -1;
+            return units;
         }
 
-        static double gallon(String from, double units){
+        static double gallon(String from, double units) {
             if (from.equalsIgnoreCase("ml")) {
                 return units * 0.0002641729;
             } else if (from.equalsIgnoreCase("tsp")) {
@@ -1077,7 +1017,7 @@ public final class UnitConverter {
                 return units * 0.003906271;
             } else if (from.equalsIgnoreCase("fl.oz")) {
                 return units * 0.0078125;
-            }  else if (from.equalsIgnoreCase("cup")) {
+            } else if (from.equalsIgnoreCase("cup")) {
                 return units * 0.06340149;
             } else if (from.equalsIgnoreCase("pt")) {
                 return units * 0.1250004;
@@ -1085,10 +1025,8 @@ public final class UnitConverter {
                 return units * 0.2500008;
             } else if (from.equalsIgnoreCase("l")) {
                 return units * 0.2641729;
-            } else if (from.equalsIgnoreCase("gal")) {
-                return units;
             }
-            return -1;
+            return units;
         }
 
     }

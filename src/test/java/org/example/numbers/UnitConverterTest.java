@@ -12,7 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UnitConverterTest {
 
     @Test
-    public void testThrowsIllegalArgumentException(){
+    public void testThrowsIllegalArgumentException1(){
+        String input = "ABC" + System.lineSeparator();
+        assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+    }
+
+    @Test
+    public void testThrowsIllegalArgumentException2(){
         String input = "1" + System.lineSeparator();
         assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
     }
@@ -26,7 +32,12 @@ public class UnitConverterTest {
     }
 
     @Test
-    public void testThrowsException(){
+    public void testThrowsException1(){
+        assertThrows(Exception.class, () ->  UnitConverter.display(null));
+    }
+
+    @Test
+    public void testThrowsException2(){
         String input = "T" + System.lineSeparator()
                 + "a" + System.lineSeparator();
         assertThrows(Exception.class, () ->  UnitConverter.display(testScanner(input)));
