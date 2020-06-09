@@ -13,7 +13,7 @@ import static org.example.numbers.UnitConverter.DurationUnits.*;
 import static org.example.numbers.UnitConverter.LengthUnits.*;
 import static org.example.numbers.UnitConverter.MassUnits.*;
 import static org.example.numbers.UnitConverter.TemperatureUnits.*;
-import static org.example.numbers.UnitConverter.VolumeUnits.Volume;
+import static org.example.numbers.UnitConverter.VolumeUnits.*;
 
 /**
  * Converts various units between one another
@@ -52,6 +52,7 @@ public final class UnitConverter {
                 case "C":
                     break;
                 case "V":
+                    result = convertVolume(console);
                     break;
                 default:
                     throw new IllegalArgumentException("Error! \"" + choice + "\" does not fit the criteria.");
@@ -790,10 +791,8 @@ public final class UnitConverter {
                 return units;
             } else if (from.equalsIgnoreCase("f")) {
                 return (units - 32) * (5.0/9.0);
-            } else if (from.equalsIgnoreCase("k")) {
-                return units - 273.15;
             }
-            return -1;
+            return units - 273.15;
         }
 
         static double fahrenheit(String from, double units) {
@@ -801,10 +800,8 @@ public final class UnitConverter {
                 return (units * 1.8) + 32;
             } else if (from.equalsIgnoreCase("f")) {
                 return units;
-            } else if (from.equalsIgnoreCase("k")) {
-                return (units * (9.0/5.0)) - 459.67;
             }
-            return -1;
+            return (units * (9.0/5.0)) - 459.67;
         }
 
         static double kelvin(String from, double units) {
@@ -812,10 +809,8 @@ public final class UnitConverter {
                 return units + 273.15;
             } else if (from.equalsIgnoreCase("f")) {
                 return (units + 459.67) * (5.0 / 9.0);
-            } else if (from.equalsIgnoreCase("k")) {
-                return units;
             }
-            return -1;
+            return units;
         }
     }
 
@@ -865,13 +860,13 @@ public final class UnitConverter {
 
     static class VolumeUnits {
         enum Volume {
-            TEASPOON("tspn"),
-            TABLESPOON("tbsn"),
+            MILLILITER("ml"),
+            TEASPOON("tsp"),
+            TABLESPOON("tbsp"),
             CUP("cup"),
-            FLUID_OUNCE("fl oz"),
+            FLUID_OUNCE("fl.oz"),
             PINT("pt"),
             QUART("qt"),
-            MILLILITER("ml"),
             LITER("l"),
             GALLON("gal");
 
@@ -884,33 +879,218 @@ public final class UnitConverter {
             public String getAbbreviation() {
                 return this.abbreviation;
             }
-
-            static double teaspoon(String from, double units){
-                if (from.equalsIgnoreCase("tspn")) {
-                    return units;
-                } else if (from.equalsIgnoreCase("ml")) {
-                    return units * 0.2;
-                }  else if (from.equalsIgnoreCase("tbsn")) {
-                    return units * 3;
-                } else if (from.equalsIgnoreCase("fl oz")) {
-                    return units * 6;
-                }  else if (from.equalsIgnoreCase("cup")) {
-                    return units * 48.69221;
-                } else if (from.equalsIgnoreCase("pt")) {
-                    return units * 96;
-                } else if (from.equalsIgnoreCase("qt")) {
-                    return units * 192;
-                } else if (from.equalsIgnoreCase("l")) {
-                    return units * 202.88;
-                } else if (from.equalsIgnoreCase("gal")) {
-                    return units * 768;
-                }
-                return -1;
-            }
         }
 
         private VolumeUnits() {
         }
+
+        static double milliliter(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 4.92892;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 14.7868;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 29.57344;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 240;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 473.1765;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 946.353;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 1000;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 3785.4;
+            }
+            return -1;
+        }
+
+        static double teaspoon(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.2028842;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 3.000008;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 5.999983;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 48.69221;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 96;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 192;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 202.88;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 767.9979;
+            }
+            return -1;
+        }
+
+        static double tablespoon(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.06762788;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 0.3333324;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 1.999989;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 16.23069;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 31.99993;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 63.99985;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 67.62788;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 255.9986;
+            }
+            return -1;
+        }
+
+        static double fluidOunce(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.03381412154;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 0.1666671;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 0.5000027;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 8.115391;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 16.005;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 32.001;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 33.81413;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 128;
+            }
+            return -1;
+        }
+
+        static double cup(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.00416666708;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 0.020537168704;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 0.0616116727786857;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 0.123222668473971;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 1.971569;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 3.9431378911683117;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 4.166667080009586;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 15.772501564668286;
+            }
+            return -1;
+        }
+
+        static double pint(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.002113376;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 0.01041666;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 0.03125007;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 0.06249980125;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 0.5072103;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 2;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 2.113376;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 7.999975;
+            }
+            return -1;
+        }
+
+        static double quart(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.00105668839745824;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 0.005208332576;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 0.01562504;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 0.0312499;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 0.2536052;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 0.5;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 1.056688;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 3.999987;
+            }
+            return -1;
+        }
+
+        static double liter(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.001;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 0.00492892;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 0.0147868;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 0.02957344;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 0.2400000204;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 0.47317654022;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 0.94635308044;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units * 3.7854003218;
+            }
+            return -1;
+        }
+
+        static double gallon(String from, double units){
+            if (from.equalsIgnoreCase("ml")) {
+                return units * 0.0002641729;
+            } else if (from.equalsIgnoreCase("tsp")) {
+                return units * 0.001302087;
+            } else if (from.equalsIgnoreCase("tbsp")) {
+                return units * 0.003906271;
+            } else if (from.equalsIgnoreCase("fl.oz")) {
+                return units * 0.0078125;
+            }  else if (from.equalsIgnoreCase("cup")) {
+                return units * 0.06340149;
+            } else if (from.equalsIgnoreCase("pt")) {
+                return units * 0.1250004;
+            } else if (from.equalsIgnoreCase("qt")) {
+                return units * 0.2500008;
+            } else if (from.equalsIgnoreCase("l")) {
+                return units * 0.2641729;
+            } else if (from.equalsIgnoreCase("gal")) {
+                return units;
+            }
+            return -1;
+        }
+
     }
 
     private static String getVolumeFrom(String from) {
@@ -918,6 +1098,66 @@ public final class UnitConverter {
                 .filter(d -> from.equalsIgnoreCase(d.getAbbreviation()))
                 .findFirst()
                 .map(d -> d.name().toLowerCase()).orElse(from);
+    }
+
+    private static double convertVolume(Scanner console) {
+        double result = 0;
+
+        out.println("Choose a Volume: [T]ea[sp]oon, [M]illi[l]itre, [T]a[b]le[sp]oon, [Fl]uid [O]unce([z]), [Cup], [P]in[t], [Q]uar[t], [L]itre, [Gal]lon");
+        String from = console.next();
+        out.println();
+
+        out.println("How many units?: ");
+        double units = Double.parseDouble(console.next());
+        out.println();
+
+        out.println("Choose a Volume: [T]ea[sp]oon, [M]illi[l]itre, [T]a[b]le[sp]oon, [Fl]uid [O]unce([z]), [Cup], [P]in[t], [Q]uar[t], [L]itre, [Gal]lon");
+        String to = console.next();
+        out.println();
+
+        switch (to.toLowerCase()) {
+            case "ml":
+                to = Volume.MILLILITER.name().toLowerCase();
+                result = milliliter(from, units);
+                break;
+            case "tsp":
+                to = Volume.TEASPOON.name().toLowerCase();
+                result = teaspoon(from, units);
+                break;
+            case "tbsp":
+                to = Volume.TABLESPOON.name().toLowerCase();
+                result = tablespoon(from, units);
+                break;
+            case "fl.oz":
+                to = Volume.FLUID_OUNCE.name().toLowerCase();
+                result = fluidOunce(from, units);
+                break;
+            case "cup":
+                to = Volume.CUP.name().toLowerCase();
+                result = cup(from, units);
+                break;
+            case "pt":
+                to = Volume.PINT.name().toLowerCase();
+                result = pint(from, units);
+                break;
+            case "qt":
+                to = Volume.QUART.name().toLowerCase();
+                result = quart(from, units);
+                break;
+            case "l":
+                to = Volume.LITER.name().toLowerCase();
+                result = liter(from, units);
+                break;
+            case "gal":
+                to = Volume.GALLON.name().toLowerCase();
+                result = gallon(from, units);
+                break;
+            default:
+                throw new IllegalArgumentException(from + " is not a valid input!");
+        }
+        double roundedResult = NumberConstants.roundedCurrencyValue(result);
+        out.printf("%.2f %s(s) = %.2f %s(s)%n", units, getVolumeFrom(from), roundedResult, to);
+        return roundedResult;
     }
 
 

@@ -1,16 +1,48 @@
 package org.example.numbers;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.commons.util.StringUtils;
+
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 
 import static org.example.commons.TestConstants.testScanner;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UnitConverterTest {
 
-    static class DurationTests {
+    @Test
+    public void testThrowsIllegalArgumentException(){
+        String input = "1" + System.lineSeparator();
+        assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+    }
+
+    @Test
+    public void testThrowsInputMismatchException(){
+        String input = "T" + System.lineSeparator()
+                + "ms" + System.lineSeparator()
+                + "a" + System.lineSeparator();
+        assertThrows(NumberFormatException.class, () ->  UnitConverter.display(testScanner(input)));
+    }
+
+    @Test
+    public void testThrowsException(){
+        String input = "T" + System.lineSeparator()
+                + "a" + System.lineSeparator();
+        assertThrows(Exception.class, () ->  UnitConverter.display(testScanner(input)));
+    }
+
+    @Nested
+    class DurationTests {
+
+        @Test
+        public void testMillisecondsThrowsIllegalArgumentException(){
+            String input = "T" + System.lineSeparator()
+                    + "ms" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "1" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        }
 
         @Test
         void testMillisecondsToItself() {
@@ -152,6 +184,17 @@ public class UnitConverterTest {
                     + "86400" + System.lineSeparator()
                     + "d" + System.lineSeparator();
             double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testSecondsToMonths() {
+            String input = "T" + System.lineSeparator()
+                    + "sec" + System.lineSeparator()
+                    + "3000000" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 1.14;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -335,6 +378,17 @@ public class UnitConverterTest {
         }
 
         @Test
+        void testHoursToMonths() {
+            String input = "T" + System.lineSeparator()
+                    + "hr" + System.lineSeparator()
+                    + "730.5" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
         void testHoursToYears() {
             String input = "T" + System.lineSeparator()
                     + "hr" + System.lineSeparator()
@@ -408,6 +462,17 @@ public class UnitConverterTest {
                     + "28" + System.lineSeparator()
                     + "w" + System.lineSeparator();
             double expected = 4;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void testDaysToMonths() {
+            String input = "T" + System.lineSeparator()
+                    + "d" + System.lineSeparator()
+                    + "30" + System.lineSeparator()
+                    + "m" + System.lineSeparator();
+            double expected = 1;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -636,6 +701,17 @@ public class UnitConverterTest {
         }
 
         @Test
+        void testYearsToHours() {
+            String input = "T" + System.lineSeparator()
+                    + "yr" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "hr" + System.lineSeparator();
+            double expected = 8766;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
         void testYearsToDays() {
             String input = "T" + System.lineSeparator()
                     + "yr" + System.lineSeparator()
@@ -673,14 +749,24 @@ public class UnitConverterTest {
             String input = "T" + System.lineSeparator()
                     + "yr" + System.lineSeparator()
                     + "1" + System.lineSeparator()
-                    + "ms" + System.lineSeparator();
-            double expected = 31557600000.0;
+                    + "yr" + System.lineSeparator();
+            double expected = 1;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
     }
 
-    static class LengthTests {
+    @Nested
+    class LengthTests {
+        @Test
+        public void testMmThrowsIllegalArgumentException(){
+            String input = "L" + System.lineSeparator()
+                    + "mm" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "1" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        }
+
         //MM
         @Test
         void testMmToMm() {
@@ -774,10 +860,10 @@ public class UnitConverterTest {
         @Test
         void testCmToMm() {
             String input = "L" + System.lineSeparator()
-                    + "mm" + System.lineSeparator()
-                    + "1000000" + System.lineSeparator()
-                    + "mi" + System.lineSeparator();
-            double expected = 0.62;
+                    + "cm" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mm" + System.lineSeparator();
+            double expected = 10;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -1083,6 +1169,17 @@ public class UnitConverterTest {
         }
 
         @Test
+        void testYdToYd() {
+            String input = "L" + System.lineSeparator()
+                    + "yd" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "yd" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
         void testYdToM() {
             String input = "L" + System.lineSeparator()
                     + "yd" + System.lineSeparator()
@@ -1383,8 +1480,29 @@ public class UnitConverterTest {
         }
     }
 
-    static class MassTests {
+    @Nested
+    class MassTests {
+        @Test
+        public void testMgThrowsIllegalArgumentException(){
+            String input = "M" + System.lineSeparator()
+                    + "mg" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "1" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        }
+
         //MG
+        @Test
+        void testMgToMg() {
+            String input = "M" + System.lineSeparator()
+                    + "mg" + System.lineSeparator()
+                    + "10" + System.lineSeparator()
+                    + "mg" + System.lineSeparator();
+            double expected = 10;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
         @Test
         void testMgToG() {
             String input = "M" + System.lineSeparator()
@@ -1776,7 +1894,17 @@ public class UnitConverterTest {
         }
     }
 
-    static class TemperatureTests {
+    @Nested
+    class TemperatureTests {
+        @Test
+        public void testCThrowsIllegalArgumentException(){
+            String input = "TEMP" + System.lineSeparator()
+                    + "c" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "1" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        }
+
         //C
         @Test
         void testCToC() {
@@ -1875,6 +2003,918 @@ public class UnitConverterTest {
                     + "0" + System.lineSeparator()
                     + "K" + System.lineSeparator();
             double expected = 0;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+    }
+
+    @Nested
+    class VolumeTests {
+        @Test
+        public void testMlThrowsIllegalArgumentException(){
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "1" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        }
+
+        //ML
+        @Test
+        public void MlToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 0.2;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "100" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 6.76;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 0.03;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 4.16;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 2.11;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 1.05;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToL() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MlToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "ml" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.26;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //TSP
+        @Test
+        public void TspToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 4.92;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 0.33;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 0.16;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 0.02;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 0.01;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "100" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 0.52;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToL() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "100" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 0.49;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TspToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator()
+                    + "100" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.13;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //TBSP
+        @Test
+        public void TbspToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 14.78;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 3;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "3" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 3;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "3" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 1.5;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "3" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 0.18;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "3" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 0.09;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 0.01;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToL() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 0.01;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void TbspToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator()
+                    + "10" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.03;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //Fl. Oz.
+        @Test
+        public void FlozToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 29.57;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 5.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 1.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "1.99" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 1.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "1.99" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 0.24;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "1.99" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 0.12;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "2" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 0.06;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToL() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "2" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 0.05;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void FlozToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator()
+                    + "2" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.01;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //Cup
+        @Test
+        public void cupToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 240;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 48.69;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 16.23;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 8.11;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "2" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 2;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 0.5;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 0.25;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToL() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 0.24;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void cupToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "cup" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.06;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //PT
+        @Test
+        public void PtToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 473.17;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 96;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 31.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 16;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 1.97;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "1.97" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 1.97;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "25" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 12.5;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToL() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "20" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 9.46;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void PtToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "pt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.12;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //QT
+        @Test
+        public void QtToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 946.35;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 192;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 63.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 32;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 3.94;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 2000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 1000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToL() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 946.35;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void QtToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "qt" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.25;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //L
+        @Test
+        public void LToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 1000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 202.88;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 67.62;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 33.81;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 4.16;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 2.11;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 1.05;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToL() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void LToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "l" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 0.26;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //L
+        @Test
+        public void GalToMl() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ml" + System.lineSeparator();
+            double expected = 3785.4;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToTsp() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tsp" + System.lineSeparator();
+            double expected = 767.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToTbsp() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tbsp" + System.lineSeparator();
+            double expected = 255.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToFloz() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "fl.oz" + System.lineSeparator();
+            double expected = 128;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToCup() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "cup" + System.lineSeparator();
+            double expected = 15.77;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToPt() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "pt" + System.lineSeparator();
+            double expected = 7.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToQt() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "qt" + System.lineSeparator();
+            double expected = 3.99;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToL() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "l" + System.lineSeparator();
+            double expected = 3.78;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GalToGal() {
+            String input = "V" + System.lineSeparator()
+                    + "gal" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gal" + System.lineSeparator();
+            double expected = 1;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
