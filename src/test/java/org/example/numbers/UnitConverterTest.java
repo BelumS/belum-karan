@@ -2930,4 +2930,177 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
     }
+
+    @Nested
+    class DigitalStorageTests {
+        //Bit
+        @Test
+        public void testBitThrowsIllegalArgumentException(){
+            String input = "DS" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "1" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        }
+
+        @Test
+        void bitToBit() {
+            String input = "DS" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void bitToByte() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 8;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //Byte
+        @Test
+        void byteToBit() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 8;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void byteToByte() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "byte" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //KB
+        @Test
+        void kBToBit() {
+            String input = "DS" + System.lineSeparator()
+                    + "kb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 8 * Math.pow(10, 3);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void kBToByte() {
+            String input = "DS" + System.lineSeparator()
+                    + "kb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "byte" + System.lineSeparator();
+            double expected = Math.pow(2, 10);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //MB
+        @Test
+        void mBToBit() {
+            String input = "DS" + System.lineSeparator()
+                    + "mb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 8 * Math.pow(10, 6);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void mBToByte() {
+            String input = "DS" + System.lineSeparator()
+                    + "mb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "byte" + System.lineSeparator();
+            double expected = Math.pow(2, 20);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //GB
+        @Test
+        void gBToBit() {
+            String input = "DS" + System.lineSeparator()
+                    + "gb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 8 * Math.pow(10, 9);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void gBToByte() {
+            String input = "DS" + System.lineSeparator()
+                    + "gb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "byte" + System.lineSeparator();
+            double expected = Math.pow(2, 30);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //TB
+        @Test
+        void tBToBit() {
+            String input = "DS" + System.lineSeparator()
+                    + "tb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 8 * Math.pow(10, 12);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void tBToByte() {
+            String input = "DS" + System.lineSeparator()
+                    + "tb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "byte" + System.lineSeparator();
+            double expected = Math.pow(2, 40);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //PB
+        @Test
+        void pBToBit() {
+            String input = "DS" + System.lineSeparator()
+                    + "pb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "bit" + System.lineSeparator();
+            double expected = 8 * Math.pow(10, 15);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void pBToByte() {
+            String input = "DS" + System.lineSeparator()
+                    + "pb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "byte" + System.lineSeparator();
+            double expected = Math.pow(2, 50);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+    }
 }

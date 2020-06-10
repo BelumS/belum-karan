@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import static java.lang.System.err;
 import static java.lang.System.out;
+import static org.example.numbers.UnitConverter.DigitalStorageUnits.*;
 import static org.example.numbers.UnitConverter.DurationUnits.*;
 import static org.example.numbers.UnitConverter.LengthUnits.*;
 import static org.example.numbers.UnitConverter.MassUnits.*;
@@ -33,7 +34,7 @@ public final class UnitConverter {
     public static double display(Scanner console) {
         double result = 0;
         try {
-            out.print("Choose a measurement: {[T]ime, [L]ength, [M]ass, [Temp]erature, [C]urrency, [V]olume}");
+            out.print("Choose a measurement: [T]ime, [L]ength, [M]ass, [Temp]erature, [V]olume, [S]peed, [F]requency, [D]igital [S]torage, [C]urrency");
             String choice = console.next();
             out.println();
             switch (choice.toUpperCase()) {
@@ -50,9 +51,19 @@ public final class UnitConverter {
                     result = convertTemperature(console);
                     break;
                 case "C":
+                    result = 0;
                     break;
                 case "V":
                     result = convertVolume(console);
+                    break;
+                case "DS":
+                    result = convertDigitalStorage(console);
+                    break;
+                case "S":
+                    result = 1;
+                    break;
+                case "F":
+                    result = 2;
                     break;
                 default:
                     throw new IllegalArgumentException("Error! \"" + choice + "\" does not fit the criteria.");
@@ -1098,6 +1109,128 @@ public final class UnitConverter {
         return roundedResult;
     }
 
+    static class DigitalStorageUnits {
+        enum DigitalStorage {
+            BIT("bit"),
+            BYTE("byte"),
+            KILOBYTE("kb"),
+            MEGABYTE("mb"),
+            GIGABYTE("gb"),
+            TERABYTE("tb"),
+            PETABYTE("pd");
+
+            private final String abbreviation;
+
+            DigitalStorage(String abbreviation) {
+                this.abbreviation = abbreviation;
+            }
+
+            public String getAbbreviation() {
+                return this.abbreviation;
+            }
+        }
+
+        private DigitalStorageUnits() {
+        }
+
+        static double bit(String from, double units) {
+            if (from.equalsIgnoreCase("byte")) {
+                return units * 8;
+            } else if (from.equalsIgnoreCase("kb")) {
+                return units * 8 * Math.pow(10, 3);
+            } else if (from.equalsIgnoreCase("mb")) {
+                return units * 8 * Math.pow(10, 6);
+            } else if (from.equalsIgnoreCase("gb")) {
+                return units * 8 * Math.pow(10, 9);
+            } else if (from.equalsIgnoreCase("tb")) {
+                return units * 8 * Math.pow(10, 12);
+            } else if (from.equalsIgnoreCase("pb")) {
+                return units * 8 * Math.pow(10, 15);
+            }
+            return units;
+        }
+
+
+        static double fromByte(String from, double units) {
+            if (from.equalsIgnoreCase("bit")) {
+                return units / 8;
+            } else if (from.equalsIgnoreCase("kb")) {
+                return units * Math.pow(2, 10);
+            } else if (from.equalsIgnoreCase("mb")) {
+                return units * Math.pow(2, 20);
+            } else if (from.equalsIgnoreCase("gb")) {
+                return units * Math.pow(2, 30);
+            } else if (from.equalsIgnoreCase("tb")) {
+                return units * Math.pow(2, 40);
+            } else if (from.equalsIgnoreCase("pb")) {
+                return units * Math.pow(2, 50);
+            }
+            return units;
+        }
+    }
+
+    private static String getDigitalStorageFrom(String from) {
+        return EnumSet.allOf(DigitalStorage.class).stream()
+                .filter(d -> from.equalsIgnoreCase(d.getAbbreviation()))
+                .findFirst()
+                .map(d -> d.name().toLowerCase()).orElse(from);
+    }
+
+    private static double convertDigitalStorage(Scanner console) {
+        double result = 0;
+
+        out.println("Choose a Digital Storage: [Bit], [Byte], [K]ilo[b]yte, [M]ega[b]yte, [T]era[b]yte, [P]eta[b]yte");
+        String from = console.next();
+        out.println();
+
+        out.println("How many units?: ");
+        double units = Double.parseDouble(console.next());
+        out.println();
+
+        out.println("Choose a converting Digital Storage: [Bit], [Byte], [K]ilo[b]yte, [M]ega[b]yte, [T]era[b]yte, [P]eta[b]yte");
+        String to = console.next();
+        out.println();
+
+        switch (to.toLowerCase()) {
+            case "bit":
+                to = DigitalStorage.BIT.name().toLowerCase();
+                result = bit(from, units);
+                break;
+            case "byte":
+                to = DigitalStorage.BYTE.name().toLowerCase();
+                result = fromByte(from, units);
+                break;
+            case "kb":
+                to = DigitalStorage.KILOBYTE.name().toLowerCase();
+                result = tablespoon(from, units);
+                break;
+            case "mb":
+                to = DigitalStorage.MEGABYTE.name().toLowerCase();
+                result = fluidOunce(from, units);
+                break;
+            case "gb":
+                to = DigitalStorage.GIGABYTE.name().toLowerCase();
+                result = cup(from, units);
+                break;
+            case "tb":
+                to = DigitalStorage.TERABYTE.name().toLowerCase();
+                result = pint(from, units);
+                break;
+            case "pb":
+                to = DigitalStorage.PETABYTE.name().toLowerCase();
+                result = quart(from, units);
+                break;
+            default:
+                throw new IllegalArgumentException(from + " is not a valid input!");
+        }
+        double roundedResult = NumberConstants.roundedCurrencyValue(result);
+        out.printf("%.2f %s(s) = %.2f %s(s)%n", units, getDigitalStorageFrom(from), roundedResult, to);
+        return roundedResult;
+    }
+
+    //TODO SpeedUnits: Fps, Mph, Kph
+
+    //TODO FrequencyUnits: Hz, Mz, Ghz, Phz
 
     static class CurrencyUnits {
         enum Currency {
