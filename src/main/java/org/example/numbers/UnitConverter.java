@@ -1117,7 +1117,7 @@ public final class UnitConverter {
             MEGABYTE("mb"),
             GIGABYTE("gb"),
             TERABYTE("tb"),
-            PETABYTE("pd");
+            PETABYTE("pb");
 
             private final String abbreviation;
 

@@ -2957,10 +2957,10 @@ public class UnitConverterTest {
         @Test
         void bitToByte() {
             String input = "DS" + System.lineSeparator()
-                    + "byte" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
                     + "1" + System.lineSeparator()
-                    + "bit" + System.lineSeparator();
-            double expected = 8;
+                    + "byte" + System.lineSeparator();
+            double expected = 0.12;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
