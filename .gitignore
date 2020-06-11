@@ -40,6 +40,8 @@
 ### Gradle ###
 .gradle
 build
+gradlew.bat
+gradlew
 
 ### Maven ###
 /target/
