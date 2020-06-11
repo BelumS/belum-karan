@@ -9,13 +9,6 @@ import java.time.format.FormatStyle
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * User Manual available at https://docs.gradle.org/5.3/userguide/tutorial_java_projects.html
  */
-buildscript {
-    ext {
-        logbackVersion = '1.2.3'
-        junitVersion = '5.6.0'
-    }
-}
-
 plugins {
     id 'java'
     id 'application'
@@ -25,6 +18,9 @@ plugins {
 repositories {
     mavenCentral()
 }
+
+def logbackVersion = '1.2.3'
+def junitVersion = '5.6.0'
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -37,7 +33,7 @@ dependencies {
     implementation "ch.qos.logback:logback-access:$logbackVersion"
 
     testImplementation 'org.mockito:mockito-core:3.3.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter:$junitVersion'
+    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
 
     // Only needed to run tests in a version of IntelliJ IDEA that bundles older versions
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.6.0")

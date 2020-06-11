@@ -3,56 +3,54 @@ package org.example.numbers;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-
 import static org.example.commons.TestConstants.testScanner;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UnitConverterTest {
 
     @Test
-    public void testThrowsIllegalArgumentException1(){
+    public void testThrowsIllegalArgumentException1() {
         String input = "ABC" + System.lineSeparator();
-        assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
     }
 
     @Test
-    public void testThrowsIllegalArgumentException2(){
+    public void testThrowsIllegalArgumentException2() {
         String input = "1" + System.lineSeparator();
-        assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+        assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
     }
 
     @Test
-    public void testThrowsInputMismatchException(){
+    public void testThrowsInputMismatchException() {
         String input = "T" + System.lineSeparator()
                 + "ms" + System.lineSeparator()
                 + "a" + System.lineSeparator();
-        assertThrows(NumberFormatException.class, () ->  UnitConverter.display(testScanner(input)));
+        assertThrows(NumberFormatException.class, () -> UnitConverter.display(testScanner(input)));
     }
 
     @Test
-    public void testThrowsException1(){
-        assertThrows(Exception.class, () ->  UnitConverter.display(null));
+    public void testThrowsException1() {
+        assertThrows(Exception.class, () -> UnitConverter.display(null));
     }
 
     @Test
-    public void testThrowsException2(){
+    public void testThrowsException2() {
         String input = "T" + System.lineSeparator()
                 + "a" + System.lineSeparator();
-        assertThrows(Exception.class, () ->  UnitConverter.display(testScanner(input)));
+        assertThrows(Exception.class, () -> UnitConverter.display(testScanner(input)));
     }
 
     @Nested
     class DurationTests {
 
         @Test
-        public void testMillisecondsThrowsIllegalArgumentException(){
+        public void testMillisecondsThrowsIllegalArgumentException() {
             String input = "T" + System.lineSeparator()
                     + "ms" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "1" + System.lineSeparator();
-            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
         }
 
         @Test
@@ -770,12 +768,12 @@ public class UnitConverterTest {
     @Nested
     class LengthTests {
         @Test
-        public void testMmThrowsIllegalArgumentException(){
+        public void testMmThrowsIllegalArgumentException() {
             String input = "L" + System.lineSeparator()
                     + "mm" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "1" + System.lineSeparator();
-            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
         }
 
         //MM
@@ -1494,12 +1492,12 @@ public class UnitConverterTest {
     @Nested
     class MassTests {
         @Test
-        public void testMgThrowsIllegalArgumentException(){
+        public void testMgThrowsIllegalArgumentException() {
             String input = "M" + System.lineSeparator()
                     + "mg" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "1" + System.lineSeparator();
-            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
         }
 
         //MG
@@ -1908,12 +1906,12 @@ public class UnitConverterTest {
     @Nested
     class TemperatureTests {
         @Test
-        public void testCThrowsIllegalArgumentException(){
+        public void testCThrowsIllegalArgumentException() {
             String input = "TEMP" + System.lineSeparator()
                     + "c" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "1" + System.lineSeparator();
-            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
         }
 
         //C
@@ -2022,12 +2020,12 @@ public class UnitConverterTest {
     @Nested
     class VolumeTests {
         @Test
-        public void testMlThrowsIllegalArgumentException(){
+        public void testMlThrowsIllegalArgumentException() {
             String input = "V" + System.lineSeparator()
                     + "ml" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "1" + System.lineSeparator();
-            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
         }
 
         //ML
@@ -2935,12 +2933,12 @@ public class UnitConverterTest {
     class DigitalStorageTests {
         //Bit
         @Test
-        public void testBitThrowsIllegalArgumentException(){
+        public void testBitThrowsIllegalArgumentException() {
             String input = "DS" + System.lineSeparator()
                     + "bit" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "1" + System.lineSeparator();
-            assertThrows(IllegalArgumentException.class, () ->  UnitConverter.display(testScanner(input)));
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
         }
 
         @Test
@@ -2961,6 +2959,61 @@ public class UnitConverterTest {
                     + "1" + System.lineSeparator()
                     + "byte" + System.lineSeparator();
             double expected = 0.12;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void bitToKb() {
+            String input = "DS" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
+                    + "8192" + System.lineSeparator()
+                    + "kb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void bitToMb() {
+            String input = "DS" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
+                    + 8 * Math.pow(2, 20) + System.lineSeparator()
+                    + "mb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void bitToGb() {
+            String input = "DS" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
+                    + 8 * Math.pow(2, 30) + System.lineSeparator()
+                    + "gb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void bitToTb() {
+            String input = "DS" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
+                    + 8 * Math.pow(2, 40) + System.lineSeparator()
+                    + "tb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void bitToPb() {
+            String input = "DS" + System.lineSeparator()
+                    + "bit" + System.lineSeparator()
+                    + 8 * Math.pow(2, 50) + System.lineSeparator()
+                    + "pb" + System.lineSeparator();
+            double expected = 1;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -2988,6 +3041,61 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
 
+        @Test
+        void byteToKb() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + Math.pow(2, 10) + System.lineSeparator()
+                    + "kb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void byteToMb() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + Math.pow(2, 20) + System.lineSeparator()
+                    + "mb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void byteToGb() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + Math.pow(2, 30) + System.lineSeparator()
+                    + "gb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void byteToTb() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + Math.pow(2, 40) + System.lineSeparator()
+                    + "tb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void byteToPb() {
+            String input = "DS" + System.lineSeparator()
+                    + "byte" + System.lineSeparator()
+                    + Math.pow(2, 50) + System.lineSeparator()
+                    + "pb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
         //KB
         @Test
         void kBToBit() {
@@ -2995,7 +3103,7 @@ public class UnitConverterTest {
                     + "kb" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "bit" + System.lineSeparator();
-            double expected = 8 * Math.pow(10, 3);
+            double expected = 8 * Math.pow(2, 10);
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -3011,6 +3119,61 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
 
+        @Test
+        void kBToKb() {
+            String input = "DS" + System.lineSeparator()
+                    + "kb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void kBToMb() {
+            String input = "DS" + System.lineSeparator()
+                    + "kb" + System.lineSeparator()
+                    + Math.pow(2, 10) + System.lineSeparator()
+                    + "mb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void kBToGb() {
+            String input = "DS" + System.lineSeparator()
+                    + "kb" + System.lineSeparator()
+                    + Math.pow(2, 20) + System.lineSeparator()
+                    + "gb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void kBToTb() {
+            String input = "DS" + System.lineSeparator()
+                    + "kb" + System.lineSeparator()
+                    + Math.pow(2, 30) + System.lineSeparator()
+                    + "tb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void kBToPb() {
+            String input = "DS" + System.lineSeparator()
+                    + "kb" + System.lineSeparator()
+                    + Math.pow(2, 40) + System.lineSeparator()
+                    + "pb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
         //MB
         @Test
         void mBToBit() {
@@ -3018,7 +3181,7 @@ public class UnitConverterTest {
                     + "mb" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "bit" + System.lineSeparator();
-            double expected = 8 * Math.pow(10, 6);
+            double expected = 8 * Math.pow(2, 20);
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -3034,6 +3197,61 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
 
+        @Test
+        void mBToKb() {
+            String input = "DS" + System.lineSeparator()
+                    + "mb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kb" + System.lineSeparator();
+            double expected = Math.pow(2, 10);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void mBToMb() {
+            String input = "DS" + System.lineSeparator()
+                    + "mb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void mBToGb() {
+            String input = "DS" + System.lineSeparator()
+                    + "mb" + System.lineSeparator()
+                    + "1024" + System.lineSeparator()
+                    + "gb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void mBToTb() {
+            String input = "DS" + System.lineSeparator()
+                    + "mb" + System.lineSeparator()
+                    + Math.pow(2, 20) + System.lineSeparator()
+                    + "tb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void mBToPb() {
+            String input = "DS" + System.lineSeparator()
+                    + "mb" + System.lineSeparator()
+                    + Math.pow(2, 30) + System.lineSeparator()
+                    + "pb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
         //GB
         @Test
         void gBToBit() {
@@ -3041,7 +3259,7 @@ public class UnitConverterTest {
                     + "gb" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "bit" + System.lineSeparator();
-            double expected = 8 * Math.pow(10, 9);
+            double expected = 8 * Math.pow(2, 30);
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -3057,6 +3275,61 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
 
+        @Test
+        void gBToKb() {
+            String input = "DS" + System.lineSeparator()
+                    + "gb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kb" + System.lineSeparator();
+            double expected = Math.pow(2, 20);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void gBToMb() {
+            String input = "DS" + System.lineSeparator()
+                    + "gb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mb" + System.lineSeparator();
+            double expected = Math.pow(2, 10);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void gBToGb() {
+            String input = "DS" + System.lineSeparator()
+                    + "gb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void gBToTb() {
+            String input = "DS" + System.lineSeparator()
+                    + "gb" + System.lineSeparator()
+                    + "1024" + System.lineSeparator()
+                    + "tb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void gBToPb() {
+            String input = "DS" + System.lineSeparator()
+                    + "gb" + System.lineSeparator()
+                    + Math.pow(2, 20) + System.lineSeparator()
+                    + "pb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
         //TB
         @Test
         void tBToBit() {
@@ -3064,7 +3337,7 @@ public class UnitConverterTest {
                     + "tb" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "bit" + System.lineSeparator();
-            double expected = 8 * Math.pow(10, 12);
+            double expected = 8 * Math.pow(2, 40);
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -3080,6 +3353,61 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
 
+        @Test
+        void tBToKb() {
+            String input = "DS" + System.lineSeparator()
+                    + "tb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kb" + System.lineSeparator();
+            double expected = Math.pow(2, 30);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void tBToMb() {
+            String input = "DS" + System.lineSeparator()
+                    + "tb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mb" + System.lineSeparator();
+            double expected = Math.pow(2, 20);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void tBToGb() {
+            String input = "DS" + System.lineSeparator()
+                    + "tb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gb" + System.lineSeparator();
+            double expected = Math.pow(2, 10);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void tBToTb() {
+            String input = "DS" + System.lineSeparator()
+                    + "tb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void tBToPb() {
+            String input = "DS" + System.lineSeparator()
+                    + "tb" + System.lineSeparator()
+                    + "1024" + System.lineSeparator()
+                    + "pb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
         //PB
         @Test
         void pBToBit() {
@@ -3087,7 +3415,7 @@ public class UnitConverterTest {
                     + "pb" + System.lineSeparator()
                     + "1" + System.lineSeparator()
                     + "bit" + System.lineSeparator();
-            double expected = 8 * Math.pow(10, 15);
+            double expected = 8 * Math.pow(2, 50);
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
@@ -3099,6 +3427,450 @@ public class UnitConverterTest {
                     + "1" + System.lineSeparator()
                     + "byte" + System.lineSeparator();
             double expected = Math.pow(2, 50);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void pBToKb() {
+            String input = "DS" + System.lineSeparator()
+                    + "pb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kb" + System.lineSeparator();
+            double expected = Math.pow(2, 40);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void pBToMb() {
+            String input = "DS" + System.lineSeparator()
+                    + "pb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mb" + System.lineSeparator();
+            double expected = Math.pow(2, 30);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void pBToGb() {
+            String input = "DS" + System.lineSeparator()
+                    + "pb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "gb" + System.lineSeparator();
+            double expected = Math.pow(2, 20);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void pBToTb() {
+            String input = "DS" + System.lineSeparator()
+                    + "pb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "tb" + System.lineSeparator();
+            double expected = Math.pow(2, 10);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void pBToPb() {
+            String input = "DS" + System.lineSeparator()
+                    + "pb" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "pb" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+    }
+
+    @Nested
+    class SpeedTests {
+        //FTPS
+        @Test
+        void ftpsToFtps() {
+            String input = "S" + System.lineSeparator()
+                    + "ftps" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ftps" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void ftpsToKmph() {
+            String input = "S" + System.lineSeparator()
+                    + "ftps" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kmph" + System.lineSeparator();
+            double expected = 1.09;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void ftpsToMph() {
+            String input = "S" + System.lineSeparator()
+                    + "ftps" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mph" + System.lineSeparator();
+            double expected = 0.68;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //KMPH
+        @Test
+        void kmphToFtps() {
+            String input = "S" + System.lineSeparator()
+                    + "kmph" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ftps" + System.lineSeparator();
+            double expected = 0.91;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void kmphToKmph() {
+            String input = "S" + System.lineSeparator()
+                    + "kmph" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kmph" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void kmphToMph() {
+            String input = "S" + System.lineSeparator()
+                    + "kmph" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mph" + System.lineSeparator();
+            double expected = 0.62;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //MPH
+        @Test
+        void mphToFtps() {
+            String input = "S" + System.lineSeparator()
+                    + "mph" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ftps" + System.lineSeparator();
+            double expected = 1.46;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void mphToKmph() {
+            String input = "S" + System.lineSeparator()
+                    + "mph" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "kmph" + System.lineSeparator();
+            double expected = 1.6;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void mphToMph() {
+            String input = "S" + System.lineSeparator()
+                    + "mph" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mph" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+    }
+
+    @Nested
+    class FrequencyTests {
+
+        //HZ
+        @Test
+        public void hzToHz() {
+            String input = "F" + System.lineSeparator()
+                    + "hz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "hz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void hzToKhz() {
+            String input = "F" + System.lineSeparator()
+                    + "hz" + System.lineSeparator()
+                    + Math.pow(10, 3) + System.lineSeparator()
+                    + "khz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void hzToMhz() {
+            String input = "F" + System.lineSeparator()
+                    + "hz" + System.lineSeparator()
+                    + Math.pow(10, 6) + System.lineSeparator()
+                    + "mhz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void hzToGhz() {
+            String input = "F" + System.lineSeparator()
+                    + "hz" + System.lineSeparator()
+                    + Math.pow(10, 9) + System.lineSeparator()
+                    + "ghz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void hzToThz() {
+            String input = "F" + System.lineSeparator()
+                    + "hz" + System.lineSeparator()
+                    + Math.pow(10, 12) + System.lineSeparator()
+                    + "thz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //KHZ
+        @Test
+        public void KhzToHz() {
+            String input = "F" + System.lineSeparator()
+                    + "khz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "hz" + System.lineSeparator();
+            double expected = Math.pow(10, 3);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void KhzToKhz() {
+            String input = "F" + System.lineSeparator()
+                    + "khz" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "khz" + System.lineSeparator();
+            double expected = Math.pow(10, 3);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void KhzToMhz() {
+            String input = "F" + System.lineSeparator()
+                    + "khz" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void KhzToGhz() {
+            String input = "F" + System.lineSeparator()
+                    + "khz" + System.lineSeparator()
+                    + Math.pow(10, 6) + System.lineSeparator()
+                    + "ghz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void KhzToThz() {
+            String input = "F" + System.lineSeparator()
+                    + "khz" + System.lineSeparator()
+                    + Math.pow(10, 9) + System.lineSeparator()
+                    + "thz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //MHZ
+        @Test
+        public void MhzToHz() {
+            String input = "F" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "hz" + System.lineSeparator();
+            double expected = Math.pow(10, 6);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MhzToKhz() {
+            String input = "F" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "khz" + System.lineSeparator();
+            double expected = 1000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MhzToMhz() {
+            String input = "F" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MhzToGhz() {
+            String input = "F" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator()
+                    + "1000" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void MhzToThz() {
+            String input = "F" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator()
+                    + "1000000" + System.lineSeparator()
+                    + "thz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //GHZ
+        @Test
+        public void GhzToHz() {
+            String input = "F" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "hz" + System.lineSeparator();
+            double expected = Math.pow(10, 9);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GhzToKhz() {
+            String input = "F" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "khz" + System.lineSeparator();
+            double expected = Math.pow(10, 6);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GhzToMhz() {
+            String input = "F" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator();
+            double expected = Math.pow(10, 3);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GhzToGhz() {
+            String input = "F" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void GhzToThz() {
+            String input = "F" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator()
+                    + "100" + System.lineSeparator()
+                    + "thz" + System.lineSeparator();
+            double expected = 0.1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //THZ
+        @Test
+        public void thzToHz() {
+            String input = "F" + System.lineSeparator()
+                    + "thz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "hz" + System.lineSeparator();
+            double expected = Math.pow(10, 12);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void thzToKhz() {
+            String input = "F" + System.lineSeparator()
+                    + "thz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "khz" + System.lineSeparator();
+            double expected = Math.pow(10, 9);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void thzToMhz() {
+            String input = "F" + System.lineSeparator()
+                    + "thz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "mhz" + System.lineSeparator();
+            double expected = Math.pow(10, 6);
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void thzToGhz() {
+            String input = "F" + System.lineSeparator()
+                    + "thz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "ghz" + System.lineSeparator();
+            double expected = 1000;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        public void thzToThz() {
+            String input = "F" + System.lineSeparator()
+                    + "thz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "thz" + System.lineSeparator();
+            double expected = 1;
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
