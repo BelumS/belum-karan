@@ -53,19 +53,21 @@ mainClassName = 'org.example.Application'
 
 run {
     standardInput = System.in
-    def appConfig = System.getProperty('app.config', "$projectDir/build/config")
-    def logsDir = System.getProperty('logFilePath', "$projectDir/build/tmp/logs")
-    def logsFolder = new File(logsDir)
+    String logbackAppender = System.getenv('LOGBACK_APPENDER')
+    def appConfig = System.getProperty('app.config', "$projectDir/tmp/config")
+
+    def logsDir = System.getProperty('logFilePath', "$projectDir/tmp/logs")
+    File logsFolder = new File(logsDir)
     if(!logsFolder.exists()){ logsFolder.mkdirs()}
 
-    def appConfigFolder = new File(appConfig)
+    File appConfigFolder = new File(appConfig)
     if(!logsFolder.exists()) { appConfigFolder.mkdirs()}
 
     jvmArgs = [
-            "-Dlogging.config=classpath:logback-spring.xml",
+            "-Dlogging.config=classpath:logback.xml",
             "-DlogFilePath=$logsDir",
             "-Dapp.config=$appConfig",
-            "-Dlogback.appender=consoleColor"
+            "-Dlogback.appender=$logbackAppender"
     ]
 }
 
