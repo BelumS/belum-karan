@@ -2101,7 +2101,7 @@ public final class UnitConverter {
 
     private static String getCurrencySymbol(String currency) {
         return EnumSet.allOf(Currency.class).stream()
-                .filter(c -> currency.equalsIgnoreCase(c.getCode()))
+                .filter(c -> currency.equalsIgnoreCase(c.name().toLowerCase()) || currency.equalsIgnoreCase(c.getCode()))
                 .findFirst()
                 .map(Currency::getSymbol).orElse("");
     }

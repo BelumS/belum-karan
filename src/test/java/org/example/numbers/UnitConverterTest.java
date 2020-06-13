@@ -3875,4 +3875,47 @@ public class UnitConverterTest {
             assertEquals(expected, actual);
         }
     }
+
+    @Nested
+    class CurrencyTests {
+        //USD
+        @Test
+        public void UsdToUsd() {
+            String input = "C" + System.lineSeparator()
+                    + "usd" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "usd" + System.lineSeparator();
+            double expected = 1;
+            double actual = UnitConverter.display(testScanner(input));
+            assertEquals(expected, actual);
+        }
+
+        //GBP
+
+        //EUR
+
+        //YEN
+
+        //SLL
+
+        //LIB
+
+        //NGN
+
+        //GHS
+
+        //ZAR
+
+        //ETB
+
+        //AED
+
+        //JPY
+
+        //SGD
+
+        //CNY
+
+        //INR
+    }
 }
