@@ -1567,7 +1567,7 @@ public final class UnitConverter {
             DIRHAM("","aed", "United Arab Emirates"),
             YEN("","jpy", "Japan"),
             SGD_DOLLAR("","sgd", "Singapore"),
-            RENMINBI("","cny", "China"),
+            YUAN("","cny", "China"),
             RUPEE("","inr", "India");
 
             private final String symbol;
@@ -1619,7 +1619,7 @@ public final class UnitConverter {
                 return units * 0.27;
             } else if (from.equalsIgnoreCase(YEN.getCode())) {
                 return units * 0.0093;
-            } else if (from.equalsIgnoreCase(RENMINBI.getCode())) {
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
                 return units * 0.14;
             } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
                 return units * 0.72;
@@ -1652,7 +1652,7 @@ public final class UnitConverter {
                 return units * 0.21;
             } else if (from.equalsIgnoreCase(YEN.getCode())) {
                 return units * 0.0073;
-            } else if (from.equalsIgnoreCase(RENMINBI.getCode())) {
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
                 return units * 0.11;
             } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
                 return units * 0.57;
@@ -1685,12 +1685,45 @@ public final class UnitConverter {
                 return units * 0.24;
             } else if (from.equalsIgnoreCase(YEN.getCode())) {
                 return units * 0.0082;
-            } else if (from.equalsIgnoreCase(RENMINBI.getCode())) {
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
                 return units * 0.12;
             } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
                 return units * 0.64;
             } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
                 return units * 0.01;
+            }
+            return units;
+        }
+
+        static double sierraLeoneLeones(String from, double units) {
+            if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
+                return units * 9815.2;
+            } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
+                return units * 12522;
+            } else if (from.equalsIgnoreCase(EURO.getCode())) {
+                return units * 11204.00;
+            }  else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 49.53;
+            } else if (from.equalsIgnoreCase(NAIRA.getCode())) {
+                return units * 25.42;
+            } else if (from.equalsIgnoreCase(CEDI.getCode())) {
+                return units * 1702.51;
+            } else if (from.equalsIgnoreCase(TZ_SHILLING.getCode())) {
+                return units * 4.25;
+            } else if (from.equalsIgnoreCase(RAND.getCode())) {
+                return units * 575.83;
+            } else if (from.equalsIgnoreCase(BIRR.getCode())) {
+                return units * 284.08;
+            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
+                return units * 2681.82;
+            } else if (from.equalsIgnoreCase(YEN.getCode())) {
+                return units * 92.32;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 1394.14;
+            } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
+                return units * 7091.23;
+            } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
+                return units * 129.83;
             }
             return units;
         }
@@ -1718,7 +1751,7 @@ public final class UnitConverter {
                 return units * 54.19;
             } else if (from.equalsIgnoreCase(YEN.getCode())) {
                 return units * 1.86;
-            } else if (from.equalsIgnoreCase(RENMINBI.getCode())) {
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
                 return units * 28.18;
             } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
                 return units * 143.78;
@@ -1728,35 +1761,233 @@ public final class UnitConverter {
             return units;
         }
 
-        static double sierraLeoneLeones(String from, double units) {
+        static double nigerianNaira(String from, double units) {
             if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
-                return units * 9815.2;
+                return units * 387.48;
             } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
-                return units * 12522;
+                return units * 489.40;
             } else if (from.equalsIgnoreCase(EURO.getCode())) {
-                return units * 225.97;
-            }  else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 440.79;
+            }  else if (from.equalsIgnoreCase(LEONES.getCode())) {
+                return units * 0.04;
+            } else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 1.95;
+            } else if (from.equalsIgnoreCase(CEDI.getCode())) {
+                return units * 66.98;
+            } else if (from.equalsIgnoreCase(TZ_SHILLING.getCode())) {
+                return units * 0.17;
+            } else if (from.equalsIgnoreCase(RAND.getCode())) {
+                return units * 22.65;
+            } else if (from.equalsIgnoreCase(BIRR.getCode())) {
+                return units * 11.18;
+            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
+                return units * 105.51;
+            } else if (from.equalsIgnoreCase(YEN.getCode())) {
+                return units * 3.63;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 54.85;
+            } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
+                return units * 278.98;
+            } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
+                return units * 5.09;
+            }
+            return units;
+        }
+
+        static double ghanianCedi(String from, double units) {
+            if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
+                return units * 5.78;
+            } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
+                return units * 7.31;
+            } else if (from.equalsIgnoreCase(EURO.getCode())) {
+                return units * 6.58;
+            }  else if (from.equalsIgnoreCase(LEONES.getCode())) {
+                return units * 0.000587;
+            } else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 0.03;
+            } else if (from.equalsIgnoreCase(NAIRA.getCode())) {
+                return units * 0.01;
+            } else if (from.equalsIgnoreCase(TZ_SHILLING.getCode())) {
+                return units * 0.0025;
+            } else if (from.equalsIgnoreCase(RAND.getCode())) {
+                return units * 0.34;
+            } else if (from.equalsIgnoreCase(BIRR.getCode())) {
+                return units * 0.17;
+            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
+                return units * 1.58;
+            } else if (from.equalsIgnoreCase(YEN.getCode())) {
+                return units * 0.05;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 0.82;
+            } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
+                return units * 4.17;
+            } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
+                return units * 0.08;
+            }
+            return units;
+        }
+
+        static double tanzanianShilling(String from, double units) {
+            if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
+                return units * 2315.92;
+            } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
+                return units * 2925.10;
+            } else if (from.equalsIgnoreCase(EURO.getCode())) {
+                return units * 2634.55;
+            }  else if (from.equalsIgnoreCase(LEONES.getCode())) {
+                return units * 0.24;
+            } else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 11.65;
+            } else if (from.equalsIgnoreCase(NAIRA.getCode())) {
+                return units * 5.98;
+            } else if (from.equalsIgnoreCase(CEDI.getCode())) {
+                return units * 400.33;
+            } else if (from.equalsIgnoreCase(RAND.getCode())) {
+                return units * 135.4;
+            } else if (from.equalsIgnoreCase(BIRR.getCode())) {
+                return units * 66.8;
+            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
+                return units * 630.61;
+            } else if (from.equalsIgnoreCase(YEN.getCode())) {
+                return units * 21.71;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 327.82;
+            } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
+                return units * 1667.45;
+            } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
+                return units * 30.42;
+            }
+            return units;
+        }
+
+        static double azanianRand(String from, double units) {
+            if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
+                return units * 17.1;
+            } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
+                return units * 21.60;
+            } else if (from.equalsIgnoreCase(EURO.getCode())) {
+                return units * 19.46;
+            }  else if (from.equalsIgnoreCase(LEONES.getCode())) {
+                return units * 0.0017;
+            } else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 0.09;
+            } else if (from.equalsIgnoreCase(NAIRA.getCode())) {
+                return units * 0.04;
+            } else if (from.equalsIgnoreCase(CEDI.getCode())) {
+                return units * 2.96;
+            } else if (from.equalsIgnoreCase(TZ_SHILLING.getCode())) {
+                return units * 0.0074;
+            } else if (from.equalsIgnoreCase(BIRR.getCode())) {
+                return units * 0.49;
+            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
+                return units * 4.66;
+            } else if (from.equalsIgnoreCase(YEN.getCode())) {
+                return units * 0.16;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 2.42;
+            } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
+                return units * 12.31;
+            } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
+                return units * 0.22;
+            }
+            return units;
+        }
+
+        static double ethiopianBirr(String from, double units) {
+            if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
+                return units * 34.67;
+            } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
+                return units * 43.79;
+            } else if (from.equalsIgnoreCase(EURO.getCode())) {
+                return units * 39.44;
+            }  else if (from.equalsIgnoreCase(LEONES.getCode())) {
+                return units * 0.0035;
+            } else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 0.17;
+            } else if (from.equalsIgnoreCase(NAIRA.getCode())) {
+                return units * 0.09;
+            } else if (from.equalsIgnoreCase(CEDI.getCode())) {
+                return units * 5.99;
+            } else if (from.equalsIgnoreCase(TZ_SHILLING.getCode())) {
+                return units * 0.01;
+            } else if (from.equalsIgnoreCase(RAND.getCode())) {
+                return units * 2.03;
+            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
+                return units * 9.44;
+            } else if (from.equalsIgnoreCase(YEN.getCode())) {
+                return units * 0.32;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 4.91;
+            } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
+                return units * 24.96;
+            } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
+                return units * 0.46;
+            }
+            return units;
+        }
+
+        static double uaeDirham(String from, double units) {
+            if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
+                return units * 3.67;
+            } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
+                return units * 4.6;
+            } else if (from.equalsIgnoreCase(EURO.getCode())) {
+                return units * 4.13;
+            }  else if (from.equalsIgnoreCase(LEONES.getCode())) {
+                return units * 0.000373;
+            } else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
                 return units * 0.02;
             } else if (from.equalsIgnoreCase(NAIRA.getCode())) {
-                return units * 0.51;
+                return units * 0.0095;
             } else if (from.equalsIgnoreCase(CEDI.getCode())) {
-                return units * 34.37;
+                return units * 0.63;
             } else if (from.equalsIgnoreCase(TZ_SHILLING.getCode())) {
-                return units * 0.09;
+                return units * 0.0016;
             } else if (from.equalsIgnoreCase(RAND.getCode())) {
-                return units * 12.01;
+                return units * 0.22;
             } else if (from.equalsIgnoreCase(BIRR.getCode())) {
-                return units * 5.79;
-            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
-                return units * 54.19;
+                return units * 0.11;
             } else if (from.equalsIgnoreCase(YEN.getCode())) {
-                return units * 1.86;
-            } else if (from.equalsIgnoreCase(RENMINBI.getCode())) {
-                return units * 28.18;
+                return units * 0.03;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 0.52;
             } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
-                return units * 143.78;
+                return units * 2.64;
             } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
-                return units * 129.75;
+                return units * 0.05;
+            }
+            return units;
+        }
+
+        static double japaneseYen(String from, double units) {
+            if (from.equalsIgnoreCase(US_DOLLAR.getCode())) {
+                return units * 3.67;
+            } else if (from.equalsIgnoreCase(BRITISH_POUND.getCode())) {
+                return units * 4.6;
+            } else if (from.equalsIgnoreCase(EURO.getCode())) {
+                return units * 4.13;
+            }  else if (from.equalsIgnoreCase(LEONES.getCode())) {
+                return units * 0.000373;
+            } else if (from.equalsIgnoreCase(LIBERIAN_DOLLAR.getCode())) {
+                return units * 0.02;
+            } else if (from.equalsIgnoreCase(NAIRA.getCode())) {
+                return units * 0.0095;
+            } else if (from.equalsIgnoreCase(CEDI.getCode())) {
+                return units * 0.63;
+            } else if (from.equalsIgnoreCase(TZ_SHILLING.getCode())) {
+                return units * 0.0016;
+            } else if (from.equalsIgnoreCase(RAND.getCode())) {
+                return units * 0.22;
+            } else if (from.equalsIgnoreCase(BIRR.getCode())) {
+                return units * 0.11;
+            } else if (from.equalsIgnoreCase(DIRHAM.getCode())) {
+                return units * 0.03;
+            } else if (from.equalsIgnoreCase(YUAN.getCode())) {
+                return units * 0.52;
+            } else if (from.equalsIgnoreCase(SGD_DOLLAR.getCode())) {
+                return units * 2.64;
+            } else if (from.equalsIgnoreCase(RUPEE.getCode())) {
+                return units * 1.41;
             }
             return units;
         }
@@ -1838,7 +2069,7 @@ public final class UnitConverter {
                 result = teraHertz(from, units);
                 break;
             case "cny":
-                to = RENMINBI.name().toLowerCase();
+                to = YUAN.name().toLowerCase();
                 result = teraHertz(from, units);
                 break;
             case "inr":
