@@ -3491,6 +3491,15 @@ public class UnitConverterTest {
     class SpeedTests {
         //FTPS
         @Test
+        public void testFtpsThrowsIllegalArgumentException() {
+            String input = "S" + System.lineSeparator()
+                    + "ftps" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "a" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
+        }
+
+        @Test
         void ftpsToFtps() {
             String input = "S" + System.lineSeparator()
                     + "ftps" + System.lineSeparator()
@@ -3594,6 +3603,15 @@ public class UnitConverterTest {
 
     @Nested
     class FrequencyTests {
+
+        @Test
+        public void hzThrowsException() {
+            String input = "F" + System.lineSeparator()
+                    + "hz" + System.lineSeparator()
+                    + "1" + System.lineSeparator()
+                    + "abc" + System.lineSeparator();
+            assertThrows(IllegalArgumentException.class, () -> UnitConverter.display(testScanner(input)));
+        }
 
         //HZ
         @Test
@@ -3874,48 +3892,5 @@ public class UnitConverterTest {
             double actual = UnitConverter.display(testScanner(input));
             assertEquals(expected, actual);
         }
-    }
-
-    @Nested
-    class CurrencyTests {
-        //USD
-        @Test
-        public void UsdToUsd() {
-            String input = "C" + System.lineSeparator()
-                    + "usd" + System.lineSeparator()
-                    + "1" + System.lineSeparator()
-                    + "usd" + System.lineSeparator();
-            double expected = 1;
-            double actual = UnitConverter.display(testScanner(input));
-            assertEquals(expected, actual);
-        }
-
-        //GBP
-
-        //EUR
-
-        //YEN
-
-        //SLL
-
-        //LIB
-
-        //NGN
-
-        //GHS
-
-        //ZAR
-
-        //ETB
-
-        //AED
-
-        //JPY
-
-        //SGD
-
-        //CNY
-
-        //INR
     }
 }
