@@ -6,7 +6,8 @@
 *.logs
 
 ### IntelliJ IDEA ###
-.idea/
+.idea
+/bin
 *.iws
 *.iml
 *.ipr
@@ -52,5 +53,3 @@ gradlew
 
 ### OS ###
 *.DS_STORE
-.settings/
-bin/
