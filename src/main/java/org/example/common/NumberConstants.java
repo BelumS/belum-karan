@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 /**
  * Represents the shared members (variables and methods) of the numeric algorithms.
  */
-public final class NumberConstants {
+public final class NumberConstants extends AppConstants {
     private NumberConstants(){}
 
     //Menu Titles
@@ -22,6 +22,7 @@ public final class NumberConstants {
     public static final String TITLE_NUMBER_CONVERTER = "Number Converter";
     public static final String TITLE_CALCULATOR = "Calculator";
     public static final String UNIT_CONVERTER = "Unit Converter";
+    public static final String ALARM_CLOCK = "Alarm Clock";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";

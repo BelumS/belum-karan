@@ -148,6 +148,7 @@ public final class ProjectMenu {
                 .append("9. ").append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n")
                 .append("10. ").append(NumberConstants.TITLE_CALCULATOR).append("\n")
                 .append("11. ").append(NumberConstants.UNIT_CONVERTER).append("\n")
+                .append("12. ").append(NumberConstants.ALARM_CLOCK).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -159,7 +160,7 @@ public final class ProjectMenu {
         try {
             numberMenu();
             out.print("> ");
-            int choice = 11;//Integer.parseInt(console.next());
+            int choice = 12;//Integer.parseInt(console.next());
             out.println();
 
             //TODO: Fix the delayed scanner input
@@ -204,6 +205,9 @@ public final class ProjectMenu {
                     break;
                 case 11:
                     UnitConverter.display(console);
+                    break;
+                case 12:
+                    AlarmClock.displayAlarm(console);
                     break;
                 default:
                     exitOnError();
