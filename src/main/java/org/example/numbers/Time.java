@@ -40,23 +40,25 @@ public class Time implements Timer {
 
     @Override
     public String incrementHours() {
-        if (hours > 0 && hours < 23) {
-            this.hours++;
-            if (this.hours == 23) {
+        if (hours >= 0 && hours < 24) {
+            if (this.hours ==  23 ) {
                 this.hours = 0;
+                return hours + ":" + minutes;
             }
+            this.hours++;
         }
         return hours + ":" + minutes;
     }
 
     @Override
     public String incrementMinutes() {
-        if (minutes > 0 && minutes < 60) {
-            this.minutes++;
+        if (minutes >= 0 && minutes < 60) {
             if (this.minutes == 59) {
                 this.minutes = 0;
-                this.hours++;
+                incrementHours();
+                return hours + ":" + minutes;
             }
+            this.minutes++;
         }
         return hours + ":" + minutes;
     }
