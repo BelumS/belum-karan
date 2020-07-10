@@ -160,7 +160,7 @@ public final class ProjectMenu {
         try {
             numberMenu();
             out.print("> ");
-            int choice = 12;//Integer.parseInt(console.next());
+            int choice = Integer.parseInt(console.next());
             out.println();
 
             //TODO: Fix the delayed scanner input
