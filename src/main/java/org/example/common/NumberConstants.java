@@ -23,6 +23,7 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_CALCULATOR = "Calculator";
     public static final String UNIT_CONVERTER = "Unit Converter";
     public static final String ALARM_CLOCK = "Alarm Clock";
+    public static final String TWO_CITIES = "Distance between 2 Cities";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
