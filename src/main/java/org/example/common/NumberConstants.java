@@ -35,6 +35,8 @@ public final class NumberConstants extends AppConstants {
 
     public static final int DECIMAL_PLACE_LIMIT = 20;
 
+    public static final double KM_TO_MI = 1.609344;
+
     /**
      * Provides a precisely rounded mathematical value.
      * @param val the floating point number to be rounded.

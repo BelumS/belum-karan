@@ -40,8 +40,7 @@ public final class ProjectMenu {
         try (Scanner console = new Scanner(System.in)) {
             menuOptions();
             out.print("> ");
-            //int choice = Integer.parseInt(console.next());
-            int choice = 1;
+            int choice = Integer.parseInt(console.next());
             out.println();
 
             do {

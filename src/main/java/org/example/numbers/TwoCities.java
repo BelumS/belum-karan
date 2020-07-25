@@ -1,6 +1,9 @@
 package org.example.numbers;
 
+import org.example.common.NumberConstants;
+
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -9,6 +12,10 @@ import java.util.stream.Stream;
  * finding coordinates for the cities like latitude and longitude.
  */
 public final class TwoCities {
+    private static final List<String> cityNames = new ArrayList<>();
+    private static List<String> cityDistances;
+    private static final Map<String, String> citiesMap = new TreeMap<>();
+
     enum Cities {
         ADDIS_ABABA("AA", "[A]ddis [A]baba"),
         AKKRA("AK", "[A][k]kra"),
@@ -67,19 +74,12 @@ public final class TwoCities {
         }
     }
 
-    private static Set<String> cityNames = new TreeSet<>();
-    private static Map<String, String> citiesMap = new TreeMap<>();
-
-    //TODO: Add all City permutations to a TreeMap, delimited by a colon; {K=[CityA:CityB], V=[M:KM]}
-    //TODO: Then to separate, create a stream to separate by the colon, and collect to a TreeSet.
-    //private static final String[] CITY_KV_SPLITTER = citiesMap.keySet().toString().split(":");
-
     private TwoCities() {
     }
 
     public static void displayCalculation(Scanner console) {
-        var resultA = 0.0;
-        var resultB = 0.0;
+        fillMap();
+
         try (console) {
             System.out.println("---------- Distance between 2 Cities ----------");
             Stream.of(Cities.values()).forEach(city -> cityNames.add(city.getAbbreviatedSimpleName()));
@@ -93,45 +93,78 @@ public final class TwoCities {
             String cityB = console.next();
             System.out.println();
 
+            String cityAResult = "";
+            String cityBResult = "";
+            for (Cities c : Cities.values()) {
+                if (cityA.equalsIgnoreCase(c.getAbbreviation())) {
+                    cityAResult = c.getSimpleName();
+                }
+
+                if (cityB.equalsIgnoreCase(c.getAbbreviation())) {
+                    cityBResult = c.getSimpleName();
+                }
+            }
+
+            String cityMapKey = cityAResult + ":" + cityBResult;
+            String cityMapValue = citiesMap.get(cityMapKey);
+
             System.out.println("Choose a Unit of Distance: [Mi]les, [K]ilo[m]eters");
             String distanceChoice = console.next();
             System.out.println();
 
+            String[] cities = cityMapKey.split(":");
+            String[] distances = cityMapValue.split(":");
+
             switch (distanceChoice.toLowerCase()) {
-                case "mi":
-                    resultA = calculateMiles(console, distanceChoice.toLowerCase(), cityA, cityB);
-                    break;
                 case "km":
-                    resultB = calculateKilometers(console, distanceChoice.toLowerCase(), cityA, cityB);
+                    System.out.println(String.format("The distance between %s and %s is %s(s).%n", cities[0], cities[1], distances[0]));
+                    break;
+                case "mi":
+                    System.out.println(String.format("The distance between %s and %s is %s(s).%n", cities[0], cities[1], distances[1]));
                     break;
                 default:
                     throw new AssertionError(distanceChoice + " is an invalid entry!");
             }
-            System.out.println(String.format("The distance between %s and %s is %.2f%s(s)", cityA, cityB, 0.0, distanceChoice));
-            citiesMap.put((cityA + ":" + cityB), (resultA + ":" + resultB));
         } catch (Exception e) {
             System.err.println("An Exception occurred while displaying the calculation: " + e);
             throw e;
         }
     }
 
-    private static double calculateMiles(Scanner scanner, String distanceChoice, String cityA, String cityB) {
-        try (scanner) {
-            System.out.println();
-            return 0.0;
-        } catch (Exception e) {
-            System.err.println("An Exception occurred " + e);
-            throw e;
+    private static void fillMap() {
+        fillDistances();
+
+        for (int i = 0; i < cityDistances.size(); i++) {
+            citiesMap.put(Cities.getCityNameKeys().get(i), cityDistances.get(i));
         }
     }
 
-    private static double calculateKilometers(Scanner scanner, String distanceChoice, String cityA, String cityB) {
-        try (scanner) {
-            System.out.println();
-            return 0.0;
-        } catch (Exception e) {
-            System.err.println("An Exception occurred " + e);
-            throw e;
-        }
+    private static void fillDistances() {
+        cityDistances = List.of(
+                "6088km:0", "3644km:0", "2371km:0", "7794km:0", "2574km:0", "12345km:0",
+                "5634km:0", "7709km:0", "1553km:0", "11877km:0", "5454km:0",
+                "6546km:0", "6682km:0", "2001km:0", "5064km:0", "8410km:0", "485km:0",
+                "1565km:0", "5865km:0", "7939km:0", "7214km:0",
+                "6008km:0", "8512km:0", "5189km:0", "10662km:0", "6214km:0",
+                "7532km:0", "5190km:0", "10236km:0", "8764km:0",
+                "8565km:0", "1426km:0", "13006km:0", "6167km:0", "8479km:0", "818km:0",
+                "12534km:0", "3618km:0", "6929km:0", "6938km:0", "2467km:0", "549km:0", "7729km:0", "6468km:0",
+                "9196km:0", "11867km:0", "4632km:0", "6944km:0", "1165km:0", "11394km:0", "3687km:0",
+                "9108km:0", "7263km:0", "12556km:0", "474km:0", "11577km:0",
+                "2039km:0", "5372km:0", "8634km:0", "6722km:0", "7657km:0", "6795km:0", "8760km:0",
+                "12082km:0", "3906km:0", "11209km:0"
+        );
+
+        cityDistances = cityDistances.stream()
+                .map(d -> {
+                    String[] distances = d.split("km:");
+                    d = d.replace(":0", ":" + kilometerToMiles(Integer.parseInt(distances[0])) + "mi");
+                    return d;
+                })
+                .collect(Collectors.toList());
+    }
+
+    private static int kilometerToMiles(int kilometer) {
+        return (int) (kilometer / NumberConstants.KM_TO_MI);
     }
 }
