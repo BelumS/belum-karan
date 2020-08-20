@@ -40,8 +40,7 @@ public final class ProjectMenu {
         try (Scanner console = new Scanner(System.in)) {
             menuOptions();
             out.print("> ");
-            //int choice = Integer.parseInt(console.next());
-            int choice = 1;
+            int choice = Integer.parseInt(console.next());
             out.println();
 
             do {
@@ -149,6 +148,7 @@ public final class ProjectMenu {
                 .append("10. ").append(NumberConstants.TITLE_CALCULATOR).append("\n")
                 .append("11. ").append(NumberConstants.UNIT_CONVERTER).append("\n")
                 .append("12. ").append(NumberConstants.ALARM_CLOCK).append("\n")
+                .append("13. ").append(NumberConstants.TWO_CITIES).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -208,6 +208,9 @@ public final class ProjectMenu {
                     break;
                 case 12:
                     AlarmClock.displayAlarm(console);
+                    break;
+                case 13:
+                    TwoCities.displayCalculation(console);
                     break;
                 default:
                     exitOnError();
