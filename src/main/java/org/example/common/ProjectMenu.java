@@ -149,6 +149,7 @@ public final class ProjectMenu {
                 .append("11. ").append(NumberConstants.UNIT_CONVERTER).append("\n")
                 .append("12. ").append(NumberConstants.ALARM_CLOCK).append("\n")
                 .append("13. ").append(NumberConstants.TWO_CITIES).append("\n")
+                .append("14. ").append(NumberConstants.CREDIT_CARD_VALIDATOR).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -211,6 +212,9 @@ public final class ProjectMenu {
                     break;
                 case 13:
                     TwoCities.displayCalculation(console);
+                    break;
+                case 14:
+                    CreditCardValidator.displayChecksum(console);
                     break;
                 default:
                     exitOnError();

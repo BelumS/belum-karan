@@ -24,6 +24,7 @@ public final class NumberConstants extends AppConstants {
     public static final String UNIT_CONVERTER = "Unit Converter";
     public static final String ALARM_CLOCK = "Alarm Clock";
     public static final String TWO_CITIES = "Distance between 2 Cities";
+    public static final String CREDIT_CARD_VALIDATOR = "Credit Card Validator";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
