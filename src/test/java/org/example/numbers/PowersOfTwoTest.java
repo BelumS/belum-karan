@@ -1,11 +1,10 @@
 package org.example.numbers;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static org.example.commons.TestConstants.testScanner;
+import static org.example.common.TestConstants.testScanner;
 import static org.example.numbers.PowersOfTwo.*;
 import static org.junit.jupiter.api.Assertions.*;
 

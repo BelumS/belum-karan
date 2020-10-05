@@ -1,10 +1,9 @@
 package org.example.numbers;
 
-import org.example.commons.TestConstants;
+import org.example.common.TestConstants;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 

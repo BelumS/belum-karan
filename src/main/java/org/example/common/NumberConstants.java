@@ -21,10 +21,11 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_CHANGE_RETURN = "Change Return";
     public static final String TITLE_NUMBER_CONVERTER = "Number Converter";
     public static final String TITLE_CALCULATOR = "Calculator";
-    public static final String UNIT_CONVERTER = "Unit Converter";
-    public static final String ALARM_CLOCK = "Alarm Clock";
-    public static final String TWO_CITIES = "Distance between 2 Cities";
-    public static final String CREDIT_CARD_VALIDATOR = "Credit Card Validator";
+    public static final String TITLE_UNIT_CONVERTER = "Unit Converter";
+    public static final String TITLE_ALARM_CLOCK = "Alarm Clock";
+    public static final String TITLE_TWO_CITIES = "Distance between 2 Cities";
+    public static final String TITLE_CREDIT_CARD_VALIDATOR = "Credit Card Validator";
+    public static final String TITLE_TAX_CALCULATOR = "Tax Calculator";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";

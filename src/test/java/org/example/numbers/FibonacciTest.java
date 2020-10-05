@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static org.example.commons.TestConstants.testScanner;
+import static org.example.common.TestConstants.testScanner;
 import static org.example.numbers.Fibonacci.sequence;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,12 +1,8 @@
 package org.example.numbers;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.util.Scanner;
-
-import static org.example.commons.TestConstants.testScanner;
+import static org.example.common.TestConstants.testScanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TileCostTest {

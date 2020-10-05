@@ -1,4 +1,4 @@
-package org.example.commons;
+package org.example.common;
 
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;

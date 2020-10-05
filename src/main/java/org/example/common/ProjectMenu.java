@@ -146,10 +146,11 @@ public final class ProjectMenu {
                 .append("8. ").append(NumberConstants.TITLE_CHANGE_RETURN).append("\n")
                 .append("9. ").append(NumberConstants.TITLE_NUMBER_CONVERTER).append("\n")
                 .append("10. ").append(NumberConstants.TITLE_CALCULATOR).append("\n")
-                .append("11. ").append(NumberConstants.UNIT_CONVERTER).append("\n")
-                .append("12. ").append(NumberConstants.ALARM_CLOCK).append("\n")
-                .append("13. ").append(NumberConstants.TWO_CITIES).append("\n")
-                .append("14. ").append(NumberConstants.CREDIT_CARD_VALIDATOR).append("\n")
+                .append("11. ").append(NumberConstants.TITLE_UNIT_CONVERTER).append("\n")
+                .append("12. ").append(NumberConstants.TITLE_ALARM_CLOCK).append("\n")
+                .append("13. ").append(NumberConstants.TITLE_TWO_CITIES).append("\n")
+                .append("14. ").append(NumberConstants.TITLE_CREDIT_CARD_VALIDATOR).append("\n")
+                .append("15. ").append(NumberConstants.TITLE_TAX_CALCULATOR).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -215,6 +216,9 @@ public final class ProjectMenu {
                     break;
                 case 14:
                     CreditCardValidator.displayChecksum(console);
+                    break;
+                case 15:
+                    TaxCalculator.calculateSalesTax(console);
                     break;
                 default:
                     exitOnError();

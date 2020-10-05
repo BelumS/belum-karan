@@ -1,7 +1,10 @@
 package org.example.numbers;
 
 import org.example.common.NumberConstants;
+import org.example.common.StringUtils;
 
+import java.util.EnumSet;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -9,7 +12,7 @@ import java.util.Scanner;
  * It then returns the tax plus the total cost with tax.
  */
 public final class TaxCalculator {
-    enum USStateTaxes {
+    private enum USStateTaxes {
         ALABAMA("AL", 9.22),
         ALASKA("AK", 1.76),
         ARIZONA("AZ", 8.4),
@@ -48,16 +51,16 @@ public final class TaxCalculator {
         OHIO("OH", 7.17),
         OKLAHOMA("OK", 8.94),
         OREGON("OR", 0.0),
-        PENNSLYVANIA("PA", 6.34),
+        PENNSYLVANIA("PA", 6.34),
         PUERTO_RICO("PR", 6),
         RHODE_ISLAND("RI", 7),
         SOUTH_CAROLINA("SC", 7.46),
         SOUTH_DAKOTA("SD", 6.4),
-        TENNESEE("TN", 9.53),
+        TENNESSEE("TN", 9.53),
         TEXAS("TX", 8.19),
         UTAH("UT", 7.18),
         VERMONT("VT", 6.22),
-        VIRIGNIA("VA", 5.65),
+        VIRGINIA("VA", 5.65),
         WASHINGTON("WA", 9.21),
         WEST_VIRGINIA("WV", 6.41),
         WISCONSIN("WI", 5.46),
@@ -82,20 +85,39 @@ public final class TaxCalculator {
         public String getSalesTaxPercentage() {
             return NumberConstants.roundedCurrencyValue(this.salesTax) + "%";
         }
+
+        public String getSimpleName() {
+            String name = this.name();
+            String delimiter = "_";
+
+            if (name.contains(delimiter)) {
+                String[] names = name.split(delimiter);
+                String first = StringUtils.capitalize(names[0].toLowerCase());
+                String last = StringUtils.capitalize(names[1].toLowerCase());
+
+                if (names.length == 2) {
+                    return first + " " + last;
+                } else if (names.length == 3) {
+                    return first + " " + names[1].toLowerCase() + " " + StringUtils.capitalize(names[2].toLowerCase());
+                }
+            }
+
+            name = name.toLowerCase();
+            return StringUtils.capitalize(name);
+        }
     }
 
-    //TODO: Add Country Sales Taxes?
-    enum CountryTaxes {
-        JAMAICA("JAM", 0.0),
-        HAITI("HAI", 0.0),
-        SIERRA_LEONE("SLL", 0.0),
+    private enum CountryTaxes {
+        JAMAICA("JAM", 16.5),
+        HAITI("HAI", 10),
+        SIERRA_LEONE("SLL", 15),
         LIBERIA("LIB", 0.0),
-        ETHIOPIA("ETH", 0.0),
-        GHANA("GHA", 0.0),
-        KENYA("KEN", 0.0),
-        TANZANIA("TZ", 0.0),
-        NIGERIA("NGN", 0.0),
-        SOUTH_AFRIKA("SAF", 0.0);
+        ETHIOPIA("ETH", 15),
+        GHANA("GHA", 12.5),
+        KENYA("KEN", 14),
+        TANZANIA("TZ", 18),
+        NIGERIA("NGN", 7.5),
+        SOUTH_AFRIKA("SAF", 15);
 
         private final String abbreviation;
         private final double salesTax;
@@ -116,22 +138,71 @@ public final class TaxCalculator {
         public String getSalesTaxPercentage() {
             return NumberConstants.roundedCurrencyValue(this.salesTax) + "%";
         }
+
+        public String getSimpleName() {
+            String name = this.name();
+            final String delimiter = "_";
+
+            if (name.contains(delimiter)) {
+                String[] names = name.split(delimiter);
+                String first = StringUtils.capitalize(names[0].toLowerCase());
+                String last = StringUtils.capitalize(names[1].toLowerCase());
+
+                if (names.length == 2) {
+                    return first + " " + last;
+                }
+            }
+
+            name = name.toLowerCase();
+            return StringUtils.capitalize(name);
+        }
     }
 
-    public static void displayTaxes(Scanner console) {
+    public static double calculateSalesTax(Scanner console) {
         System.out.println("Enter the cost of the item: $");
         String cost = console.next();
         System.out.println();
 
-        System.out.println("Enter the State/Country Tax: ");
-        String tax = console.next();
+        System.out.println("Enter the State/Country abbreviation: ");
+        String zone = console.next();
         System.out.println();
 
-        double intTax = Double.parseDouble(tax);
-        if(intTax > 0.0) {
-            System.out.println("The cost of the item is: $" + cost);
+        var stateTax = findStateTaxInfo(zone);
+        var countryTax = findCountryTaxInfo(zone);
+        if (stateTax.isPresent()) {
+            var tax = stateTax.get();
+            if (tax.getSalesTax() > 0.0) {
+                cost = String.valueOf(NumberConstants.roundedValues(Double.parseDouble(cost) * ((tax.getSalesTax() / 100) + 1)));
+                System.out.println("In " + tax.getSimpleName() + " the sales tax is " + tax.getSalesTaxPercentage() + ", and the cost of the item is: $" + cost);
+            } else {
+                System.out.println("In " + tax.getSimpleName() + ", the cost of the item is: $" + cost);
+            }
         } else {
-            System.out.println("No sales tax, the cost of the item is: $" + cost);
+            var tax = countryTax.get();
+            if (tax.getSalesTax() > 0.0) {
+                cost = String.valueOf(NumberConstants.roundedValues(Double.parseDouble(cost) * ((tax.getSalesTax() / 100) + 1)));
+                System.out.println("In " + tax.getSimpleName() + " the sales tax is " + tax.getSalesTaxPercentage() + ", and the cost of the item is: $" + cost);
+            } else {
+                System.out.println("In " + tax.getSimpleName() + ", the cost of the item is: $" + cost);
+            }
         }
+
+
+        return Double.parseDouble(cost);
     }
+
+    private static Optional<USStateTaxes> findStateTaxInfo(String region) {
+        assert region != null && region.length() >= 1;
+        return EnumSet.allOf(USStateTaxes.class).stream()
+                .filter(state -> region.equalsIgnoreCase(state.getAbbreviation()))
+                .findFirst();
+    }
+
+    private static Optional<CountryTaxes> findCountryTaxInfo(String region) {
+        assert region != null && region.length() >= 1;
+        return EnumSet.allOf(CountryTaxes.class).stream()
+                .filter(country -> region.equalsIgnoreCase(country.getAbbreviation()))
+                .findFirst();
+    }
+
 }
