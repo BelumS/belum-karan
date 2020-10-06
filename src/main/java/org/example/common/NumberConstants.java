@@ -26,6 +26,7 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_TWO_CITIES = "Distance between 2 Cities";
     public static final String TITLE_CREDIT_CARD_VALIDATOR = "Credit Card Validator";
     public static final String TITLE_TAX_CALCULATOR = "Tax Calculator";
+    public static final String TITLE_FACTORIAL_FINDER = "Factorial Finder";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
