@@ -152,6 +152,7 @@ public final class ProjectMenu {
                 .append("14. ").append(NumberConstants.TITLE_CREDIT_CARD_VALIDATOR).append("\n")
                 .append("15. ").append(NumberConstants.TITLE_TAX_CALCULATOR).append("\n")
                 .append("16. ").append(NumberConstants.TITLE_FACTORIAL_FINDER).append("\n")
+                .append("17. ").append(NumberConstants.TITLE_COMPLEX_NUMBER_ALGEBRA).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -223,6 +224,9 @@ public final class ProjectMenu {
                     break;
                 case 16:
                     FactorialFinder.displayFactorials(console);
+                    break;
+                case 17:
+                    ComplexNumbers.displayEquation(console);
                     break;
                 default:
                     exitOnError();
