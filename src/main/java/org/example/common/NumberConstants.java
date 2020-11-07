@@ -28,6 +28,7 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_TAX_CALCULATOR = "Tax Calculator";
     public static final String TITLE_FACTORIAL_FINDER = "Factorial Finder";
     public static final String TITLE_COMPLEX_NUMBER_ALGEBRA = "Complex Number Algebra";
+    public static final String TITLE_HAPPY_NUMBERS = "Happy Numbers";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
