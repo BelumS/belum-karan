@@ -154,6 +154,7 @@ public final class ProjectMenu {
                 .append("16. ").append(NumberConstants.TITLE_FACTORIAL_FINDER).append("\n")
                 .append("17. ").append(NumberConstants.TITLE_COMPLEX_NUMBER_ALGEBRA).append("\n")
                 .append("18. ").append(NumberConstants.TITLE_HAPPY_NUMBERS).append("\n")
+                .append("19. ").append(NumberConstants.TITLE_NUMBER_NAMES).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -231,6 +232,9 @@ public final class ProjectMenu {
                     break;
                 case 18:
                     HappyNumbers.displayNumbers(console);
+                    break;
+                case 19:
+                    NumberNames.displayNames(console);
                     break;
                 default:
                     exitOnError();
