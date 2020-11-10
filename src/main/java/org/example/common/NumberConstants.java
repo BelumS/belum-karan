@@ -30,6 +30,7 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_COMPLEX_NUMBER_ALGEBRA = "Complex Number Algebra";
     public static final String TITLE_HAPPY_NUMBERS = "Happy Numbers";
     public static final String TITLE_NUMBER_NAMES = "Number Names";
+    public static final String TITLE_COIN_FLIP = "Coin Flip";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
