@@ -30,6 +30,7 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_COMPLEX_NUMBER_ALGEBRA = "Complex Number Algebra";
     public static final String TITLE_HAPPY_NUMBERS = "Happy Numbers";
     public static final String TITLE_NUMBER_NAMES = "Number Names";
+    public static final String TITLE_COIN_FLIP = "Coin Flip";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
@@ -59,6 +60,16 @@ public final class NumberConstants extends AppConstants {
      */
     public static double roundedCurrencyValue(double val) {
         return BigDecimal.valueOf(val).setScale(2, RoundingMode.DOWN).doubleValue();
+    }
+
+    /**
+     * Provides a precise statistical percentage.
+     * @param divisor the divisor
+     * @param total the stat
+     * @return the statistical percentage
+     */
+    public static double percentageValue(double divisor, double total) {
+        return NumberConstants.roundedValues(divisor / total) * 100;
     }
 
     /**
