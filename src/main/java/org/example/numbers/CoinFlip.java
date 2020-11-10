@@ -16,8 +16,8 @@ import java.util.concurrent.ThreadLocalRandom;
  * and count the number of tails and heads.
  */
 public final class CoinFlip {
-    private static final String HEADS = "Heads";
-    private static final String TAILS = "Tails";
+    private static final String VALUE_HEADS = "Heads";
+    private static final String VALUE_TAILS = "Tails";
 
     private CoinFlip() {
     }
@@ -45,24 +45,25 @@ public final class CoinFlip {
     }
 
     private static List<String> flips(ThreadLocalRandom random, int num) {
+        var list = new ArrayList<String>();
         double headCount = 0;
         double tailCount = 0;
-        var list = new ArrayList<String>();
+
         for (int i = 0; i < num; i++) {
             var flip = random.nextBoolean();
 
             if (flip) {
                 headCount++;
-                list.add(HEADS);
+                list.add(VALUE_HEADS);
             } else {
                 tailCount++;
-                list.add(TAILS);
+                list.add(VALUE_TAILS);
             }
         }
 
-        double headPercentage = NumberConstants.roundedValues(headCount / list.size()) * 100;
-        double tailPercentage = NumberConstants.roundedValues(tailCount / list.size()) * 100;
-        System.out.printf("You flipped [%d] times for: [%.2f%% %s] and [%.2f%% %s].%n", list.size(), headPercentage, HEADS, tailPercentage, TAILS);
+        double headPercentage = NumberConstants.percentageValue(headCount, list.size());
+        double tailPercentage = NumberConstants.percentageValue(tailCount, list.size());
+        System.out.printf("You flipped [%d] times for: [%.2f%% %s] and [%.2f%% %s].%n", list.size(), headPercentage, VALUE_HEADS, tailPercentage, VALUE_TAILS);
         return list;
     }
 }

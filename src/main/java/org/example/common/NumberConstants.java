@@ -63,6 +63,16 @@ public final class NumberConstants extends AppConstants {
     }
 
     /**
+     * Provides a precise statistical percentage.
+     * @param divisor the divisor
+     * @param total the stat
+     * @return the statistical percentage
+     */
+    public static double percentageValue(double divisor, double total) {
+        return NumberConstants.roundedValues(divisor / total) * 100;
+    }
+
+    /**
      * Displays an error message to the console.
      * @param e - The Exception whose stack trace will displayed on the console.
      * @param message - The detailed message explaining why the error occurred.
