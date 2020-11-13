@@ -157,6 +157,7 @@ public final class ProjectMenu {
                 .append("19. ").append(NumberConstants.TITLE_NUMBER_NAMES).append("\n")
                 .append("20. ").append(NumberConstants.TITLE_COIN_FLIP).append("\n")
                 .append("21. ").append(NumberConstants.TITLE_LIMIT_CALCULATOR).append("\n")
+                .append("22. ").append(NumberConstants.TITLE_FAST_EXP).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -243,6 +244,9 @@ public final class ProjectMenu {
                     break;
                 case 21:
                     LimitCalculator.displayCalculation(console);
+                    break;
+               case 22:
+                    FastExponentiation.displayResult(console);
                     break;
                 default:
                     exitOnError();
