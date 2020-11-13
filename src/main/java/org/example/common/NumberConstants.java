@@ -31,6 +31,7 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_HAPPY_NUMBERS = "Happy Numbers";
     public static final String TITLE_NUMBER_NAMES = "Number Names";
     public static final String TITLE_COIN_FLIP = "Coin Flip";
+    public static final String TITLE_LIMIT_CALCULATOR = "Limit Calculator";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
@@ -103,7 +104,7 @@ public final class NumberConstants extends AppConstants {
      * @return a valid long.
      * @throws IllegalArgumentException if the long is negative, or an overflow value.
      */
-    public static long validateInput(long val) throws AssertionError {
+    public static long validateEntry(long val) throws AssertionError {
         if(val < 0L || val >= Long.MAX_VALUE)
             throw new IllegalArgumentException(val + INVALID_INPUT_EXCEPTION);
         return val;

@@ -6,10 +6,9 @@ import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.LongStream;
 
 import static java.lang.System.*;
-import static org.example.common.NumberConstants.validateInput;
+import static org.example.common.NumberConstants.validateEntry;
 
 public class Fibonacci {
 	private Fibonacci() {
@@ -25,7 +24,7 @@ public class Fibonacci {
 	public static Map<String, Long> sequence(Scanner console) {
 		try {
 			out.print("Enter an integer to view it's Fibonacci Sequence: ");
-			long choice = validateInput(Long.parseLong(console.next()));
+			long choice = validateEntry(Long.parseLong(console.next()));
 			out.println();
 			Map<String, Long> sequence = new LinkedHashMap<>();
 

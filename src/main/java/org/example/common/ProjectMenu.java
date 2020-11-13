@@ -156,6 +156,7 @@ public final class ProjectMenu {
                 .append("18. ").append(NumberConstants.TITLE_HAPPY_NUMBERS).append("\n")
                 .append("19. ").append(NumberConstants.TITLE_NUMBER_NAMES).append("\n")
                 .append("20. ").append(NumberConstants.TITLE_COIN_FLIP).append("\n")
+                .append("21. ").append(NumberConstants.TITLE_LIMIT_CALCULATOR).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -239,6 +240,9 @@ public final class ProjectMenu {
                     break;
                 case 20:
                     CoinFlip.displayResult(console);
+                    break;
+                case 21:
+                    LimitCalculator.displayCalculation(console);
                     break;
                 default:
                     exitOnError();
