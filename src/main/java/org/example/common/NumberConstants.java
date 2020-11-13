@@ -32,6 +32,7 @@ public final class NumberConstants extends AppConstants {
     public static final String TITLE_NUMBER_NAMES = "Number Names";
     public static final String TITLE_COIN_FLIP = "Coin Flip";
     public static final String TITLE_LIMIT_CALCULATOR = "Limit Calculator";
+    public static final String TITLE_FAST_EXP = "Fast Exponentiation";
 
     //Error Messages
     public static final String DECIMAL_OVERFLOW = "Error: Decimal Overflow!";
