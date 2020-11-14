@@ -2,14 +2,11 @@ package org.example.numbers;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
-import org.example.common.ValueConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.example.constants.ValueConstants;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
-import java.lang.invoke.MethodHandles;
 import java.util.Scanner;
 
 /**

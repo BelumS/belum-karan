@@ -1,7 +1,7 @@
 package org.example.numbers;
 
 import org.example.common.TestConstants;
-import org.example.common.ValueConstants;
+import org.example.constants.ValueConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

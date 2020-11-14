@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.constants;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -72,19 +72,6 @@ public final class NumberConstants extends AppConstants {
      */
     public static double percentageValue(double divisor, double total) {
         return NumberConstants.roundedValues(divisor / total) * 100;
-    }
-
-    /**
-     * Displays an error message to the console.
-     * @param e - The Exception whose stack trace will displayed on the console.
-     * @param message - The detailed message explaining why the error occurred.
-     */
-    public static void printError(Exception e, String message) {
-        System.err.println(message);
-        if(e != null) {
-            e.printStackTrace();
-        }
-        System.out.println("Try again!");
     }
 
     /**

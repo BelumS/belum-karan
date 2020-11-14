@@ -1,7 +1,7 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
-import org.example.common.StringUtils;
+import org.example.constants.NumberConstants;
+import org.example.utils.StringUtils;
 
 import java.util.EnumSet;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.utils;
 
 public final class StringUtils {
     private StringUtils() {

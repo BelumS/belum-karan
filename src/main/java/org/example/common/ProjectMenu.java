@@ -1,6 +1,9 @@
 package org.example.common;
 
+import org.example.constants.NumberConstants;
 import org.example.numbers.*;
+import org.example.text.FizzBuzz;
+import org.example.constants.TextConstants;
 
 import java.util.Scanner;
 
@@ -56,7 +59,7 @@ public final class ProjectMenu {
                     numberOptions(console);
                     break;
                 case 2:
-                    textOptions();
+                    textOptions(console);
                     break;
                 case 3:
                     dataStructureOptions();
@@ -262,7 +265,46 @@ public final class ProjectMenu {
             exitApp();
     }
 
-    private static void textOptions() {
+    private static void textMenu() {
+        StringBuilder builder = new StringBuilder(" - Text Projects - ");
+
+        builder.append("\n1. ").append(TextConstants.TITLE_FIZZ_BUZZ).append("\n")
+                .append("  \n0. ").append(REPEAT)
+                .append("\n-1. ").append(QUIT_MSG);
+        out.println(builder.toString());
+    }
+
+    private static void textOptions(Scanner console) {
+        try {
+            textMenu();
+            out.print("> ");
+            int choice = Integer.parseInt(console.next());
+            out.println();
+
+            do {
+                switch (choice) {
+                    case EXIT:
+                        quit = true;
+                        exitApp();
+                        break;
+                    case 0:
+                        textOptions(console);
+                        break;
+                    case 1:
+                        FizzBuzz.displayText(console);
+                        break;
+                    default:
+                        exitOnError();
+                }
+            } while(!quit || menuCounter < 4);
+        } catch (Exception e) {
+            ++menuCounter;
+            TextConstants.printError(e, e.getMessage());
+            textOptions(console);
+        }
+
+        if(menuCounter == 3)
+            exitApp();
     }
 
     private static void dataStructureOptions() {

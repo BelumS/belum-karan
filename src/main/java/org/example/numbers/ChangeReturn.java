@@ -1,10 +1,8 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
+import org.example.constants.NumberConstants;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.lang.System.err;
 import static java.lang.System.out;

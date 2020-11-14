@@ -1,6 +1,6 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
+import org.example.constants.NumberConstants;
 
 import java.util.ArrayList;
 import java.util.List;

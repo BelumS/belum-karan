@@ -1,6 +1,6 @@
 package org.example.numbers;
 
-import org.example.common.ValueConstants;
+import org.example.constants.ValueConstants;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

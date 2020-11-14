@@ -1,5 +1,6 @@
 package org.example.common;
 
+import org.example.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

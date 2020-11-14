@@ -1,5 +1,6 @@
 package org.example.text;
 
+import org.example.common.TestConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ class FizzBuzzTest {
 
     @BeforeEach
     void setup() {
-        list = FizzBuzz.fizzBuzzStream(101);
+        list = FizzBuzz.displayText(TestConstants.testScanner("15" + System.lineSeparator()));
     }
 
     @Test
