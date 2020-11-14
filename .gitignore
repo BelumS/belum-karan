@@ -6,10 +6,13 @@
 *.logs
 
 ### IntelliJ IDEA ###
-.idea/
+.idea
+/bin
 *.iws
 *.iml
 *.ipr
+/out
+/tmp
 
 ### Spring Boot ###
 /src/main/resources/application-local.properties
@@ -38,8 +41,11 @@
 .vscode
 
 ### Gradle ###
-.gradle
-build
+.gradle/**
+build/**
+gradle/**
+gradlew.bat
+gradlew
 
 ### Maven ###
 /target/
@@ -47,3 +53,4 @@ build
 
 ### OS ###
 *.DS_STORE
+/gradle/

@@ -1,7 +1,9 @@
 package org.example;
 
-public class ApplicationTest {
-    public static void main(String[] args) {
+import org.junit.jupiter.api.Test;
 
-    }
+public class ApplicationTest {
+
+    @Test
+    public void contextLoads() { }
 }

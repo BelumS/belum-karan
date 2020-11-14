@@ -1,21 +1,41 @@
 package org.example.numbers;
 
+import org.example.common.NumberConstants;
+
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static java.lang.System.err;
+import static java.lang.System.out;
+
+/**
+ * Represents the prime factorization of a number.
+ */
 public class PrimeFactors {
 	private PrimeFactors(){}
 
-	public static void calculate(Scanner console) {
+	/**
+	 * Calculates the prime factorization of an input.
+	 * @param console the keyboard input shared from the Numbers menu.
+	 * @return an array of prime factors.
+	 * @throws NumberFormatException If an invalid input is used
+	 */
+	public static int[] calculate(Scanner console) throws NumberFormatException {
 		try {
-			System.out.print("Enter an integer to view it's Prime Factors: ");
-			int n = console.nextInt();
-			System.out.println();
+			out.print("Enter an integer to view it's Prime Factors: ");
+			int n = NumberConstants.validateEntry(Integer.parseInt(console.next()));
+			out.println();
 
-			System.out.println("The Prime Factors of (" + n + ") are: " + Arrays.toString(Primeable.extractPrimeFactors(n)));
+			int[] result = Primeable.extractPrimeFactors(n);
+			out.println("The Prime Factors of (" + n + ") are: " + Arrays.toString(result));
+			return result;
+		} catch (NumberFormatException e) {
+			err.println(NumberConstants.INVALID_INPUT);
+			throw e;
 		} catch(Exception e) {
-			System.out.println("Failed to calculate Prime Factors: " + e.getMessage());
-			e.printStackTrace();
+			err.println("Failed to calculate Prime Factors: " + e.getMessage());
+			throw e;
 		}
 	}
 }

@@ -1,23 +1,44 @@
 package org.example.numbers;
 
+import org.example.common.NumberConstants;
+
+import java.util.InputMismatchException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.LongStream;
+
+import static java.lang.System.*;
+import static org.example.common.NumberConstants.validateEntry;
 
 public class Fibonacci {
 	private Fibonacci() {
 	}
 
-	public static void sequence(Scanner console) {
+	/**
+	 * Displays the fibonacci sequence.
+	 * @param console the keyboard input shared from the Numbers menu.
+	 * @return the map of the fibonacci sequence
+	 * @throws IllegalArgumentException if an invalid number is used
+	 * @throws InputMismatchException If an invalid input is used
+	 */
+	public static Map<String, Long> sequence(Scanner console) {
 		try {
-			System.out.print("Enter an integer to view it's Fibonacci Sequence: ");
-			long choice = Long.parseLong(console.next());
-			System.out.println();
+			out.print("Enter an integer to view it's Fibonacci Sequence: ");
+			long choice = validateEntry(Long.parseLong(console.next()));
+			out.println();
+			Map<String, Long> sequence = new LinkedHashMap<>();
 
-			LongStream.rangeClosed(0, choice).forEach(i -> System.out
-					.println(new StringBuilder("f(").append(i).append(") = ").append(fibonacci(i)).toString()));
+			for(long i = 0; i < choice; i++) {
+				sequence.put("f("+i+")", fibonacci(i));
+			}
+			out.println(sequence);
+			return sequence;
+		} catch (InputMismatchException | NumberFormatException e) {
+			err.println(NumberConstants.INVALID_INPUT);
+			throw e;
 		} catch (Exception e) {
-			System.out.println("Failed to generate Fibonacci Sequence: " + e.getMessage());
-			e.printStackTrace();
+			err.println("An error occurred while generating the sequence: " + e.getMessage());
+			throw e;
 		}
 	}
 
