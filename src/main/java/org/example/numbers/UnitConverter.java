@@ -1,6 +1,6 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
+import org.example.constants.NumberConstants;
 import org.example.numbers.UnitConverter.TemperatureUnits.*;
 
 import java.util.EnumSet;

@@ -3,7 +3,7 @@ package org.example.numbers;
 import java.util.Scanner;
 
 import static java.lang.System.err;
-import static org.example.common.NumberConstants.validateEntry;
+import static org.example.constants.NumberConstants.validateEntry;
 
 /**
  * Calculate the total cost of tile it would take to

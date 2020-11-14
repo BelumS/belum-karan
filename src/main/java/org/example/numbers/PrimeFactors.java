@@ -1,9 +1,8 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
+import org.example.constants.NumberConstants;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static java.lang.System.err;

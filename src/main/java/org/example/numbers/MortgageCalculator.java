@@ -7,8 +7,8 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import static java.lang.System.err;
 import static java.lang.System.out;
-import static org.example.common.NumberConstants.roundedCurrencyValue;
-import static org.example.common.NumberConstants.validateEntry;
+import static org.example.constants.NumberConstants.roundedCurrencyValue;
+import static org.example.constants.NumberConstants.validateEntry;
 
 /**
  * Calculate the monthly payments of a fixed term mortgage

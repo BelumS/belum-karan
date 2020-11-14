@@ -1,13 +1,13 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
+import org.example.constants.NumberConstants;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 import static java.lang.System.out;
-import static org.example.common.NumberConstants.*;
+import static org.example.constants.NumberConstants.*;
 
 /**
  * A simple calculator to do basic operators.

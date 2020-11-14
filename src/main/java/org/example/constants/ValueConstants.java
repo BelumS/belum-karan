@@ -1,4 +1,4 @@
-package org.example.common;
+package org.example.constants;
 
 public final class ValueConstants extends AppConstants {
     private ValueConstants(){}

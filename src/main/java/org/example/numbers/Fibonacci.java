@@ -1,6 +1,6 @@
 package org.example.numbers;
 
-import org.example.common.NumberConstants;
+import org.example.constants.NumberConstants;
 
 import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import static java.lang.System.*;
-import static org.example.common.NumberConstants.validateEntry;
+import static org.example.constants.NumberConstants.validateEntry;
 
 public class Fibonacci {
 	private Fibonacci() {
