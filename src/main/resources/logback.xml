@@ -7,10 +7,10 @@
     <property name="appender" defaultValue="Async-Appender" value="${logback.appender}"/>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logFilePath}/api-template.log</file>
+        <file>${logFilePath}/belum-karan.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${logFilePath}/api-template-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${logFilePath}/belum-karan-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>${maxFileSize}</maxFileSize>
             <maxHistory>${maxHistory}</maxHistory>
             <totalSizeCap>${totalSizeCap}</totalSizeCap>

@@ -4,6 +4,7 @@ import org.example.constants.NumberConstants;
 import org.example.numbers.*;
 import org.example.text.FizzBuzz;
 import org.example.constants.TextConstants;
+import org.example.text.ReverseString;
 
 import java.util.Scanner;
 
@@ -15,7 +16,6 @@ import static java.lang.System.out;
  */
 public final class ProjectMenu {
     private static final String TITLE = "\n*** Welcome to Belum's Karan Project Solutions! ***\n";
-    private static final String TEXT = "Text";
     private static final String DATA_STRUCTURES = "Data Structures";
     private static final String ALGORITHMS = "Algorithms";
     private static final String CLASSES = "Classes";
@@ -109,7 +109,7 @@ public final class ProjectMenu {
         StringBuilder builder = new StringBuilder(TITLE);
 
          builder.append("1. ").append(NumberConstants.TITLE).append("\n")
-                .append("2. ").append(TEXT).append("\n")
+                .append("2. ").append(TextConstants.TITLE).append("\n")
                 .append("3. ").append(DATA_STRUCTURES).append("\n")
                 .append("4. ").append(ALGORITHMS).append("\n")
                 .append("5. ").append(CLASSES).append("\n")
@@ -257,7 +257,7 @@ public final class ProjectMenu {
             } while(!quit || menuCounter < 4);
         } catch (Exception e) {
             ++menuCounter;
-            NumberConstants.printError(e, e.getMessage());
+            NumberConstants.printError(e);
             numberOptions(console);
         }
 
@@ -269,6 +269,7 @@ public final class ProjectMenu {
         StringBuilder builder = new StringBuilder(" - Text Projects - ");
 
         builder.append("\n1. ").append(TextConstants.TITLE_FIZZ_BUZZ).append("\n")
+                .append("2. ").append(TextConstants.TITLE_REVERSE_STRING).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -293,13 +294,16 @@ public final class ProjectMenu {
                     case 1:
                         FizzBuzz.displayText(console);
                         break;
+                    case 2:
+                        ReverseString.displayReversal(console);
+                        break;
                     default:
                         exitOnError();
                 }
             } while(!quit || menuCounter < 4);
         } catch (Exception e) {
             ++menuCounter;
-            TextConstants.printError(e, e.getMessage());
+            TextConstants.printError(e);
             textOptions(console);
         }
 
