@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FizzBuzzTest {
     private List<String> list;
@@ -20,6 +19,17 @@ class FizzBuzzTest {
     @Test
     void testList() {
         assertNotNull(list);
+    }
+
+    @Test
+    void testThrowsException() {
+        assertThrows(Exception.class, () -> FizzBuzz.displayText(null));
+    }
+
+    @Test
+    void testEmptyList() {
+        list = FizzBuzz.displayText(TestConstants.testScanner("0" + System.lineSeparator()));
+        assertEquals(0, list.size());
     }
 
     @Test

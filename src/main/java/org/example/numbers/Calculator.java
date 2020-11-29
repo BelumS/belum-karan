@@ -56,10 +56,10 @@ public final class Calculator {
                     throw new AssertionError(INVALID_INPUT);
             }
         } catch (ArithmeticException | NumberFormatException e) {
-            NumberConstants.printError(e, e.getMessage());
+            NumberConstants.printError(e);
             throw e;
         } catch (Exception e) {
-            NumberConstants.printError(e, e.getMessage());
+            NumberConstants.printError(e);
             throw e;
         }
     }
