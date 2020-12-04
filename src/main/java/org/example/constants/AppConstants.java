@@ -14,8 +14,8 @@ public abstract class AppConstants {
      *
      * @param e The Exception whose stack trace will displayed on the console.
      */
-    public static void printError(Exception e) {
-        System.err.println("An Exception occurred " + e.getMessage());
+    public static void printError(Throwable e) {
+        System.err.println("An Exception occurred - " + e.getMessage());
         e.printStackTrace();
         System.out.println("Try again!");
     }

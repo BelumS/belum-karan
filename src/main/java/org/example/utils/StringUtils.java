@@ -45,5 +45,14 @@ public final class StringUtils {
         return input != null;
     }
 
+    /**
+     * Checks if the input is a vowel
+     * @param ch the input character
+     * @return true, if the input is a vowel.
+     */
+    public static boolean hasFirstVowel(char ch) {
+        return "aeiouyAEIOUY".indexOf(ch) != -1;
+    }
+
 //TODO: Create a capitalize() for any number of inputs (i.e., multiple words)
 }

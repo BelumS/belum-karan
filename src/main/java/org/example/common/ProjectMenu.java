@@ -1,9 +1,10 @@
 package org.example.common;
 
 import org.example.constants.NumberConstants;
+import org.example.constants.TextConstants;
 import org.example.numbers.*;
 import org.example.text.FizzBuzz;
-import org.example.constants.TextConstants;
+import org.example.text.PigLatin;
 import org.example.text.ReverseString;
 
 import java.util.Scanner;
@@ -38,7 +39,7 @@ public final class ProjectMenu {
 
     /**
      * Displays the text-based UI for the application, and allows for user input.
-     * */
+     */
     public static void menu() {
         try (Scanner console = new Scanner(System.in)) {
             menuOptions();
@@ -48,54 +49,54 @@ public final class ProjectMenu {
 
             do {
                 switch (choice) {
-                case EXIT:
-                    quit = true;
-                    exitApp();
-                    break;
-                case 0:
-                    menu();
-                    break;
-                case 1:
-                    numberOptions(console);
-                    break;
-                case 2:
-                    textOptions(console);
-                    break;
-                case 3:
-                    dataStructureOptions();
-                    break;
-                case 4:
-                    algorithmOptions();
-                    break;
-                case 5:
-                    classOptions();
-                    break;
-                case 6:
-                    fileOptions();
-                    break;
-                case 7:
-                    threadingOptions();
-                    break;
-                case 8:
-                    networkingOptions();
-                    break;
-                case 9:
-                    databaseOptions();
-                    break;
-                case 10:
-                    webOptions();
-                    break;
-                case 11:
-                    securityOptions();
-                    break;
-                case 12:
-                    graphOptions();
-                    break;
-                case 13:
-                    graphicOptions();
-                    break;
-                default:
-                    exitOnError();
+                    case EXIT:
+                        quit = true;
+                        exitApp();
+                        break;
+                    case 0:
+                        menu();
+                        break;
+                    case 1:
+                        numberOptions(console);
+                        break;
+                    case 2:
+                        textOptions(console);
+                        break;
+                    case 3:
+                        dataStructureOptions();
+                        break;
+                    case 4:
+                        algorithmOptions();
+                        break;
+                    case 5:
+                        classOptions();
+                        break;
+                    case 6:
+                        fileOptions();
+                        break;
+                    case 7:
+                        threadingOptions();
+                        break;
+                    case 8:
+                        networkingOptions();
+                        break;
+                    case 9:
+                        databaseOptions();
+                        break;
+                    case 10:
+                        webOptions();
+                        break;
+                    case 11:
+                        securityOptions();
+                        break;
+                    case 12:
+                        graphOptions();
+                        break;
+                    case 13:
+                        graphicOptions();
+                        break;
+                    default:
+                        exitOnError();
                 }
             } while (!quit);
         } catch (Exception e) {
@@ -108,7 +109,7 @@ public final class ProjectMenu {
     private static void menuOptions() {
         StringBuilder builder = new StringBuilder(TITLE);
 
-         builder.append("1. ").append(NumberConstants.TITLE).append("\n")
+        builder.append("1. ").append(NumberConstants.TITLE).append("\n")
                 .append("2. ").append(TextConstants.TITLE).append("\n")
                 .append("3. ").append(DATA_STRUCTURES).append("\n")
                 .append("4. ").append(ALGORITHMS).append("\n")
@@ -139,7 +140,7 @@ public final class ProjectMenu {
     private static void numberMenu() {
         StringBuilder builder = new StringBuilder(" - Number Projects - ");
 
-         builder.append("\n1. ").append(NumberConstants.TITLE_PI).append("\n")
+        builder.append("\n1. ").append(NumberConstants.TITLE_PI).append("\n")
                 .append("2. ").append(NumberConstants.TITLE_E).append("\n")
                 .append("3. ").append(NumberConstants.TITLE_FIBONACCI).append("\n")
                 .append("4. ").append(NumberConstants.TITLE_PRIME_FACTORS).append("\n")
@@ -178,90 +179,90 @@ public final class ProjectMenu {
             //TODO: Fix the delayed scanner input
             do {
                 switch (choice) {
-                case EXIT:
-                    quit = true;
-                    exitApp();
-                    break;
-                case 0:
-                    numberOptions(console);
-                    break;
-                case 1:
-                    Pinth.displayPi(console);
-                    break;
-                case 2:
-                    Enth.displayE(console);
-                    break;
-                case 3:
-                    Fibonacci.sequence(console);
-                    break;
-                case 4:
-                    PrimeFactors.calculate(console);
-                    break;
-                case 5:
-                    NextPrime.infinitePrimes(console);
-                    break;
-                case 6:
-                    TileCost.calculate(console);
-                    break;
-                case 7:
-                    MortgageCalculator.printCalculation(console);
-                    break;
-                case 8:
-                    ChangeReturn.print(console);
-                    break;
-                case 9:
-                    NumberBaseConverter.print(console);
-                    break;
-                case 10:
-                    Calculator.print(console);
-                    break;
-                case 11:
-                    UnitConverter.display(console);
-                    break;
-                case 12:
-                    AlarmClock.displayAlarm(console);
-                    break;
-                case 13:
-                    TwoCities.displayCalculation(console);
-                    break;
-                case 14:
-                    CreditCardValidator.displayChecksum(console);
-                    break;
-                case 15:
-                    TaxCalculator.calculateSalesTax(console);
-                    break;
-                case 16:
-                    FactorialFinder.displayFactorials(console);
-                    break;
-                case 17:
-                    ComplexNumbers.displayEquation(console);
-                    break;
-                case 18:
-                    HappyNumbers.displayNumbers(console);
-                    break;
-                case 19:
-                    NumberNames.displayNames(console);
-                    break;
-                case 20:
-                    CoinFlip.displayResult(console);
-                    break;
-                case 21:
-                    LimitCalculator.displayCalculation(console);
-                    break;
-               case 22:
-                    FastExponentiation.displayResult(console);
-                    break;
-                default:
-                    exitOnError();
+                    case EXIT:
+                        quit = true;
+                        exitApp();
+                        break;
+                    case 0:
+                        numberOptions(console);
+                        break;
+                    case 1:
+                        Pinth.displayPi(console);
+                        break;
+                    case 2:
+                        Enth.displayE(console);
+                        break;
+                    case 3:
+                        Fibonacci.sequence(console);
+                        break;
+                    case 4:
+                        PrimeFactors.calculate(console);
+                        break;
+                    case 5:
+                        NextPrime.infinitePrimes(console);
+                        break;
+                    case 6:
+                        TileCost.calculate(console);
+                        break;
+                    case 7:
+                        MortgageCalculator.printCalculation(console);
+                        break;
+                    case 8:
+                        ChangeReturn.print(console);
+                        break;
+                    case 9:
+                        NumberBaseConverter.print(console);
+                        break;
+                    case 10:
+                        Calculator.print(console);
+                        break;
+                    case 11:
+                        UnitConverter.display(console);
+                        break;
+                    case 12:
+                        AlarmClock.displayAlarm(console);
+                        break;
+                    case 13:
+                        TwoCities.displayCalculation(console);
+                        break;
+                    case 14:
+                        CreditCardValidator.displayChecksum(console);
+                        break;
+                    case 15:
+                        TaxCalculator.calculateSalesTax(console);
+                        break;
+                    case 16:
+                        FactorialFinder.displayFactorials(console);
+                        break;
+                    case 17:
+                        ComplexNumbers.displayEquation(console);
+                        break;
+                    case 18:
+                        HappyNumbers.displayNumbers(console);
+                        break;
+                    case 19:
+                        NumberNames.displayNames(console);
+                        break;
+                    case 20:
+                        CoinFlip.displayResult(console);
+                        break;
+                    case 21:
+                        LimitCalculator.displayCalculation(console);
+                        break;
+                    case 22:
+                        FastExponentiation.displayResult(console);
+                        break;
+                    default:
+                        exitOnError();
                 }
-            } while(!quit || menuCounter < 4);
+            } while (!quit || menuCounter < 4);
         } catch (Exception e) {
             ++menuCounter;
             NumberConstants.printError(e);
             numberOptions(console);
         }
 
-        if(menuCounter == 3)
+        if (menuCounter == 3)
             exitApp();
     }
 
@@ -270,6 +271,7 @@ public final class ProjectMenu {
 
         builder.append("\n1. ").append(TextConstants.TITLE_FIZZ_BUZZ).append("\n")
                 .append("2. ").append(TextConstants.TITLE_REVERSE_STRING).append("\n")
+                .append("3. ").append(TextConstants.TITLE_PIG_LATIN).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -297,17 +299,20 @@ public final class ProjectMenu {
                     case 2:
                         ReverseString.displayReversal(console);
                         break;
+                    case 3:
+                        PigLatin.displayGame(console);
+                        break;
                     default:
                         exitOnError();
                 }
-            } while(!quit || menuCounter < 4);
+            } while (!quit || menuCounter < 4);
         } catch (Exception e) {
             ++menuCounter;
             TextConstants.printError(e);
             textOptions(console);
         }
 
-        if(menuCounter == 3)
+        if (menuCounter == 3)
             exitApp();
     }
 
