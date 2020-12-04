@@ -11,5 +11,6 @@ public final class TextConstants extends AppConstants {
     public static final String TITLE_REVERSE_STRING = "Reverse String";
     public static final String TITLE_PIG_LATIN = "Pig Latin";
     public static final String TITLE_COUNT_VOWELS = "Count Vowels";
+    public static final String TITLE_PALINDROME = "Palindrome";
 
 }

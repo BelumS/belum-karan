@@ -4,10 +4,7 @@ import org.example.constants.AppConstants;
 import org.example.constants.NumberConstants;
 import org.example.constants.TextConstants;
 import org.example.numbers.*;
-import org.example.text.CountVowels;
-import org.example.text.FizzBuzz;
-import org.example.text.PigLatin;
-import org.example.text.ReverseString;
+import org.example.text.*;
 
 import java.util.Scanner;
 
@@ -275,6 +272,7 @@ public final class ProjectMenu {
                 .append("2. ").append(TextConstants.TITLE_REVERSE_STRING).append("\n")
                 .append("3. ").append(TextConstants.TITLE_PIG_LATIN).append("\n")
                 .append("4. ").append(TextConstants.TITLE_COUNT_VOWELS).append("\n")
+                .append("5. ").append(TextConstants.TITLE_PALINDROME).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -307,6 +305,9 @@ public final class ProjectMenu {
                         break;
                     case 4:
                         CountVowels.displayVowels(console);
+                        break;
+                    case 5:
+                        Palindrome.displayIfPalindrome(console);
                         break;
                     default:
                         exitOnError();
