@@ -1,8 +1,10 @@
 package org.example.common;
 
+import org.example.constants.AppConstants;
 import org.example.constants.NumberConstants;
 import org.example.constants.TextConstants;
 import org.example.numbers.*;
+import org.example.text.CountVowels;
 import org.example.text.FizzBuzz;
 import org.example.text.PigLatin;
 import org.example.text.ReverseString;
@@ -258,7 +260,7 @@ public final class ProjectMenu {
             } while (!quit || menuCounter < 4);
         } catch (Exception e) {
             ++menuCounter;
-            NumberConstants.printError(e);
+            AppConstants.printError(e);
             numberOptions(console);
         }
 
@@ -272,6 +274,7 @@ public final class ProjectMenu {
         builder.append("\n1. ").append(TextConstants.TITLE_FIZZ_BUZZ).append("\n")
                 .append("2. ").append(TextConstants.TITLE_REVERSE_STRING).append("\n")
                 .append("3. ").append(TextConstants.TITLE_PIG_LATIN).append("\n")
+                .append("4. ").append(TextConstants.TITLE_COUNT_VOWELS).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -302,13 +305,16 @@ public final class ProjectMenu {
                     case 3:
                         PigLatin.displayGame(console);
                         break;
+                    case 4:
+                        CountVowels.displayVowels(console);
+                        break;
                     default:
                         exitOnError();
                 }
             } while (!quit || menuCounter < 4);
         } catch (Exception e) {
             ++menuCounter;
-            TextConstants.printError(e);
+            AppConstants.printError(e);
             textOptions(console);
         }
 

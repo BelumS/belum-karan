@@ -2,9 +2,14 @@ package org.example.utils;
 
 import org.example.constants.ValueConstants;
 
+import java.util.regex.Pattern;
+
 public final class StringUtils {
     private StringUtils() {
     }
+
+    private static final String ONLY_WORDS_REGEX = "^[a-zA-Z\\s]+$";
+    private static final String ONLY_DIGITS_REGEX = "^[0-9\\s]+$";
 
     public static boolean isNotBlank(String input) {
         return input != null
@@ -47,6 +52,7 @@ public final class StringUtils {
 
     /**
      * Checks if the input is a vowel
+     *
      * @param ch the input character
      * @return true, if the input is a vowel.
      */
@@ -54,5 +60,18 @@ public final class StringUtils {
         return "aeiouyAEIOUY".indexOf(ch) != -1;
     }
 
+    public static String validateWords(String input) {
+        if (Pattern.matches(ONLY_WORDS_REGEX, input)) {
+            return input;
+        } else
+            throw new AssertionError("'" + input + "' is not a textual input!");
+    }
+
+    public static String validateNumbers(String input) {
+        if (Pattern.matches(ONLY_DIGITS_REGEX, input)) {
+            return input;
+        } else
+            throw new AssertionError("'" + input + " is not a numeric input!");
+    }
 //TODO: Create a capitalize() for any number of inputs (i.e., multiple words)
 }
