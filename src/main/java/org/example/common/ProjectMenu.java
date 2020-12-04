@@ -273,6 +273,7 @@ public final class ProjectMenu {
                 .append("3. ").append(TextConstants.TITLE_PIG_LATIN).append("\n")
                 .append("4. ").append(TextConstants.TITLE_COUNT_VOWELS).append("\n")
                 .append("5. ").append(TextConstants.TITLE_PALINDROME).append("\n")
+                .append("6. ").append(TextConstants.TITLE_COUNT_WORDS).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -308,6 +309,9 @@ public final class ProjectMenu {
                         break;
                     case 5:
                         Palindrome.displayIfPalindrome(console);
+                        break;
+                    case 6:
+                        CountWords.displayCount(console);
                         break;
                     default:
                         exitOnError();
