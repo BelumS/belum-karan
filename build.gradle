@@ -13,6 +13,7 @@ plugins {
     id 'java'
     id 'application'
     id 'idea'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 repositories {
@@ -49,8 +50,8 @@ idea {
     }
 }
 
-// Define the main class for the application
-mainClassName = 'org.example.Application'
+//mainClassName = 'org.example.Application'
+mainClassName = 'org.example.text.TextEditor'
 
 run {
     standardInput = System.in
@@ -78,6 +79,11 @@ test {
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
+}
+
+javafx {
+    version = "13"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 static String getDate() {
