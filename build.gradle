@@ -30,6 +30,8 @@ dependencies {
     compile 'javazoom:jlayer:1.0.1'
     implementation 'org.projectlombok:lombok:1.18.12'
     implementation 'org.apache.commons:commons-lang3:3.9'
+
+    implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation "ch.qos.logback:logback-core:$logbackVersion"
     implementation "ch.qos.logback:logback-classic:$logbackVersion"
     implementation "ch.qos.logback:logback-access:$logbackVersion"

@@ -1,6 +1,8 @@
 package org.example.utils;
 
 import org.example.constants.AppConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +16,11 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+/**
+ * A Utility class for performing File Operations.
+ */
 public final class FileUtils {
+    private static final Logger log = LoggerFactory.getLogger(FileUtils.class);
     public static final Charset CHARSET = StandardCharsets.UTF_8;
     public static final String MISC_DIR = "src/main/resources/misc";
 
@@ -60,6 +66,7 @@ public final class FileUtils {
     public static String readFileFrom(Path path) {
         try {
             if (isReadableFile(path)) {
+                log.info("Opened: {}", path.getFileName());
                 return Files.readString(path, CHARSET);
             } else
                 throw new IOException("'" + path + "' is not a valid filePath!");
@@ -80,11 +87,10 @@ public final class FileUtils {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file.getName(), "rw");
              FileChannel fileChannel = randomAccessFile.getChannel()) {
 
-            if (StringUtils.isNotEmpty(content)) {
+            if (content != null) {
                 var savedFile = new File(file.getAbsolutePath());
                 var savedFilePath = savedFile.toPath();
 
-                //TODO: Bug found: When updaing an existing file, the first line is appended twice;
                 if (savedFile.createNewFile() && isWritableFile(savedFilePath) || isExistingFile(savedFilePath)) {
                     final String savedFileName = savedFile.getName();
                     fileLock = fileChannel.tryLock();
@@ -93,7 +99,7 @@ public final class FileUtils {
                     Files.writeString(savedFilePath, content, StandardOpenOption.TRUNCATE_EXISTING);
 
                     randomAccessFile.writeChars("Unlocking " + savedFileName);
-                    System.out.println("Saved: " + savedFileName);
+                    log.info("Saved: {}", savedFileName);
                     fileLock.release();
                 } else
                     throw new IOException("An Error occurred when saving to '" + file.getName() + "'!");

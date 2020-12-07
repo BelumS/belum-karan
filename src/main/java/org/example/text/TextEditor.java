@@ -15,8 +15,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lombok.NoArgsConstructor;
 import org.example.constants.AppConstants;
 import org.example.utils.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -24,7 +27,13 @@ import java.util.List;
 
 import static org.example.utils.FileUtils.MISC_DIR;
 
+/**
+ * Notepad style application that can open, edit, and save text documents.
+ * Optional: Add syntax highlighting and other features.
+ */
+@NoArgsConstructor
 public class TextEditor extends Application {
+    private static final Logger log = LoggerFactory.getLogger(TextEditor.class);
     private static final MyMenuHandler MENU_HANDLER = new MyMenuHandler();
     private static final List<FileChooser.ExtensionFilter> FILE_EXT_LIST = List.of(
             new FileChooser.ExtensionFilter("All", "*"),
@@ -34,8 +43,6 @@ public class TextEditor extends Application {
             new FileChooser.ExtensionFilter("FXML Files", "*.fxml"),
             new FileChooser.ExtensionFilter("Java Files", "*.java")
     );
-
-    private GridPane rootPane;
 
     private static final TextArea TEXT_AREA = new TextArea();
 
@@ -55,7 +62,7 @@ public class TextEditor extends Application {
 
     private void initUI(Stage stage) {
         var menu = menuBar(stage);
-        rootPane = gridLayout(menu, TEXT_AREA);
+        var rootPane = gridLayout(menu, TEXT_AREA);
         var scene = new Scene(rootPane, 280, 300);
 
         stage.setTitle("Text Editor");
@@ -114,17 +121,15 @@ public class TextEditor extends Application {
 
         menu.setOnAction(event -> {
             File selectedFile = fileChooser.showOpenDialog(stage);
-
             if (selectedFile != null) {
                 readFileContent(Path.of(selectedFile.getAbsolutePath()));
             } else {
-                System.out.println("Open File Operation was cancelled.");
+                log.info("Open File Operation was cancelled.");
             }
         });
         return menu;
     }
 
-    //TODO: "New" should create a new tab/window in the pane, and not a new file.
     private MenuItem createNewTab(Stage stage) {
         var menu = new MenuItem("New");
         menu.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
@@ -146,7 +151,7 @@ public class TextEditor extends Application {
                 writeFileContent(file);
                 MENU_HANDLER.doShowSaveDialog(file.getName());
             } else {
-                System.out.println("Save File Operation was cancelled.");
+                log.info("Save File Operation was cancelled.");
             }
         });
         return menu;
@@ -160,7 +165,6 @@ public class TextEditor extends Application {
     }
 
     private void readFileContent(Path path) {
-        System.out.println("Opened: " + path.getFileName());
         TEXT_AREA.setText(FileUtils.readFileFrom(path));
         TEXT_AREA.setWrapText(true);
     }
