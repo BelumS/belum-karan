@@ -4,12 +4,12 @@
     <property name="maxHistory" defaultValue="3" value="${logback.maxHistory}"/>
     <property name="totalSizeCap" defaultValue="300MB" value="${logback.totalSizeCap}"/>
     <property name="logLevel" defaultValue="INFO" value="${logback.logLevel}"/>
-    <property name="appender" defaultValue="Async-Appender" value="${logback.appender}"/>
+    <property name="appender" defaultValue="Async_Appender" value="${logback.appender}"/>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+<!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logFilePath}/belum-karan.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <!-- rollover daily -->
+            &lt;!&ndash; rollover daily&ndash;&gt;
             <fileNamePattern>${logFilePath}/belum-karan-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>${maxFileSize}</maxFileSize>
             <maxHistory>${maxHistory}</maxHistory>
@@ -18,7 +18,7 @@
         <encoder>
             <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
-    </appender>
+    </appender>-->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

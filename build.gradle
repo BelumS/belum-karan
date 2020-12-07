@@ -13,6 +13,7 @@ plugins {
     id 'java'
     id 'application'
     id 'idea'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 repositories {
@@ -29,6 +30,8 @@ dependencies {
     compile 'javazoom:jlayer:1.0.1'
     implementation 'org.projectlombok:lombok:1.18.12'
     implementation 'org.apache.commons:commons-lang3:3.9'
+
+    implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation "ch.qos.logback:logback-core:$logbackVersion"
     implementation "ch.qos.logback:logback-classic:$logbackVersion"
     implementation "ch.qos.logback:logback-access:$logbackVersion"
@@ -49,8 +52,8 @@ idea {
     }
 }
 
-// Define the main class for the application
 mainClassName = 'org.example.Application'
+//mainClassName = 'org.example.text.TextEditor'
 
 run {
     standardInput = System.in
@@ -78,6 +81,11 @@ test {
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
+}
+
+javafx {
+    version = "13"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 static String getDate() {
