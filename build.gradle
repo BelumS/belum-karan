@@ -52,8 +52,7 @@ idea {
     }
 }
 
-//mainClassName = 'org.example.Application'
-mainClassName = 'org.example.text.TextEditor'
+mainClassName = 'org.example.Application'
 
 run {
     standardInput = System.in
@@ -74,6 +73,11 @@ run {
             "-Dlogback.appender=$logbackAppender"
     ]
 }
+
+task runTextEditor {
+    mainClassName = 'org.example.text.TextEditor'
+}
+runTextEditor.finalizedBy(run)
 
 test {
 	useJUnitPlatform()
