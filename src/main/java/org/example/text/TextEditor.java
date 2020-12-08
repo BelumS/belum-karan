@@ -61,8 +61,8 @@ public class TextEditor extends Application {
     }
 
     private void initUI(Stage stage) {
-        var menu = menuBar(stage);
-        var rootPane = gridLayout(menu, TEXT_AREA);
+        var menuBar = menuBar(stage);
+        var rootPane = gridLayout(menuBar, TEXT_AREA);
         var scene = new Scene(rootPane, 280, 300);
 
         stage.setTitle("Text Editor");
@@ -92,15 +92,19 @@ public class TextEditor extends Application {
 
         pane.add(nodes[0], 0, 0);
         pane.add(nodes[1], 0, 1, 4, 2);
+        nodes[1].setId("textArea");
+
         return pane;
     }
 
     private MenuBar menuBar(Stage stage) {
-        var menu = new MenuBar();
-        menu.prefWidthProperty().bind(stage.widthProperty());
+        var menuBar = new MenuBar();
+        menuBar.setId("menuBar");
+        menuBar.prefWidthProperty().bind(stage.widthProperty());
 
         var fileMenu = new Menu("_File");
-        menu.getMenus().add(fileMenu);
+        fileMenu.setId("fileMenu");
+        menuBar.getMenus().add(fileMenu);
 
         var newMenuItem = createNewTab(stage);
         var openMenuItem = openFile(stage);
@@ -108,11 +112,12 @@ public class TextEditor extends Application {
         var exitMenuItem = exitItem();
         fileMenu.getItems().addAll(newMenuItem, openMenuItem, saveMenuItem, exitMenuItem);
 
-        return menu;
+        return menuBar;
     }
 
     private MenuItem openFile(Stage stage) {
         var menu = new MenuItem("Open");
+        menu.setId("openMenuItem");
         menu.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
 
         var fileChooser = new FileChooser();
@@ -132,6 +137,7 @@ public class TextEditor extends Application {
 
     private MenuItem createNewTab(Stage stage) {
         var menu = new MenuItem("New");
+        menu.setId("newMenuItem");
         menu.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));
         menu.setOnAction(event -> TEXT_AREA.clear());
         return menu;
@@ -139,6 +145,7 @@ public class TextEditor extends Application {
 
     private MenuItem saveFile(Stage stage) {
         var menu = new MenuItem("Save");
+        menu.setId("saveMenuItem");
         menu.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 
         var fileChooser = new FileChooser();
@@ -159,6 +166,7 @@ public class TextEditor extends Application {
 
     private MenuItem exitItem() {
         var menu = new MenuItem("Exit");
+        menu.setId("exitMenuItem");
         menu.setAccelerator(KeyCombination.keyCombination("Esc"));
         menu.setOnAction(event -> Platform.exit());
         return menu;
