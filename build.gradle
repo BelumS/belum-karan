@@ -37,6 +37,12 @@ dependencies {
     implementation "ch.qos.logback:logback-access:$logbackVersion"
 
     testImplementation 'org.mockito:mockito-core:3.3.0'
+
+    testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+    testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
+    testImplementation 'org.testfx:openjfx-monocle:jdk-11+26'
+
+    testImplementation 'org.hamcrest:hamcrest:2.2'
     testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
 
     // Only needed to run tests in a version of IntelliJ IDEA that bundles older versions
