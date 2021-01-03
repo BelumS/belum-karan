@@ -14,5 +14,6 @@ public final class TextConstants extends AppConstants {
     public static final String TITLE_PALINDROME = "Palindrome";
     public static final String TITLE_COUNT_WORDS = "Count Words";
     public static final String TITLE_TEXT_EDITOR = "Text Editor";
+    public static final String TITLE_RSS_FEED = "RSS Feeder";
 
 }

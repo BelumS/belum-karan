@@ -1,4 +1,4 @@
-package org.example.text;
+package org.example.text.texteditor;
 
 import javafx.application.Application;
 import javafx.application.Platform;

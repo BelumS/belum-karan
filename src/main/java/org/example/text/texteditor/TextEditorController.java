@@ -1,4 +1,4 @@
-package org.example.text;
+package org.example.text.texteditor;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

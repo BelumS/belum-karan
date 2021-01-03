@@ -21,6 +21,7 @@ repositories {
 }
 
 def logbackVersion = '1.2.3'
+def lombokVersion = '1.18.12'
 def junitVersion = '5.6.0'
 
 sourceCompatibility = 11
@@ -28,7 +29,8 @@ targetCompatibility = 11
 
 dependencies {
     compile 'javazoom:jlayer:1.0.1'
-    implementation 'org.projectlombok:lombok:1.18.12'
+    implementation "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     implementation 'org.apache.commons:commons-lang3:3.9'
 
     implementation 'org.slf4j:slf4j-api:1.7.30'
@@ -44,6 +46,7 @@ dependencies {
 
     testImplementation 'org.hamcrest:hamcrest:2.2'
     testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
     // Only needed to run tests in a version of IntelliJ IDEA that bundles older versions
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.6.0")
