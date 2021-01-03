@@ -5,6 +5,7 @@ import org.example.constants.NumberConstants;
 import org.example.constants.TextConstants;
 import org.example.numbers.*;
 import org.example.text.*;
+import org.example.text.rss.RSSFeeder;
 
 import java.util.Scanner;
 
@@ -274,6 +275,7 @@ public final class ProjectMenu {
                 .append("4. ").append(TextConstants.TITLE_COUNT_VOWELS).append("\n")
                 .append("5. ").append(TextConstants.TITLE_PALINDROME).append("\n")
                 .append("6. ").append(TextConstants.TITLE_COUNT_WORDS).append("\n")
+                .append("7. ").append(TextConstants.TITLE_RSS_FEED).append("\n")
                 .append("  \n0. ").append(REPEAT)
                 .append("\n-1. ").append(QUIT_MSG);
         out.println(builder.toString());
@@ -312,6 +314,9 @@ public final class ProjectMenu {
                         break;
                     case 6:
                         CountWords.displayCount(console);
+                        break;
+                    case 7:
+                        RSSFeeder.readRss(console);
                         break;
                     default:
                         exitOnError();
